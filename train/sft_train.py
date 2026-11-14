@@ -45,7 +45,8 @@ class CompletionOnlyFactory:
         if tok.pad_token is None:
             tok.pad_token = tok.eos_token
         cuda = torch.cuda.is_available()
-        net = AutoModelForCausalLM.from_pretrained(model, dtype=torch.bfloat16 if cuda else torch.float32)
+        bf16 = cuda and torch.cuda.is_bf16_supported()
+        net = AutoModelForCausalLM.from_pretrained(model, dtype=torch.bfloat16 if bf16 else (torch.float16 if cuda else torch.float32))
         # TRL truncates from the right, which would silently delete the completion (zero loss). Measure every row
         # with the real chat template and drop any that do not fit, instead of training on empty targets.
         kept, dropped, lengths = [], 0, []
@@ -65,7 +66,7 @@ class CompletionOnlyFactory:
         if not kept:
             raise RuntimeError("no training rows fit max_length")
         data = Dataset.from_list([{"prompt": r["messages"][:-1], "completion": [r["messages"][-1]]} for r in kept])
-        cfg = SFTConfig(max_length=self.max_length, completion_only_loss=True, bf16=cuda,
+        cfg = SFTConfig(max_length=self.max_length, completion_only_loss=True, bf16=bf16, fp16=cuda and not bf16,
                         gradient_checkpointing=cuda, report_to=[], **kwargs)
         peft = LoraConfig(r=self.lora_r, lora_alpha=self.lora_alpha, lora_dropout=0.05, task_type="CAUSAL_LM",
                           target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])

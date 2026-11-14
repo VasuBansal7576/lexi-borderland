@@ -40,3 +40,12 @@ See runtime/secrets/README.md. Network allowlist changes only apply in a NEW con
 - GRPO: train/reward.py (verifiable step reward; teacher +0.64 vs random -0.27), train/grpo_data.py (states from train worlds), train/grpo_train.py via AgentTune create_agentic_trainer (config verified). CPU smoke-tested. Control arm: --control.
 - Python 3.12 venv for training at $HOME/venv312 (VM-local; recreate with uv if lost).
 - BLOCKED ON: runtime/secrets/hf_token, GPU route (HF credits or Kaggle), GitHub repo name, claude_oauth_token (Haiku playtest).
+
+## Progress log (2026-11-14, 22:10 IST) - GPU phase started
+- Secrets OK: HF user FatUnc6969 (write, Tiny Aya access, 8192 ctx); Kaggle user vasu7576 (2x T4, phone-verified).
+- GitHub: code pushed to https://github.com/VasuBansal7576/lexi-borderland (main) from the cloud session clone.
+- Transport: sandbox blocks www.googleapis.com (Kaggle dataset upload) and hf_xet binary uploads. Bundle goes to HF dataset FatUnc6969/lexi-borderland-data/bundle as text chunks + sha256 manifest; notebooks download it with the HF token (embedded only in the private Kaggle notebooks, staged under runtime/kaggle/, gitignored). Notebooks upload results to the same dataset under runs/<phase>/ and adapters to FatUnc6969/tiny-aya-borderland-{sft,grpo,grpo-randreward-control}.
+- Launch: `python -m train.kaggle_launch --phase <eval_base|sft|grpo|grpo_control> --hf-user FatUnc6969` (venv $HOME/venv312, KAGGLE_CONFIG_DIR=runtime/secrets). Status: `kaggle kernels status vasu7576/lexi-borderland-<phase>`; logs (when finished): `kaggle kernels logs ...`.
+- Running: eval_base (v1), sft (v2; v1 failed on Kaggle's torchao 0.10 -> now uninstalled in setup).
+- Next: when sft done -> launch grpo and grpo_control (they pull the SFT adapter from HF). Then compile before/after tables, HF article, abstract, submit.
+- Haiku playtest skipped unless the user saves runtime/secrets/claude_oauth_token.

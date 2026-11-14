@@ -50,7 +50,8 @@ def main():
                 num_generations=a.generations, per_device_train_batch_size=a.generations,
                 gradient_accumulation_steps=1, max_completion_length=a.completion_len, temperature=a.temperature,
                 warmup_steps=max(1, a.steps // 20) if a.steps >= 20 else 0, logging_steps=1, save_steps=10**9,
-                bf16=cuda, gradient_checkpointing=cuda, seed=a.seed, report_to=[], log_completions=False)
+                bf16=cuda and torch.cuda.is_bf16_supported(), fp16=cuda and not torch.cuda.is_bf16_supported(),
+                gradient_checkpointing=cuda, seed=a.seed, report_to=[], log_completions=False)
     trainer = create_agentic_trainer("grpo", backend="trl", model=a.model, processing_class=tok,
                                      reward_funcs=[random_control_reward if a.control else borderland_step_reward],
                                      train_dataset=data, peft_config=peft, **want)

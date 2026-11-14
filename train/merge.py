@@ -9,7 +9,7 @@ def main():
     import torch
     from peft import PeftModel
     from transformers import AutoModelForCausalLM, AutoTokenizer
-    dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
+    dtype = torch.float16
     model = AutoModelForCausalLM.from_pretrained(a.base, dtype=dtype)
     model = PeftModel.from_pretrained(model, a.adapter).merge_and_unload()
     model.save_pretrained(a.output)
