@@ -1,0 +1,21 @@
+0.00.002.394 I srv  llama_server: initializing ...
+0.00.378.817 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.380.658 I srv  init_listene: The UI is disabled
+0.00.380.659 I srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.380.815 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.383.055 I srv    load_model: loading model '/Users/vasu/Desktop/Lexi/models/tiny-aya-global/model.gguf'
+0.00.796.309 W load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+0.01.425.368 I cmn          init: llama threadpool init, n_threads = 4
+0.01.937.844 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 8192, kv_unified = 'false'
+0.01.938.870 W srv          init: --cache-idle-slots requires --cache-ram, disabling
+0.01.946.090 I srv  llama_server: model loaded
+0.01.946.094 I srv  llama_server: listening on http://127.0.0.1:18791
+0.02.049.894 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.02.050.055 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.03.585.237 I slot print_timing: id  0 | task 0 | prompt eval time =    1114.72 ms /   375 tokens (    2.97 ms per token,   336.41 tokens per second)
+0.03.585.241 I slot print_timing: id  0 | task 0 |        eval time =     420.43 ms /    14 tokens (   32.34 ms per token,    30.92 tokens per second)
+0.03.585.241 I slot print_timing: id  0 | task 0 |       total time =    1535.15 ms /   389 tokens
+0.03.585.242 I slot print_timing: id  0 | task 0 |    graphs reused =         13
+0.03.585.242 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.03.585.618 I slot      release: id  0 | task 0 | stop processing: n_tokens = 388, truncated = 0
+0.03.587.920 I srv    operator(): operator(): cleaning up before exit...

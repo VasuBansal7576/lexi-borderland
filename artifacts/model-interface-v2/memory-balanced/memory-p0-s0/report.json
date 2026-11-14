@@ -1,0 +1,45 @@
+{
+  "name": "memory-p0-s0",
+  "interface": "typed-v2",
+  "assisted_prefix": true,
+  "notebook_probe": true,
+  "prefix_actions": 27,
+  "start_room": 3,
+  "last_room": 3,
+  "success": false,
+  "reason": "evaluator_stopped_repeated_notebook_writes",
+  "rooms_completed_from_entry": [],
+  "model_calls": 6,
+  "protocol_errors": 0,
+  "completion_tokens": 1096,
+  "score_including_prefix": 0.12,
+  "total_calls_including_prefix": [
+    33,
+    0
+  ],
+  "integrity": true,
+  "wipes": [],
+  "errors": [
+    "Evaluator stopped a repeating diagnostic; in-flight inference cancelled. Not a terminal game loss."
+  ],
+  "exact_environment_replay": true,
+  "source_hashes": {
+    "borderland/worker.py": "7ef026e4f75004a6c0ba4b6331c513ed7f6fb2aa862c663fa137120737ccd803",
+    "borderland/world.py": "1c4ee3cf7325572e7150cd99e8db7d76756801eb1a49385e04f4fb86493d2ec3",
+    "borderland/run.py": "e4fa0b4a693cfedb47cd172f5508d6b02b95748a0f205fbd97731a8a8c5539b2",
+    "borderland/env.py": "5cf3c733fd7c274d889d68b46a7cdba87e294b49354139a1a41bcc21b1df155c",
+    "borderland/solver.py": "6c20122665e125197135d88ca7cfb722412ddd1ef9077c1daaaf69ab01504816",
+    "borderland/__init__.py": "009b93a2dc47a5587c5726bc2339f0b34d6ee15ac4df109056be7267679b8732",
+    "borderland/mechanics.py": "df6d386a445c28871fc961c1660eb71d81c176cb162afbe3bddb36826a87269c",
+    "borderland/planning.py": "ba581f11e12b8efdd74cd5be09bca78026f3e37d7901203901b69e6a3c2ec882",
+    "borderland/certify.py": "78cb23cd402fe9712cd2ae6c2f1cbb3b88d4ab69bf49a2634981d2bbe7feb270",
+    "baseline/run.py": "1a748c225c5c0452d3d862153fd8fabd6e26d88cdade32c172de9e482fd9dcaf",
+    "baseline/viewer.py": "c91e61b25f9e867e30a575266102d0f532c7940b422799a79eab15d52f59aff8",
+    "baseline/run_v2.py": "f050cb697087406f0e56d0c9d3019d00284e0ce838124b988bfa614187303504",
+    "baseline/control.py": "aa169d2c063b1b4f44f024740414915ce16d2065aa84c6b8a7e0ee016eab9ef2",
+    "baseline/__init__.py": "2b4fdcd3867c85552df49894bf668b98e142cffc2aba94105f0736b456eeb11b",
+    "baseline/interface_v2.py": "5d0def24f8711fc4c5b40c6749af7eac6ddf4bfb2f064b08400e0f778b037c5f",
+    "baseline/analyze.py": "0ac60c51681ab1623ae591e6af060c31eb57cfdb885dab2e2644b9972c78d36c"
+  },
+  "system_sha256": "7fe33bb19af5e4b123f63fde10329634d196b8e1c999f66c9d143e8c807b327c"
+}

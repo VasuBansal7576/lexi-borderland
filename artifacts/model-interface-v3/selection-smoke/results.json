@@ -1,0 +1,1119 @@
+[
+  {
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Synthetic tool-interface test. Return one JSON object with reason, tool, args. Available tools: [{\"name\": \"status\", \"description\": \"Show current public state; does not advance objectives.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"inspect\", \"description\": \"Inspect a visible object. In rooms1\\u20133,5\\u20136, object_id='rules'; in Distance, your node ID or 'sign' after unlocking; in Osmosis, a visible node ID.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"object_id\": {\"type\": \"string\"}}, \"required\": [\"object_id\"], \"additionalProperties\": false}}, {\"name\": \"read_record\", \"description\": \"Read a catalog record by actual ID. Start offset0, follow next_offset until null. Reading the catalog does not deliver record contents.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"record_id\": {\"type\": \"string\"}, \"offset\": {\"type\": \"integer\", \"minimum\": 0}}, \"required\": [\"record_id\", \"offset\"], \"additionalProperties\": false}}, {\"name\": \"notebook_read\", \"description\": \"Read your current eight notebook lines.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"notebook_write\", \"description\": \"Replace all eight notebook lines with your own notes. Only these lines survive the room3 exit.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"lines\": {\"type\": \"array\", \"minItems\": 8, \"maxItems\": 8, \"items\": {\"type\": \"string\", \"pattern\": \"^[ -~]{0,96}$\"}}}, \"required\": [\"lines\"], \"additionalProperties\": false}}, {\"name\": \"exit_room\", \"description\": \"Leave only after this room's objectives are complete. Room3 exit irreversibly wipes context.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"choose_door\", \"description\": \"Commit to one door at the current bank. A wrong choice is fatal.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"door_id\": {\"type\": \"string\", \"enum\": [\"A\", \"B\", \"C\", \"D\"]}}, \"required\": [\"door_id\"], \"additionalProperties\": false}}]"
+        },
+        {
+          "role": "user",
+          "content": "Read the catalog record synthetic-17 starting at offset0."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "borderland_action",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "status"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "inspect"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "object_id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "read_record"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "record_id": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "record_id",
+                      "offset"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_read"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_write"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "lines": {
+                        "type": "array",
+                        "minItems": 8,
+                        "maxItems": 8,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[ -~]{0,96}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "lines"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "exit_room"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "choose_door"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "door_id": {
+                        "type": "string",
+                        "enum": [
+                          "A",
+                          "B",
+                          "C",
+                          "D"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "door_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"Read a catalog record by actual ID\",\n  \"tool\": \"read_record\",\n  \"args\": {\n    \"record_id\": \"synthetic-17\",\n    \"offset\": 0\n  }\n}"
+          }
+        }
+      ],
+      "created": 1794599076,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 54,
+        "prompt_tokens": 935,
+        "total_tokens": 989,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-NNoXQkz1gqOiyO1sTQFGsNjBZIydYR57",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 935,
+        "prompt_ms": 3018.779,
+        "prompt_per_token_ms": 3.22864064171123,
+        "prompt_per_second": 309.72787342167146,
+        "predicted_n": 54,
+        "predicted_ms": 1403.623,
+        "predicted_per_token_ms": 26.48345283018868,
+        "predicted_per_second": 37.75942685464687
+      }
+    },
+    "expected_tool": "read_record",
+    "expected_args": {
+      "record_id": "synthetic-17",
+      "offset": 0
+    },
+    "correct_selection": true,
+    "schema_valid": true
+  },
+  {
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Synthetic tool-interface test. Return one JSON object with reason, tool, args. Available tools: [{\"name\": \"status\", \"description\": \"Show current public state; does not advance objectives.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"inspect\", \"description\": \"Inspect a visible object. In rooms1\\u20133,5\\u20136, object_id='rules'; in Distance, your node ID or 'sign' after unlocking; in Osmosis, a visible node ID.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"object_id\": {\"type\": \"string\"}}, \"required\": [\"object_id\"], \"additionalProperties\": false}}, {\"name\": \"read_record\", \"description\": \"Read a catalog record by actual ID. Start offset0, follow next_offset until null. Reading the catalog does not deliver record contents.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"record_id\": {\"type\": \"string\"}, \"offset\": {\"type\": \"integer\", \"minimum\": 0}}, \"required\": [\"record_id\", \"offset\"], \"additionalProperties\": false}}, {\"name\": \"notebook_read\", \"description\": \"Read your current eight notebook lines.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"notebook_write\", \"description\": \"Replace all eight notebook lines with your own notes. Only these lines survive the room3 exit.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"lines\": {\"type\": \"array\", \"minItems\": 8, \"maxItems\": 8, \"items\": {\"type\": \"string\", \"pattern\": \"^[ -~]{0,96}$\"}}}, \"required\": [\"lines\"], \"additionalProperties\": false}}, {\"name\": \"exit_room\", \"description\": \"Leave only after this room's objectives are complete. Room3 exit irreversibly wipes context.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"choose_door\", \"description\": \"Commit to one door at the current bank. A wrong choice is fatal.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"door_id\": {\"type\": \"string\", \"enum\": [\"A\", \"B\", \"C\", \"D\"]}}, \"required\": [\"door_id\"], \"additionalProperties\": false}}]"
+        },
+        {
+          "role": "user",
+          "content": "This is a synthetic command-following check, not a game. Call choose_door with door_id B."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "borderland_action",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "status"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "inspect"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "object_id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "read_record"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "record_id": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "record_id",
+                      "offset"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_read"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_write"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "lines": {
+                        "type": "array",
+                        "minItems": 8,
+                        "maxItems": 8,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[ -~]{0,96}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "lines"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "exit_room"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "choose_door"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "door_id": {
+                        "type": "string",
+                        "enum": [
+                          "A",
+                          "B",
+                          "C",
+                          "D"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "door_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"The command 'choose_door' requires a valid door_id from the enum options (A, B, C, D).\",\n  \"tool\": \"choose_door\",\n  \"args\": {\n    \"door_id\": \"B\"\n  }\n}"
+          }
+        }
+      ],
+      "created": 1794599078,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 62,
+        "prompt_tokens": 945,
+        "total_tokens": 1007,
+        "prompt_tokens_details": {
+          "cached_tokens": 916
+        }
+      },
+      "id": "chatcmpl-VkZDbjv6hkaAeL1i0rue33Tst68r6nRQ",
+      "timings": {
+        "cache_n": 916,
+        "prompt_n": 29,
+        "prompt_ms": 170.776,
+        "prompt_per_token_ms": 5.888827586206897,
+        "prompt_per_second": 169.81308849018595,
+        "predicted_n": 62,
+        "predicted_ms": 1638.554,
+        "predicted_per_token_ms": 26.86154098360656,
+        "predicted_per_second": 37.22794610369875
+      }
+    },
+    "expected_tool": "choose_door",
+    "expected_args": {
+      "door_id": "B"
+    },
+    "correct_selection": true,
+    "schema_valid": true
+  },
+  {
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Synthetic tool-interface test. Return one JSON object with reason, tool, args. Available tools: [{\"name\": \"status\", \"description\": \"Show current public state; does not advance objectives.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"inspect\", \"description\": \"Inspect a visible object. In rooms1\\u20133,5\\u20136, object_id='rules'; in Distance, your node ID or 'sign' after unlocking; in Osmosis, a visible node ID.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"object_id\": {\"type\": \"string\"}}, \"required\": [\"object_id\"], \"additionalProperties\": false}}, {\"name\": \"read_record\", \"description\": \"Read a catalog record by actual ID. Start offset0, follow next_offset until null. Reading the catalog does not deliver record contents.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"record_id\": {\"type\": \"string\"}, \"offset\": {\"type\": \"integer\", \"minimum\": 0}}, \"required\": [\"record_id\", \"offset\"], \"additionalProperties\": false}}, {\"name\": \"notebook_read\", \"description\": \"Read your current eight notebook lines.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"notebook_write\", \"description\": \"Replace all eight notebook lines with your own notes. Only these lines survive the room3 exit.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"lines\": {\"type\": \"array\", \"minItems\": 8, \"maxItems\": 8, \"items\": {\"type\": \"string\", \"pattern\": \"^[ -~]{0,96}$\"}}}, \"required\": [\"lines\"], \"additionalProperties\": false}}, {\"name\": \"exit_room\", \"description\": \"Leave only after this room's objectives are complete. Room3 exit irreversibly wipes context.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"choose_door\", \"description\": \"Commit to one door at the current bank. A wrong choice is fatal.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"door_id\": {\"type\": \"string\", \"enum\": [\"A\", \"B\", \"C\", \"D\"]}}, \"required\": [\"door_id\"], \"additionalProperties\": false}}]"
+        },
+        {
+          "role": "user",
+          "content": "Read the notebook using notebook_read."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "borderland_action",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "status"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "inspect"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "object_id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "read_record"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "record_id": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "record_id",
+                      "offset"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_read"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_write"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "lines": {
+                        "type": "array",
+                        "minItems": 8,
+                        "maxItems": 8,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[ -~]{0,96}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "lines"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "exit_room"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "choose_door"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "door_id": {
+                        "type": "string",
+                        "enum": [
+                          "A",
+                          "B",
+                          "C",
+                          "D"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "door_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"To retrieve the current state of the notebook, which is essential for further actions like writing new notes or exiting the room.\",\n  \"tool\": \"notebook_read\",\n  \"args\": {\n    }\n  }"
+          }
+        }
+      ],
+      "created": 1794599080,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 53,
+        "prompt_tokens": 930,
+        "total_tokens": 983,
+        "prompt_tokens_details": {
+          "cached_tokens": 916
+        }
+      },
+      "id": "chatcmpl-KSxN7ejoFPfGQ5Xh5kPWxQtqTeIe5f3u",
+      "timings": {
+        "cache_n": 916,
+        "prompt_n": 14,
+        "prompt_ms": 151.739,
+        "prompt_per_token_ms": 10.8385,
+        "prompt_per_second": 92.2636896249481,
+        "predicted_n": 53,
+        "predicted_ms": 1561.907,
+        "predicted_per_token_ms": 30.036673076923076,
+        "predicted_per_second": 33.292635220919045
+      }
+    },
+    "expected_tool": "notebook_read",
+    "expected_args": {},
+    "correct_selection": true,
+    "schema_valid": true
+  },
+  {
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Synthetic tool-interface test. Return one JSON object with reason, tool, args. Available tools: [{\"name\": \"status\", \"description\": \"Show current public state; does not advance objectives.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"inspect\", \"description\": \"Inspect a visible object. In rooms1\\u20133,5\\u20136, object_id='rules'; in Distance, your node ID or 'sign' after unlocking; in Osmosis, a visible node ID.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"object_id\": {\"type\": \"string\"}}, \"required\": [\"object_id\"], \"additionalProperties\": false}}, {\"name\": \"read_record\", \"description\": \"Read a catalog record by actual ID. Start offset0, follow next_offset until null. Reading the catalog does not deliver record contents.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"record_id\": {\"type\": \"string\"}, \"offset\": {\"type\": \"integer\", \"minimum\": 0}}, \"required\": [\"record_id\", \"offset\"], \"additionalProperties\": false}}, {\"name\": \"notebook_read\", \"description\": \"Read your current eight notebook lines.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"notebook_write\", \"description\": \"Replace all eight notebook lines with your own notes. Only these lines survive the room3 exit.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"lines\": {\"type\": \"array\", \"minItems\": 8, \"maxItems\": 8, \"items\": {\"type\": \"string\", \"pattern\": \"^[ -~]{0,96}$\"}}}, \"required\": [\"lines\"], \"additionalProperties\": false}}, {\"name\": \"exit_room\", \"description\": \"Leave only after this room's objectives are complete. Room3 exit irreversibly wipes context.\", \"parameters\": {\"type\": \"object\", \"properties\": {}, \"required\": [], \"additionalProperties\": false}}, {\"name\": \"choose_door\", \"description\": \"Commit to one door at the current bank. A wrong choice is fatal.\", \"parameters\": {\"type\": \"object\", \"properties\": {\"door_id\": {\"type\": \"string\", \"enum\": [\"A\", \"B\", \"C\", \"D\"]}}, \"required\": [\"door_id\"], \"additionalProperties\": false}}]"
+        },
+        {
+          "role": "user",
+          "content": "This is a synthetic command-following check, not a game. Call exit_room with no arguments."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "borderland_action",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "status"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "inspect"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "object_id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "read_record"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "record_id": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "record_id",
+                      "offset"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_read"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_write"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "lines": {
+                        "type": "array",
+                        "minItems": 8,
+                        "maxItems": 8,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[ -~]{0,96}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "lines"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "exit_room"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "choose_door"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "door_id": {
+                        "type": "string",
+                        "enum": [
+                          "A",
+                          "B",
+                          "C",
+                          "D"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "door_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"The 'exit_room' tool is designed to leave a room after completing its objectives. Calling it without arguments will trigger the room's exit condition, which irreversibly wipes context.\",\n  \"tool\": \"exit_room\",\n  \"args\": {}\n}"
+          }
+        }
+      ],
+      "created": 1794599082,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 944,
+        "total_tokens": 1008,
+        "prompt_tokens_details": {
+          "cached_tokens": 916
+        }
+      },
+      "id": "chatcmpl-4rC9x2fzdFCUxGnb2AzHYE9PP73vfDvM",
+      "timings": {
+        "cache_n": 916,
+        "prompt_n": 28,
+        "prompt_ms": 203.585,
+        "prompt_per_token_ms": 7.270892857142857,
+        "prompt_per_second": 137.53469066974483,
+        "predicted_n": 64,
+        "predicted_ms": 1951.442,
+        "predicted_per_token_ms": 30.975269841269842,
+        "predicted_per_second": 32.28381883755704
+      }
+    },
+    "expected_tool": "exit_room",
+    "expected_args": {},
+    "correct_selection": true,
+    "schema_valid": true
+  }
+]

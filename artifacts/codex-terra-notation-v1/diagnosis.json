@@ -1,0 +1,161 @@
+{
+  "live_calls": 0,
+  "source": "Delivered schematic, both observed probes, current switches and fixed Boolean algebra only; no hidden manifest or solver.",
+  "matrix_candidates_after_both_probes": 1,
+  "selected_matrix_index_zero_based": 1,
+  "inferred_phase": 0,
+  "matrix": [
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1
+    ]
+  ],
+  "column_order": [
+    "A",
+    "C",
+    "D"
+  ],
+  "main_target": [
+    1,
+    1,
+    0
+  ],
+  "arithmetic_trace": [
+    {
+      "call": 10,
+      "action": {
+        "tool": "set_switch",
+        "args": {
+          "channel_id": "C",
+          "value": true
+        }
+      },
+      "switches": {
+        "A": false,
+        "C": true,
+        "D": false
+      },
+      "calculated_output": [
+        0,
+        1,
+        1
+      ],
+      "model_reason": "The zero-input probe shows zero bias. The C=true probe gives [0,1,1], matching the second matrix's C column and the auxiliary target. Setting C true reaches that target without entering the forbidden output.",
+      "environment_result": {
+        "event": "switch_set"
+      }
+    },
+    {
+      "call": 11,
+      "action": {
+        "tool": "energize",
+        "args": {
+          "bus_id": "auxiliary"
+        }
+      },
+      "switches": {
+        "A": false,
+        "C": true,
+        "D": false
+      },
+      "calculated_output": [
+        0,
+        1,
+        1
+      ],
+      "model_reason": "The zero-input probe established zero bias, and the C-only probe output [0,1,1] matches both the second matrix's C column and the auxiliary target. The live switches are now C only, so the auxiliary can be energized and latched.",
+      "environment_result": {
+        "event": "bus_energized"
+      }
+    },
+    {
+      "call": 12,
+      "action": {
+        "tool": "set_switch",
+        "args": {
+          "channel_id": "A",
+          "value": true
+        }
+      },
+      "switches": {
+        "A": true,
+        "C": true,
+        "D": false
+      },
+      "calculated_output": [
+        1,
+        1,
+        1
+      ],
+      "model_reason": "The probes establish zero bias and the second matrix. With C on, turning A on produces [1,1,1], not the forbidden [1,0,1]. The auxiliary is latched, so it remains on while the switches change. Next, turning D on will produce the main target [1,1,0].",
+      "environment_result": {
+        "event": "switch_set"
+      }
+    },
+    {
+      "call": 13,
+      "action": {
+        "tool": "set_switch",
+        "args": {
+          "channel_id": "D",
+          "value": true
+        }
+      },
+      "switches": {
+        "A": true,
+        "C": true,
+        "D": true
+      },
+      "calculated_output": [
+        0,
+        1,
+        0
+      ],
+      "model_reason": "The probes establish zero bias and the second matrix. With A and C on, turning D on changes the output from [1,1,1] to the main target [1,1,0], avoiding the forbidden output [1,0,1]. The auxiliary is latched.",
+      "environment_result": {
+        "event": "switch_set"
+      }
+    },
+    {
+      "call": 14,
+      "action": {
+        "tool": "energize",
+        "args": {
+          "bus_id": "main"
+        }
+      },
+      "switches": {
+        "A": true,
+        "C": true,
+        "D": true
+      },
+      "calculated_output": [
+        0,
+        1,
+        0
+      ],
+      "model_reason": "The zero-input probe established zero bias, and the C probe identified the second matrix. With A, C, and D all on, its output is [1,1,0], the main target. The auxiliary is already latched.",
+      "environment_result": {
+        "event": "fatal commitment"
+      }
+    }
+  ],
+  "final_bit_equations": [
+    "(1*1 + 0*1 + 1*1) mod 2 = 0",
+    "(0*1 + 1*1 + 0*1) mod 2 = 1",
+    "(0*1 + 1*1 + 1*1) mod 2 = 0"
+  ],
+  "finding": "Correct matrix and zero bias inferred, but the model failed to toggle the first output bit when adding D to A+C. It predicted [1,1,0] instead of [0,1,0], then energized the main bus.",
+  "classification": "Public-evidence circuit arithmetic failure before the memory wipe"
+}

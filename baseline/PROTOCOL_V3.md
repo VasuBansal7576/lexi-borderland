@@ -1,0 +1,19 @@
+# Prompt-corrected Tiny Aya development rerun
+
+This is a development-set prompt revision, not a held-out benchmark or training run. The unchanged model/runtime and typed schemas are documented in [v2](PROTOCOL_V2.md). Every previous artifact is retained.
+
+The v2 prompt incorrectly appended a room3 notebook reminder in every room. V3 supplies a request for the current room only, explicitly distinguishes elapsed clock from hidden phase and glyph names from sector indices, explains record pagination, and distinguishes observed evidence from notebook contents. The exact result table is placed after event references, near the current decision. No evidence is added, removed, summarized or solved. No examples containing sampled answers or gold notebooks are supplied. All legal and illegal choices remain available through the same syntax schema.
+
+Four natural episodes use the same paired development worlds, full original tool budgets and no reference prefix. A fatal failure ends an episode; later rooms are not bypassed. The model receives no filesystem, private state, solver or evaluator trace access. Only public frames and fixed rules enter requests.
+
+A separate **upstream-assisted memory component** replays legally observed room1–3 evidence up to, but excluding, the reference notebook. This prefix contains successful upstream actions, so it is explicitly not a test of independent room1–3 solving. The model receives up to four unrestricted actions to read, write its own notebook or exit. If it has not exited, the evaluator performs only the already-legal exit and records that action separately. No model credit is claimed for that exit. A new server PID and empty history then receive only the model's actual eight lines and fresh room4 public state. The model chooses up to four post-wipe actions. The four phase/registry pairs are all attempted, including errors. No correct gate pair or reference notebook is supplied. A correct guess is not evidence of retention.
+
+The model still has 1,024 generation tokens per response, an8,192 context window, temperature0, seed42, and frozen Q4_K_M weights. This component cap is an evaluator boundary, not a game-rule reduction. Natural runs retain the original64/96 tool budgets. HTTP failures and evaluator caps are separated from terminal model losses. There is no retry/repair of a generated action.
+
+Before completion, replay every recorded action and rebuild every model-visible prompt from public frames. Verify source hashes, exact notebook transfer, distinct server PIDs, empty post-wipe history, zero cached tokens on the first post-wipe response, and identical blank-notebook prompts across hidden twins. The original64 certified worlds must still pass unchanged-source audits. All artifacts and code remain in this folder. The outside wiki was not read because the latest instruction restricts access to this folder.
+
+## Final state-label correction
+
+After natural episodes finished, before the memory probes, the room4 request was corrected to refer to the actual public fields `position=sealed_entry` and `unlocked=false`, rather than wording `sealed_entry` as a Boolean flag. No room1 request changed; natural requests still reconstruct byte-for-byte. The preceding adapter is archived under `artifacts/model-interface-v3/source-before-entry-wording/` for source-hash verification. The 46 tests passed again after this correction.
+
+The final synthetic selection check uses the entire advertised room1 tool union, rather than constraining the schema to the requested tool. Tiny Aya selected `read_record`, `choose_door`, `notebook_read`, and `exit_room` correctly in four separate synthetic instructions. These contain no real episode state or answers. This verifies that the grammar permits selecting other tools; it does not establish autonomous evidence gathering in the game.

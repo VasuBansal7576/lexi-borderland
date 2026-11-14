@@ -1,0 +1,52 @@
+[
+  {
+    "model": "inkling-2-small-free",
+    "mode": "opencode_offline_fixture",
+    "actions": 4,
+    "last_room": 1,
+    "stop": "evaluator_no_progress",
+    "success": false,
+    "wipes": [],
+    "exact_replay": true
+  },
+  {
+    "model": "longcat-2.5-free",
+    "mode": "opencode_offline_fixture",
+    "actions": 4,
+    "last_room": 1,
+    "stop": "evaluator_no_progress",
+    "success": false,
+    "wipes": [],
+    "exact_replay": true
+  },
+  {
+    "model": "nemotron-3.5-super-vl-free",
+    "mode": "opencode_offline_fixture",
+    "actions": 4,
+    "last_room": 1,
+    "stop": "evaluator_no_progress",
+    "success": false,
+    "wipes": [],
+    "exact_replay": true
+  },
+  {
+    "model": "glm-5.3-flash-free",
+    "mode": "opencode_offline_fixture",
+    "actions": 4,
+    "last_room": 1,
+    "stop": "evaluator_no_progress",
+    "success": false,
+    "wipes": [],
+    "exact_replay": true
+  },
+  {
+    "model": "minimax-m3.1-flash-free",
+    "mode": "opencode_offline_fixture",
+    "actions": 4,
+    "last_room": 1,
+    "stop": "evaluator_no_progress",
+    "success": false,
+    "wipes": [],
+    "exact_replay": true
+  }
+]

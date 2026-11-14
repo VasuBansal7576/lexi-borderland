@@ -1,0 +1,50 @@
+[
+  {
+    "phase": 0,
+    "sigma": 0,
+    "evaluator_exit": true,
+    "bytes": 0,
+    "model_calls": 8,
+    "gate_passed": false,
+    "reason": "component_cap_or_gate_passed",
+    "old_pid": 96282,
+    "new_pid": 96352,
+    "errors": []
+  },
+  {
+    "phase": 0,
+    "sigma": 1,
+    "evaluator_exit": true,
+    "bytes": 0,
+    "model_calls": 8,
+    "gate_passed": false,
+    "reason": "component_cap_or_gate_passed",
+    "old_pid": 96370,
+    "new_pid": 96448,
+    "errors": []
+  },
+  {
+    "phase": 1,
+    "sigma": 0,
+    "evaluator_exit": true,
+    "bytes": 0,
+    "model_calls": 8,
+    "gate_passed": false,
+    "reason": "component_cap_or_gate_passed",
+    "old_pid": 96473,
+    "new_pid": 96562,
+    "errors": []
+  },
+  {
+    "phase": 1,
+    "sigma": 1,
+    "evaluator_exit": true,
+    "bytes": 0,
+    "model_calls": 8,
+    "gate_passed": false,
+    "reason": "component_cap_or_gate_passed",
+    "old_pid": 96593,
+    "new_pid": 96653,
+    "errors": []
+  }
+]

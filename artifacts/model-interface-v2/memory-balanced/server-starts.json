@@ -1,0 +1,28 @@
+[
+  {
+    "pid": 94371,
+    "args": [
+      "/opt/homebrew/bin/llama-server",
+      "--model",
+      "/Users/vasu/Desktop/Lexi/models/tiny-aya-global/model.gguf",
+      "--alias",
+      "tiny-aya-global-q4_k_m",
+      "--ctx-size",
+      "8192",
+      "--parallel",
+      "1",
+      "--cache-ram",
+      "0",
+      "--no-context-shift",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "18791",
+      "--no-webui",
+      "--no-agent",
+      "--offline",
+      "--threads",
+      "4"
+    ]
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "all_checks_passed": true,
+  "models": [
+    {
+      "model": "inkling-2-small-free",
+      "client_calls": 4,
+      "upstream_attempts": 4,
+      "actions": 4,
+      "last_room": 1,
+      "exact_public_messages": true,
+      "unchanged_environment_replay": true
+    },
+    {
+      "model": "longcat-2.5-free",
+      "client_calls": 4,
+      "upstream_attempts": 4,
+      "actions": 4,
+      "last_room": 1,
+      "exact_public_messages": true,
+      "unchanged_environment_replay": true
+    },
+    {
+      "model": "nemotron-3.5-super-vl-free",
+      "client_calls": 4,
+      "upstream_attempts": 4,
+      "actions": 4,
+      "last_room": 1,
+      "exact_public_messages": true,
+      "unchanged_environment_replay": true
+    },
+    {
+      "model": "glm-5.3-flash-free",
+      "client_calls": 4,
+      "upstream_attempts": 4,
+      "actions": 4,
+      "last_room": 1,
+      "exact_public_messages": true,
+      "unchanged_environment_replay": true
+    },
+    {
+      "model": "minimax-m3.1-flash-free",
+      "client_calls": 4,
+      "upstream_attempts": 4,
+      "actions": 4,
+      "last_room": 1,
+      "exact_public_messages": true,
+      "unchanged_environment_replay": true
+    }
+  ],
+  "unique_verified_sessions": 20,
+  "source_hashes": {
+    "baseline/opencode_free/__init__.py": "741f20d28ff2c3178aa8cffa7fcba4e8d89100342f3121642f0a0e10cec0e024",
+    "baseline/opencode_free/__main__.py": "edcd4b6735d44fa4907cb37d1505f89483f6700b5d42965539f5db034513d54b",
+    "baseline/opencode_free/bridge.py": "cd2d7fde30b424d99900ddcc110c817e25f8c7e30db288504e1105be10bb8760"
+  }
+}

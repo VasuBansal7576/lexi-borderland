@@ -1,0 +1,538 @@
+[
+  {
+    "tool": "submit_bid",
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Produce one JSON object with reason, tool, args. Parameter schema: {\"type\": \"object\", \"properties\": {\"value\": {\"type\": \"integer\", \"minimum\": 0, \"maximum\": 20}}, \"required\": [\"value\"], \"additionalProperties\": false}"
+        },
+        {
+          "role": "user",
+          "content": "Use the argument bid, not value, and put the number in quotes."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "schema_smoke",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "submit_bid"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 20
+                      }
+                    },
+                    "required": [
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"The bid parameter is used to specify the amount offered in an auction or transaction, and the number must be within the range of 0 to 20.\",\n  \"tool\": \"submit_bid\",\n  \"args\": {\n    \"value\": 12\n  }\n}"
+          }
+        }
+      ],
+      "created": 1794597242,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 68,
+        "prompt_tokens": 469,
+        "total_tokens": 537,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-d8CbozfzYLUtD9lusWzX1QaRxZsbbNRR",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 469,
+        "prompt_ms": 1253.984,
+        "prompt_per_token_ms": 2.67373987206823,
+        "prompt_per_second": 374.0079618240743,
+        "predicted_n": 68,
+        "predicted_ms": 1634.489,
+        "predicted_per_token_ms": 24.395358208955223,
+        "predicted_per_second": 40.99140465307506
+      }
+    },
+    "schema_valid": true
+  },
+  {
+    "tool": "notebook_write",
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Produce one JSON object with reason, tool, args. Parameter schema: {\"type\": \"object\", \"properties\": {\"lines\": {\"type\": \"array\", \"minItems\": 8, \"maxItems\": 8, \"items\": {\"type\": \"string\", \"pattern\": \"^[ -~]{0,96}$\"}}}, \"required\": [\"lines\"], \"additionalProperties\": false}"
+        },
+        {
+          "role": "user",
+          "content": "Write eight short printable ASCII lines containing arbitrary words, not game facts."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "schema_smoke",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "notebook_write"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "lines": {
+                        "type": "array",
+                        "minItems": 8,
+                        "maxItems": 8,
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[ -~]{0,96}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "lines"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"To provide eight short printable ASCII lines containing arbitrary words, adhering to the specified format.\",\n  \"tool\": \"notebook_write\",\n  \"args\": {\n    \"lines\": [\n      \"A quiet room\",\n      \"Bright sunlight\",\n      \"Cold winter night\",\n      \"Dancing leaves\",\n      \"Echoing forest\",\n      \"Fading sunset\",\n      \"Gentle breeze\",\n      \"Hazy morning mist\"\n    ]\n  }\n}"
+          }
+        }
+      ],
+      "created": 1794597246,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 106,
+        "prompt_tokens": 493,
+        "total_tokens": 599,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-XqkBPQCdJt5jXlbsN6Eysm0DdaVyukEZ",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 493,
+        "prompt_ms": 1240.449,
+        "prompt_per_token_ms": 2.5161237322515215,
+        "prompt_per_second": 397.436734601745,
+        "predicted_n": 106,
+        "predicted_ms": 2518.101,
+        "predicted_per_token_ms": 23.981914285714286,
+        "predicted_per_second": 41.69808915528011
+      }
+    },
+    "schema_valid": true
+  },
+  {
+    "tool": "team_step",
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Produce one JSON object with reason, tool, args. Parameter schema: {\"type\": \"object\", \"properties\": {\"orders\": {\"type\": \"object\", \"properties\": {\"I\": {\"anyOf\": [{\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"hold\"}}, \"required\": [\"kind\"], \"additionalProperties\": false}, {\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"move\"}, \"destination_id\": {\"type\": \"string\", \"pattern\": \"^[0-9]+$\"}}, \"required\": [\"kind\", \"destination_id\"], \"additionalProperties\": false}]}, \"N\": {\"anyOf\": [{\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"hold\"}}, \"required\": [\"kind\"], \"additionalProperties\": false}, {\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"move\"}, \"destination_id\": {\"type\": \"string\", \"pattern\": \"^[0-9]+$\"}}, \"required\": [\"kind\", \"destination_id\"], \"additionalProperties\": false}]}, \"V\": {\"anyOf\": [{\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"hold\"}}, \"required\": [\"kind\"], \"additionalProperties\": false}, {\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"move\"}, \"destination_id\": {\"type\": \"string\", \"pattern\": \"^[0-9]+$\"}}, \"required\": [\"kind\", \"destination_id\"], \"additionalProperties\": false}]}, \"S\": {\"anyOf\": [{\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"hold\"}}, \"required\": [\"kind\"], \"additionalProperties\": false}, {\"type\": \"object\", \"properties\": {\"kind\": {\"const\": \"move\"}, \"destination_id\": {\"type\": \"string\", \"pattern\": \"^[0-9]+$\"}}, \"required\": [\"kind\", \"destination_id\"], \"additionalProperties\": false}]}}, \"required\": [], \"additionalProperties\": false}}, \"required\": [\"orders\"], \"additionalProperties\": false}"
+        },
+        {
+          "role": "user",
+          "content": "Give a hold order to each of I,N,V,S. This is a synthetic schema test."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "schema_smoke",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "team_step"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "orders": {
+                        "type": "object",
+                        "properties": {
+                          "I": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "hold"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "move"
+                                  },
+                                  "destination_id": {
+                                    "type": "string",
+                                    "pattern": "^[0-9]+$"
+                                  }
+                                },
+                                "required": [
+                                  "kind",
+                                  "destination_id"
+                                ],
+                                "additionalProperties": false
+                              }
+                            ]
+                          },
+                          "N": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "hold"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "move"
+                                  },
+                                  "destination_id": {
+                                    "type": "string",
+                                    "pattern": "^[0-9]+$"
+                                  }
+                                },
+                                "required": [
+                                  "kind",
+                                  "destination_id"
+                                ],
+                                "additionalProperties": false
+                              }
+                            ]
+                          },
+                          "V": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "hold"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "move"
+                                  },
+                                  "destination_id": {
+                                    "type": "string",
+                                    "pattern": "^[0-9]+$"
+                                  }
+                                },
+                                "required": [
+                                  "kind",
+                                  "destination_id"
+                                ],
+                                "additionalProperties": false
+                              }
+                            ]
+                          },
+                          "S": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "hold"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "const": "move"
+                                  },
+                                  "destination_id": {
+                                    "type": "string",
+                                    "pattern": "^[0-9]+$"
+                                  }
+                                },
+                                "required": [
+                                  "kind",
+                                  "destination_id"
+                                ],
+                                "additionalProperties": false
+                              }
+                            ]
+                          }
+                        },
+                        "required": [],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "orders"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"To demonstrate the structure of the provided schema, I will create hold orders for each of the specified parameters (I, N, V, S).\",\n  \"tool\": \"team_step\",\n  \"args\": {\n    \"orders\": {\n      \"I\": {\n        \"kind\": \"hold\"\n      },\n      \"N\": {\n        \"kind\": \"hold\"\n      },\n      \"V\": {\n        \"kind\": \"hold\"\n      },\n      \"S\": {\n        \"kind\": \"hold\"\n      }\n    }\n  }\n}"
+          }
+        }
+      ],
+      "created": 1794597251,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 124,
+        "prompt_tokens": 858,
+        "total_tokens": 982,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-QLBhze69XsmFQaJKZEjFXvZ8khGbAuKo",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 858,
+        "prompt_ms": 2208.713,
+        "prompt_per_token_ms": 2.574257575757576,
+        "prompt_per_second": 388.46151582392093,
+        "predicted_n": 124,
+        "predicted_ms": 3024.45,
+        "predicted_per_token_ms": 24.5890243902439,
+        "predicted_per_second": 40.66855130684918
+      }
+    },
+    "schema_valid": true
+  },
+  {
+    "tool": "energize",
+    "request": {
+      "model": "tiny-aya-global-q4_k_m",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Produce one JSON object with reason, tool, args. Parameter schema: {\"type\": \"object\", \"properties\": {\"bus_id\": {\"type\": \"string\", \"enum\": [\"auxiliary\", \"main\"]}}, \"required\": [\"bus_id\"], \"additionalProperties\": false}"
+        },
+        {
+          "role": "user",
+          "content": "Put auxiliary|main as the bus_id value."
+        }
+      ],
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1024,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "schema_smoke",
+          "strict": true,
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "tool": {
+                    "const": "energize"
+                  },
+                  "args": {
+                    "type": "object",
+                    "properties": {
+                      "bus_id": {
+                        "type": "string",
+                        "enum": [
+                          "auxiliary",
+                          "main"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "bus_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "reason",
+                  "tool",
+                  "args"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"reason\": \"The provided parameter schema requires the 'bus_id' to be either 'auxiliary' or 'main'.\",\n  \"tool\": \"energize\",\n  \"args\": {\n    \"bus_id\": \"auxiliary\"\n  }\n}"
+          }
+        }
+      ],
+      "created": 1794597253,
+      "model": "tiny-aya-global-q4_k_m",
+      "system_fingerprint": "b11669-620d2225c",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 61,
+        "prompt_tokens": 466,
+        "total_tokens": 527,
+        "prompt_tokens_details": {
+          "cached_tokens": 341
+        }
+      },
+      "id": "chatcmpl-QI1uEmpbQ2IibQ3kBqhxkpkoNeK0GGpN",
+      "timings": {
+        "cache_n": 341,
+        "prompt_n": 125,
+        "prompt_ms": 403.567,
+        "prompt_per_token_ms": 3.228536,
+        "prompt_per_second": 309.7379121682397,
+        "predicted_n": 61,
+        "predicted_ms": 1454.311,
+        "predicted_per_token_ms": 24.238516666666666,
+        "predicted_per_second": 41.25665005628095
+      }
+    },
+    "schema_valid": true
+  }
+]

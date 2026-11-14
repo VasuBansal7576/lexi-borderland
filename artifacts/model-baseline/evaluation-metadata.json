@@ -1,0 +1,18 @@
+{
+  "runner_sources": {
+    "baseline/PROTOCOL.md": "b133d69cb4382ed9127ba9c07cf04e7fd7ce43f9041e5b0c3dfe8d90b9a4ae18",
+    "baseline/__init__.py": "2b4fdcd3867c85552df49894bf668b98e142cffc2aba94105f0736b456eeb11b",
+    "baseline/analyze.py": "0ac60c51681ab1623ae591e6af060c31eb57cfdb885dab2e2644b9972c78d36c",
+    "baseline/control.py": "aa169d2c063b1b4f44f024740414915ce16d2065aa84c6b8a7e0ee016eab9ef2",
+    "baseline/public_rules.txt": "d1679560b4466a1b8c5c6f38921b6b6262b938cba2597fd4e824d98ad73f38de",
+    "baseline/run.py": "1a748c225c5c0452d3d862153fd8fabd6e26d88cdade32c172de9e482fd9dcaf",
+    "baseline/viewer.py": "c91e61b25f9e867e30a575266102d0f532c7940b422799a79eab15d52f59aff8"
+  },
+  "engine": "llama.cpp 0.7.0 build 11669 commit 620d2225c",
+  "project_training_performed": false,
+  "scope": "development baseline, not untouched holdout",
+  "original_v1_runner_difference": "Before room diagnostics, added the eight-identical-transition diagnostic-only stop. The already running natural and memory suites used the original runner. Prompt, weights, decoding and environment are unchanged.",
+  "all_game_trajectories_replayed": true,
+  "transport_audit_passed": true,
+  "single_turn_prompt_controls": 2
+}

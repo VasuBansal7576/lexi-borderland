@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "case": "p0-s0",
+      "model_actions": 8,
+      "model_pre": 4,
+      "model_post": 4,
+      "real_wipe": true,
+      "evaluator_exit": true,
+      "gate_passed": false,
+      "errors": [],
+      "exact_replay": true,
+      "public_transport_only": true,
+      "no_action_repair": true,
+      "notebook_only_transfer": true,
+      "notebook_bytes": 0
+    },
+    {
+      "case": "p0-s1",
+      "model_actions": 8,
+      "model_pre": 4,
+      "model_post": 4,
+      "real_wipe": true,
+      "evaluator_exit": true,
+      "gate_passed": false,
+      "errors": [],
+      "exact_replay": true,
+      "public_transport_only": true,
+      "no_action_repair": true,
+      "notebook_only_transfer": true,
+      "notebook_bytes": 0
+    },
+    {
+      "case": "p1-s0",
+      "model_actions": 8,
+      "model_pre": 4,
+      "model_post": 4,
+      "real_wipe": true,
+      "evaluator_exit": true,
+      "gate_passed": false,
+      "errors": [],
+      "exact_replay": true,
+      "public_transport_only": true,
+      "no_action_repair": true,
+      "notebook_only_transfer": true,
+      "notebook_bytes": 0
+    },
+    {
+      "case": "p1-s1",
+      "model_actions": 8,
+      "model_pre": 4,
+      "model_post": 4,
+      "real_wipe": true,
+      "evaluator_exit": true,
+      "gate_passed": false,
+      "errors": [],
+      "exact_replay": true,
+      "public_transport_only": true,
+      "no_action_repair": true,
+      "notebook_only_transfer": true,
+      "notebook_bytes": 0
+    }
+  ],
+  "all_checks_passed": true
+}

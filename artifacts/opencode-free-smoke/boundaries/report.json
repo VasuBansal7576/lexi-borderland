@@ -1,0 +1,13 @@
+{
+  "all_checks_passed": true,
+  "external_model_calls": 0,
+  "actual_client_post_wipe": true,
+  "eight_line_notebook_only": true,
+  "exact_post_wipe_request": true,
+  "source_read_denied": true,
+  "other_call_state_read_denied": true,
+  "outside_write_denied": true,
+  "other_local_port_denied": true,
+  "duplicate_upstream_attempts": 1,
+  "note": "Post-wipe frame is an offline scripted fixture, never a live model performance result."
+}

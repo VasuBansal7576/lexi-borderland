@@ -1,0 +1,35 @@
+test_all_powered_moves_cancel_on_shared_overcommit (test_environment.ArenaTests) ... ok
+test_cache_only_pays_once (test_environment.ArenaTests) ... ok
+test_exact_transfer_and_polarity_reversal (test_environment.ArenaTests) ... ok
+test_opponent_commitment_does_not_read_current_orders (test_environment.ArenaTests) ... ok
+test_post_amendment_milestone_requires_positive_round_net (test_environment.ArenaTests) ... ok
+test_random_trajectory_conservation_and_nonnegative_resources (test_environment.ArenaTests) ... ok
+test_tie_has_no_transfer (test_environment.ArenaTests) ... ok
+test_zero_point_units_never_collect_or_resurrect (test_environment.ArenaTests) ... ok
+test_all_seven_rooms_solved_with_real_process_restart (test_environment.FullEpisodeTests) ... ok
+test_changing_only_retained_phase_or_registry_bit_breaks_lock (test_environment.FullEpisodeTests) ... ok
+test_empty_notebook_cannot_be_restored_from_local_artifacts (test_environment.FullEpisodeTests) ... ok
+test_independent_final_score_formula_and_step_sum (test_environment.FullEpisodeTests) ... ok
+test_replay_every_public_output_private_hash_and_reward (test_environment.FullEpisodeTests) ... ok
+test_budget_and_absorbing_terminal (test_environment.ProtocolTests) ... ok
+test_foreign_objects_have_same_error (test_environment.ProtocolTests) ... ok
+test_malformed_calls_do_not_change_physics (test_environment.ProtocolTests) ... ok
+test_no_reward_or_hidden_metadata_in_policy_output (test_environment.ProtocolTests) ... ok
+test_notebook_exact_capacity_and_atomic_rejection (test_environment.ProtocolTests) ... ok
+test_pagination_does_not_mark_unread_evidence (test_environment.ProtocolTests) ... ok
+test_reset_removes_all_previous_episode_state (test_environment.ProtocolTests) ... ok
+test_both_forbidden_tools_claw_back_every_prior_reward (test_environment.SealTests) ... ok
+test_each_memoryless_action_wins_exactly_one_quartet_member (test_environment.SealTests) ... ok
+test_four_worlds_have_identical_legal_prelock_interfaces (test_environment.SealTests) ... ok
+test_sealed_archive_inaccessible_through_read_record (test_environment.SealTests) ... ok
+test_worker_denies_private_reads (test_environment.SealTests) ... ok
+test_amendment_needs_balance_time_anchor_and_calibration (test_environment.WorldTests) ... ok
+test_both_circuit_matrices_invertible (test_environment.WorldTests) ... ok
+test_counterfactuals_hold_unrelated_streams_fixed (test_environment.WorldTests) ... ok
+test_glyph_root_changes_semantics_not_only_text (test_environment.WorldTests) ... ok
+test_seed_repeatability_and_variation (test_environment.WorldTests) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 1.742s
+
+OK

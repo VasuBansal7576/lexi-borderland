@@ -1,0 +1,20 @@
+{
+  "all_checks_passed": true,
+  "attempts": 4,
+  "call_limit": 100,
+  "actions": 4,
+  "last_room": 1,
+  "wipes_verified": 0,
+  "exact_public_payloads": true,
+  "no_coding_tools": true,
+  "exact_environment_replay": true,
+  "unique_threads": 4,
+  "unique_states": 4,
+  "bridge_source_hashes": {
+    "baseline/codex_subscription/bridge.py": "1d0419fbd281737d0ddff6cf130314c112e9cc566889996f8a1165461d02817d",
+    "baseline/codex_subscription/__init__.py": "959431e36e39409e1ebac6c729185f44c4fc14d78035b4d5092a32ab749b0bc5",
+    "baseline/codex_subscription/native.py": "2ad3108961ddd9cabbb7a670e835ac1659507c69c23350ffaefcfcf1057a3c09",
+    "baseline/codex_subscription/login.py": "5174e9ce9831617e2a3575a0d0cbb386a656ab3651906b5ab1cbc36b9294679e",
+    "baseline/codex_subscription/__main__.py": "946c917238eba3661da42332b03cf7a92e22d94e3b52868b7538c2042ae1f1d6"
+  }
+}

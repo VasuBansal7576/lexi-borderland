@@ -1,0 +1,18 @@
+{
+  "baseline/opencode_free/bridge.py": "b075278d2f63802dabebc9b6676bdf3264820ed6696ed8cea5c71409009bd59f",
+  "baseline/opencode_free/__init__.py": "741f20d28ff2c3178aa8cffa7fcba4e8d89100342f3121642f0a0e10cec0e024",
+  "baseline/opencode_free/__main__.py": "edcd4b6735d44fa4907cb37d1505f89483f6700b5d42965539f5db034513d54b",
+  "baseline/paid/run.py": "b9e3855f8d48dd9de87b9cb42e01485dfe753150023aef67f1ec4634a033aa76",
+  "baseline/paid/guard.py": "74f1425282ede0cdeb826c315b585ec15b9ea20cab474304ae108636a79917a3",
+  "baseline/interface_v2.py": "5d0def24f8711fc4c5b40c6749af7eac6ddf4bfb2f064b08400e0f778b037c5f",
+  "baseline/interface_v3.py": "c528e19c752b2aaf2461235964690c03993ef912e0d8b8c31555763b7df8dd05",
+  "borderland/worker.py": "7ef026e4f75004a6c0ba4b6331c513ed7f6fb2aa862c663fa137120737ccd803",
+  "borderland/world.py": "1c4ee3cf7325572e7150cd99e8db7d76756801eb1a49385e04f4fb86493d2ec3",
+  "borderland/run.py": "e4fa0b4a693cfedb47cd172f5508d6b02b95748a0f205fbd97731a8a8c5539b2",
+  "borderland/env.py": "5cf3c733fd7c274d889d68b46a7cdba87e294b49354139a1a41bcc21b1df155c",
+  "borderland/solver.py": "6c20122665e125197135d88ca7cfb722412ddd1ef9077c1daaaf69ab01504816",
+  "borderland/__init__.py": "009b93a2dc47a5587c5726bc2339f0b34d6ee15ac4df109056be7267679b8732",
+  "borderland/mechanics.py": "df6d386a445c28871fc961c1660eb71d81c176cb162afbe3bddb36826a87269c",
+  "borderland/planning.py": "ba581f11e12b8efdd74cd5be09bca78026f3e37d7901203901b69e6a3c2ec882",
+  "borderland/certify.py": "78cb23cd402fe9712cd2ae6c2f1cbb3b88d4ab69bf49a2634981d2bbe7feb270"
+}

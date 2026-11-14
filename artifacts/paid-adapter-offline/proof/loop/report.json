@@ -1,0 +1,91 @@
+{
+  "mode": "offline_scripted_fixture_not_model",
+  "success": false,
+  "stop": "evaluator_no_progress",
+  "external_stop": true,
+  "environment_reason": null,
+  "environment_terminated": false,
+  "environment_truncated": false,
+  "actions": 4,
+  "last_room": 1,
+  "wipes": [],
+  "score": 0.0,
+  "integrity": true,
+  "exact_replay": true,
+  "ledger": {
+    "version": 1,
+    "contract_hash": "fd51ffdc94651b69911b73ef2c87897817cc03db87f5c44adc73ad8194fcf049",
+    "contract": {
+      "endpoint": "https://api.invalid/v1/chat/completions",
+      "model": "offline-fake-no-live-model",
+      "api_key_env": "LEXI_PAID_API_KEY",
+      "context_window": 16000,
+      "input_usd_per_million": "1",
+      "output_usd_per_million": "2",
+      "budget_usd": "0.05",
+      "max_calls": 5,
+      "max_input_tokens": 80000,
+      "max_output_tokens": 640,
+      "output_tokens_per_call": 128,
+      "pricing_note": "SYNTHETIC offline test rates. Not prices or limits for any real provider.",
+      "live_enabled": false,
+      "output_limit_field": "max_tokens",
+      "timeout_seconds": 30,
+      "max_response_bytes": 2097152,
+      "no_progress_limit": 3
+    },
+    "calls": 4,
+    "input_tokens_accounted": 400,
+    "output_tokens_accounted": 120,
+    "cost_accounted_usd": "0.000640",
+    "pending": null,
+    "halted": "evaluator_no_progress",
+    "entries": [
+      {
+        "request_id": "b489b2341aba48b1b6c84c9a527d18ce",
+        "status": "settled",
+        "inputs": 100,
+        "outputs": 30
+      },
+      {
+        "request_id": "4e8501756b6f475bb532ef2d81205b45",
+        "status": "settled",
+        "inputs": 100,
+        "outputs": 30
+      },
+      {
+        "request_id": "178b9ddd2806470f912cd6fd2a05affc",
+        "status": "settled",
+        "inputs": 100,
+        "outputs": 30
+      },
+      {
+        "request_id": "2d3a3c403e8a4a9badec047f3d12af37",
+        "status": "settled",
+        "inputs": 100,
+        "outputs": 30
+      }
+    ]
+  },
+  "source_hashes": {
+    "baseline/interface_v2.py": "5d0def24f8711fc4c5b40c6749af7eac6ddf4bfb2f064b08400e0f778b037c5f",
+    "baseline/interface_v3.py": "c528e19c752b2aaf2461235964690c03993ef912e0d8b8c31555763b7df8dd05",
+    "baseline/paid/__init__.py": "8f697b053afb658963703664482349928507458de98fb73950cfa1252fcb17fc",
+    "baseline/paid/__main__.py": "028d943159dde9fb398d8a31cc4f53cbb9a88fa16a1c867832ed129bfe70b707",
+    "baseline/paid/budget.py": "1f97f8de762c38bb6059d01986873bf7b996d153c458099951639356a116613f",
+    "baseline/paid/client.py": "2be94f05931761992a5d990461b0848792103b809f831023f5e9de413c7a4e17",
+    "baseline/paid/config.py": "7456e26b7af8798e1b4f47169a72cd44097db6c8306b7542743c4d7c1c6b9be8",
+    "baseline/paid/guard.py": "74f1425282ede0cdeb826c315b585ec15b9ea20cab474304ae108636a79917a3",
+    "baseline/paid/run.py": "b9e3855f8d48dd9de87b9cb42e01485dfe753150023aef67f1ec4634a033aa76",
+    "baseline/public_rules.txt": "d1679560b4466a1b8c5c6f38921b6b6262b938cba2597fd4e824d98ad73f38de",
+    "borderland/__init__.py": "009b93a2dc47a5587c5726bc2339f0b34d6ee15ac4df109056be7267679b8732",
+    "borderland/certify.py": "78cb23cd402fe9712cd2ae6c2f1cbb3b88d4ab69bf49a2634981d2bbe7feb270",
+    "borderland/env.py": "5cf3c733fd7c274d889d68b46a7cdba87e294b49354139a1a41bcc21b1df155c",
+    "borderland/mechanics.py": "df6d386a445c28871fc961c1660eb71d81c176cb162afbe3bddb36826a87269c",
+    "borderland/planning.py": "ba581f11e12b8efdd74cd5be09bca78026f3e37d7901203901b69e6a3c2ec882",
+    "borderland/run.py": "e4fa0b4a693cfedb47cd172f5508d6b02b95748a0f205fbd97731a8a8c5539b2",
+    "borderland/solver.py": "6c20122665e125197135d88ca7cfb722412ddd1ef9077c1daaaf69ab01504816",
+    "borderland/worker.py": "7ef026e4f75004a6c0ba4b6331c513ed7f6fb2aa862c663fa137120737ccd803",
+    "borderland/world.py": "1c4ee3cf7325572e7150cd99e8db7d76756801eb1a49385e04f4fb86493d2ec3"
+  }
+}

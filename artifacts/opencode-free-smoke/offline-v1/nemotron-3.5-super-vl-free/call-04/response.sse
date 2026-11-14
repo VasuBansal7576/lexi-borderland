@@ -1,0 +1,6 @@
+data: {"id": "offline", "object": "chat.completion.chunk", "model": "nemotron-3.5-super-vl-free", "choices": [{"index": 0, "delta": {"role": "assistant", "content": "{\"reason\": \"offline transport fixture\", \"tool\": \"inspect\", \"args\": {\"object_id\": \"rules\"}}"}, "finish_reason": null}]}
+
+data: {"id": "offline", "object": "chat.completion.chunk", "model": "nemotron-3.5-super-vl-free", "choices": [{"index": 0, "delta": {}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 100, "completion_tokens": 20, "total_tokens": 120, "cost": 0, "opencode": {"billing_source": "free"}}}
+
+data: [DONE]
+

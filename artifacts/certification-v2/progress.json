@@ -1,0 +1,2070 @@
+{
+  "groups": [
+    {
+      "seed": 0,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 1,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 2,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 3,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 4,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 5,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 6,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 7,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 8,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 9,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 10,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 11,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 12,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 13,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 14,
+      "accepted": true,
+      "identical_prelock_projection": true
+    },
+    {
+      "seed": 15,
+      "accepted": true,
+      "identical_prelock_projection": true
+    }
+  ],
+  "worlds": [
+    {
+      "seed": 0,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        47
+      ],
+      "score": 0.97625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "a06a46c36d3d2be2221375038ed8152e7c1df809cfc927b57cc43273409bc47e",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 371,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.7921,
+      "artifact": "family-0000/phase-0-sigma-0"
+    },
+    {
+      "seed": 0,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        47
+      ],
+      "score": 0.97625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "a0b09948c1910a0127ccebff59cbf40c813db869ef1a5ee319d53c675f48515b",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 371,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.7913,
+      "artifact": "family-0000/phase-0-sigma-1"
+    },
+    {
+      "seed": 0,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        40
+      ],
+      "score": 0.9784375,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "e9aefad123e7175883220fc3660b67d09cee81d91aab909a5500fc3836e0adec",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 371,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.8044,
+      "artifact": "family-0000/phase-1-sigma-0"
+    },
+    {
+      "seed": 0,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        40
+      ],
+      "score": 0.9784375,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "94827bf18596d574adf4cddf6dd33a2b747314086021a52383209f93309fd335",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 371,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.806,
+      "artifact": "family-0000/phase-1-sigma-1"
+    },
+    {
+      "seed": 1,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "ba7ddbb3a5d8cb66a50de97b4171680c56b65bd444b60213ed4426f6c4473e5e",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 374,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 1.4723,
+      "artifact": "family-0001/phase-2-sigma-0"
+    },
+    {
+      "seed": 1,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "9ff14fbbfd6ee3fd1cc55471e33309575192b180a450ad9dd63a06d6b9979171",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 374,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 1.4818,
+      "artifact": "family-0001/phase-2-sigma-1"
+    },
+    {
+      "seed": 1,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "a0bc15a4be1d0f89126559c82e719b21f88109e62c2e7fc10bcc6385d4c0316f",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 374,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 1.2584,
+      "artifact": "family-0001/phase-3-sigma-0"
+    },
+    {
+      "seed": 1,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "8c5f31b1fdf52bcefa883f99c0be4d4382b935531ddb777d4440c7186c0a0285",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 374,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 1.2513,
+      "artifact": "family-0001/phase-3-sigma-1"
+    },
+    {
+      "seed": 2,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        43
+      ],
+      "score": 0.9771875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "d9e335da99bbffe6346c11dbef00c9d1ef45c0368c842973b4cc72e225500bc8",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.7864,
+      "artifact": "family-0002/phase-0-sigma-0"
+    },
+    {
+      "seed": 2,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        43
+      ],
+      "score": 0.9771875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "3ccf2e73478d1cc55f54ada3a6349f363399e6d57f215f49f61e0b48efd66573",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.8006,
+      "artifact": "family-0002/phase-0-sigma-1"
+    },
+    {
+      "seed": 2,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        48
+      ],
+      "score": 0.975625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "c42a17261d7db45adbfe699d30578dd755aaea69aa324cfe23fdc85d8e40c4b0",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.6645,
+      "artifact": "family-0002/phase-1-sigma-0"
+    },
+    {
+      "seed": 2,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        48
+      ],
+      "score": 0.975625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "30ded519272ca4d6db24f395d8b248c8b7ba3a81fcb7cb79c4bdf67322ba89c3",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.6641,
+      "artifact": "family-0002/phase-1-sigma-1"
+    },
+    {
+      "seed": 3,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "5d007c0994523cde83fe95de67d31075a50c471571bd92dc7f607fc8f163a111",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.1566,
+      "artifact": "family-0003/phase-2-sigma-0"
+    },
+    {
+      "seed": 3,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "3182bce4711e84d637091411252ddb5f6d55d386aa5985d15d956f43187a454f",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.1584,
+      "artifact": "family-0003/phase-2-sigma-1"
+    },
+    {
+      "seed": 3,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "5292bfdf4fb9362a7ef494b4c8d99578e2ccb8cfb650a4bacddd65b2e4774057",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.0466,
+      "artifact": "family-0003/phase-3-sigma-0"
+    },
+    {
+      "seed": 3,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "d4490c229c28fa9772d2700f9f2f7f02e3b888b958fcdece50527697dc487b4a",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.1047,
+      "artifact": "family-0003/phase-3-sigma-1"
+    },
+    {
+      "seed": 4,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "7d2bdddd1886a0ba474d400bd07d37623bb4bbf098f18e3da402cdeb383c12f3",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.2478,
+      "artifact": "family-0004/phase-0-sigma-0"
+    },
+    {
+      "seed": 4,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "3120ae58e3dc683645e941970f19d8419e00898877492e63ff9438ba4cb8159a",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.2512,
+      "artifact": "family-0004/phase-0-sigma-1"
+    },
+    {
+      "seed": 4,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        42
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "2de52d41c36ef60929a0d3ffc84170ce34b0a397f58becfb53b2d22ee8414ed0",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.322,
+      "artifact": "family-0004/phase-1-sigma-0"
+    },
+    {
+      "seed": 4,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        42
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "092b1f1f2f0430377901ba259f5ffaa34adcaaf13e637868348d89159fcfe26c",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 367,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.3236,
+      "artifact": "family-0004/phase-1-sigma-1"
+    },
+    {
+      "seed": 5,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "69909f8c09eac4cd1c7bde0840ac796e09bfdb813d8eda6c36df8f0cebb0ab18",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.4826,
+      "artifact": "family-0005/phase-2-sigma-0"
+    },
+    {
+      "seed": 5,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "570cc9a7cd5a855b7fcd43975855ad6d1c65e2f6d333721fcda24ed8ee0453bc",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.4926,
+      "artifact": "family-0005/phase-2-sigma-1"
+    },
+    {
+      "seed": 5,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "631c9a0be3b83032ce872b28202a5b3ec565c4f6958b1a4e1ecb42273b61d9a7",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.42,
+      "artifact": "family-0005/phase-3-sigma-0"
+    },
+    {
+      "seed": 5,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "3d912364c5f7e622fd3a3b242184a4e91ef84e2194d8d3e928d266beddf1fff4",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.4031,
+      "artifact": "family-0005/phase-3-sigma-1"
+    },
+    {
+      "seed": 6,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "0101b8c3274ecb00e92e4e9eeb40999c58d8123213a4e5f23448ff70c8737006",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.2244,
+      "artifact": "family-0006/phase-0-sigma-0"
+    },
+    {
+      "seed": 6,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "7673c6a6789dae577524aa0c21b462d03dae94a8fe073e37ee619b52f06bf27d",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.2281,
+      "artifact": "family-0006/phase-0-sigma-1"
+    },
+    {
+      "seed": 6,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        38
+      ],
+      "score": 0.97875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "24cc03093322a1bc46be48ee3b45c2efe1b5e33d05a50440575f099389451d2e",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.2516,
+      "artifact": "family-0006/phase-1-sigma-0"
+    },
+    {
+      "seed": 6,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        38
+      ],
+      "score": 0.97875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "3f5ff163a569331d1062ca00e699cea6b6bb000dcd35b920fadf35430da7aeec",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.2462,
+      "artifact": "family-0006/phase-1-sigma-1"
+    },
+    {
+      "seed": 7,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        31,
+        45
+      ],
+      "score": 0.97625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "66d733efad8db91238858a3f37c85365e7415f2e0d766f60e2211cb2c4898b78",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.5651,
+      "artifact": "family-0007/phase-2-sigma-0"
+    },
+    {
+      "seed": 7,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        31,
+        45
+      ],
+      "score": 0.97625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "76839e59b9b219b8af2b6fdd42e647564de765b850840d2483211d2018612b12",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.5862,
+      "artifact": "family-0007/phase-2-sigma-1"
+    },
+    {
+      "seed": 7,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        31,
+        44
+      ],
+      "score": 0.9765625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "c1dbc638b84a3b41d15e72967d9928109aeeb4eb5b9bf2fc2b96f955ac9bc88f",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.6918,
+      "artifact": "family-0007/phase-3-sigma-0"
+    },
+    {
+      "seed": 7,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        31,
+        44
+      ],
+      "score": 0.9765625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "9657d4f635ad6e36f098a32a1265e0e50fe4bc542815312c7ffe099627e81cc7",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 0.69,
+      "artifact": "family-0007/phase-3-sigma-1"
+    },
+    {
+      "seed": 8,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        31,
+        43
+      ],
+      "score": 0.976875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "7f4dc27a9b3bb8ce27f3db636faa20624658e2d2a57ed50af80fc547342929ad",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.9301,
+      "artifact": "family-0008/phase-0-sigma-0"
+    },
+    {
+      "seed": 8,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        31,
+        43
+      ],
+      "score": 0.976875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "99164dd32a8a0401370efaba938a27710d326484c9cd7763d580de65d38de5d0",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.9183,
+      "artifact": "family-0008/phase-0-sigma-1"
+    },
+    {
+      "seed": 8,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        31,
+        44
+      ],
+      "score": 0.9765625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "d4da89034076c023f9231c885b0f2bbac040efe51cfa492c9ce85fc050b3974a",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.2915,
+      "artifact": "family-0008/phase-1-sigma-0"
+    },
+    {
+      "seed": 8,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        31,
+        44
+      ],
+      "score": 0.9765625,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "50a356817d7c9c05a681209b50fe71b88c62f19c8dea69d14a64feb1f3b3dc55",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 370,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.3029,
+      "artifact": "family-0008/phase-1-sigma-1"
+    },
+    {
+      "seed": 9,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        31,
+        39
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "e1fe9ddb08a2507561aaccb1778b47087432b623f935d352df86f024b9cb9b0c",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 372,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 0.8007,
+      "artifact": "family-0009/phase-2-sigma-0"
+    },
+    {
+      "seed": 9,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        31,
+        39
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "79690e9f4008b9eca1cfa90df16b973594fb120fe4c87b0752b31b43dcd22b8f",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 372,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 0.8,
+      "artifact": "family-0009/phase-2-sigma-1"
+    },
+    {
+      "seed": 9,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        31,
+        41
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "c285a2b53108ff19e5b0b221b5acf7f5ace17432c2d6ea3fa0484a137d50f96c",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 372,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 1.1153,
+      "artifact": "family-0009/phase-3-sigma-0"
+    },
+    {
+      "seed": 9,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        31,
+        41
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "ae6fafb30ef96e0cf30f176cef3388a3538358affc5b62acc6bc36a35280e17c",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 372,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "phase-cycle",
+      "polarity": 1,
+      "elapsed_seconds": 1.1186,
+      "artifact": "family-0009/phase-3-sigma-1"
+    },
+    {
+      "seed": 10,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        41
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "e22ada24e95985560ef96befc0043c272f02aa17d59b24ed6db4816a6a346a0d",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.1521,
+      "artifact": "family-0010/phase-0-sigma-0"
+    },
+    {
+      "seed": 10,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        41
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "8bfccbfc843f681466db13b8433271e7aa9080b460a2214a7c065efaaf561856",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 1.148,
+      "artifact": "family-0010/phase-0-sigma-1"
+    },
+    {
+      "seed": 10,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        43
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "3275222e730d14cca60d4df87b985fc7d2fa1bd28030c56c9aa3a070c33336d9",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.5513,
+      "artifact": "family-0010/phase-1-sigma-0"
+    },
+    {
+      "seed": 10,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        43
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "c774d7588490ba749781ca67e76f13efa28d16f9cb51d8737fb3af5ae4417238",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.5464,
+      "artifact": "family-0010/phase-1-sigma-1"
+    },
+    {
+      "seed": 11,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        44
+      ],
+      "score": 0.976875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "13830e15c9b0ad9de153bd7f388656f34fa465c4a2a9a70bf99ce5540dd70ad3",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.9214,
+      "artifact": "family-0011/phase-2-sigma-0"
+    },
+    {
+      "seed": 11,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        44
+      ],
+      "score": 0.976875,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "f92c1ac9d1eca8081cb269ed7776aca41c223e1994009dfc91355e083fc928b2",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.9188,
+      "artifact": "family-0011/phase-2-sigma-1"
+    },
+    {
+      "seed": 11,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "dce44be5dd140858f40094510fd350e99b09a8f926dbb989a1e8dd4068815219",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.7285,
+      "artifact": "family-0011/phase-3-sigma-0"
+    },
+    {
+      "seed": 11,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        40
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "225416affa3c22251905e901a26d7e7a654502c357322d2a69abaaf3d5734591",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.7292,
+      "artifact": "family-0011/phase-3-sigma-1"
+    },
+    {
+      "seed": 12,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        43
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "f1d426b38a8aab5e3a39f482db7db59c1bc1d3d51536618e095a5e9710d7fed5",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.7582,
+      "artifact": "family-0012/phase-0-sigma-0"
+    },
+    {
+      "seed": 12,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        43
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "b78c6ed307352888dc7561e24a6a0c824436135531f6217ea665cc1bd4f5204b",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.7617,
+      "artifact": "family-0012/phase-0-sigma-1"
+    },
+    {
+      "seed": 12,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        42
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "133151946020113a1158282a1c7438f8b18aa71c586a4c5b9565ed8754196109",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.744,
+      "artifact": "family-0012/phase-1-sigma-0"
+    },
+    {
+      "seed": 12,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        42
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "114447fab02a17b04eab96fc393890aefbd96f8468140c9316bc35bebea85039",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 366,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": 1,
+      "elapsed_seconds": 0.7399,
+      "artifact": "family-0012/phase-1-sigma-1"
+    },
+    {
+      "seed": 13,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        42
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "95187b844db61a1e150f4bdcf107ef72dc229b88ea98ca74398eb839519b5081",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": 1,
+      "elapsed_seconds": 0.3187,
+      "artifact": "family-0013/phase-2-sigma-0"
+    },
+    {
+      "seed": 13,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        42
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "9e459adb5a5e7fbf0c2ba196574aa0dbf11834383dc35eaa0b23da5c3c32b5df",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": 1,
+      "elapsed_seconds": 0.3206,
+      "artifact": "family-0013/phase-2-sigma-1"
+    },
+    {
+      "seed": 13,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        41
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "489f3c7f062a2a3126beb754c31adcda564c32703452200d4d6dfc5fbae00e83",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": 1,
+      "elapsed_seconds": 0.456,
+      "artifact": "family-0013/phase-3-sigma-0"
+    },
+    {
+      "seed": 13,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        41
+      ],
+      "score": 0.978125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "7544e359bccf91a0fcbf8250abbd4a8d9a25a7e7d47ee6390fb3725056166032",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 369,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": 1,
+      "elapsed_seconds": 0.4592,
+      "artifact": "family-0013/phase-3-sigma-1"
+    },
+    {
+      "seed": 14,
+      "phase": 0,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        47
+      ],
+      "score": 0.9759375,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "f3b47d8d3d8ed6b8e4f731d5f9e9daefc212e69bd497b62cedeb9c50bc53e196",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 1.2011,
+      "artifact": "family-0014/phase-0-sigma-0"
+    },
+    {
+      "seed": 14,
+      "phase": 0,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        47
+      ],
+      "score": 0.9759375,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "5647bf68373a1af8eaf66aff36efbe43c72b666b29b6174fc07d63ee036b4476",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 1.2002,
+      "artifact": "family-0014/phase-0-sigma-1"
+    },
+    {
+      "seed": 14,
+      "phase": 1,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "8091ce8d5ffe983052e70ecaa1813430cf31b304c689cf0d4658dce967220b30",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 1.4723,
+      "artifact": "family-0014/phase-1-sigma-0"
+    },
+    {
+      "seed": 14,
+      "phase": 1,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        30,
+        41
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "2770b6f05c2a2f050f0c5505ebc00424e796a8260cc45b07024f95299edb1500",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "echo",
+      "polarity": -1,
+      "elapsed_seconds": 1.4739,
+      "artifact": "family-0014/phase-1-sigma-1"
+    },
+    {
+      "seed": 15,
+      "phase": 2,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        43
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "0bb05b2e4a25230ad6be48efc44a6c23b903afe789126aef3c4656f333a08133",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.112,
+      "artifact": "family-0015/phase-2-sigma-0"
+    },
+    {
+      "seed": 15,
+      "phase": 2,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        43
+      ],
+      "score": 0.9775,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "847216569fdd4c11efbf4cc9327fee1cd4bf9485f39fb3e046661f1906aee7af",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.113,
+      "artifact": "family-0015/phase-2-sigma-1"
+    },
+    {
+      "seed": 15,
+      "phase": 3,
+      "sigma": 0,
+      "success": true,
+      "calls": [
+        29,
+        42
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "4388558aab3fba1ca3654a47bc33d2b696ee69df0cddbb6581ac4256e12b3a8e",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.1274,
+      "artifact": "family-0015/phase-3-sigma-0"
+    },
+    {
+      "seed": 15,
+      "phase": 3,
+      "sigma": 1,
+      "success": true,
+      "calls": [
+        29,
+        42
+      ],
+      "score": 0.9778125,
+      "error": null,
+      "terminal_reason": "legal_escape",
+      "rooms_cleared": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fingerprint": "9b9dd963ab4350b96e25e57e73fff54c72e8a2540b694c3895bd5edcc6522264",
+      "gate_projection_hash": "9d80c39cdc53fe796e19b993b3bf7e0936c421ef237e45246796b327a583af15",
+      "notebook_bytes": 368,
+      "worker_restart": true,
+      "replay_exact": true,
+      "mode": "mirror",
+      "polarity": -1,
+      "elapsed_seconds": 0.129,
+      "artifact": "family-0015/phase-3-sigma-1"
+    }
+  ]
+}

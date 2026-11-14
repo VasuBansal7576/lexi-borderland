@@ -1,0 +1,14 @@
+{
+  "all_checks_passed": true,
+  "external_model_calls": 0,
+  "native_codex_only": true,
+  "exact_post_wipe_payload": true,
+  "eight_line_notebook": true,
+  "hidden_source_read_denied": true,
+  "master_credential_read_denied": true,
+  "outside_write_denied": true,
+  "other_local_port_denied": true,
+  "per_call_credentials_removed": true,
+  "duplicate_forwarded_attempts": 1,
+  "note": "Post-wipe public frame is an offline scripted fixture, not a live model result."
+}

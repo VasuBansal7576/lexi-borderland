@@ -1,0 +1,10 @@
+{
+  "mode": "native_codex_subscription_live",
+  "stop": "chunk_paused",
+  "actions": 20,
+  "last_room": 3,
+  "wipes": [],
+  "success": false,
+  "exact_replay": null,
+  "resume": true
+}

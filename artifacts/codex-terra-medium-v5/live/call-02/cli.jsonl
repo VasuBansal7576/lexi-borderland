@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1da03-b401-7772-b121-8eb8cc32d911"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The current glyph constraints establish relative sectors, but the other cataloged calibration records have not yet been read. Investigate before choosing a door.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e9634\",\"offset\":0}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1568,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":100,"reasoning_output_tokens":45}}

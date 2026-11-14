@@ -1,0 +1,69 @@
+{
+  "inputs": "saved public observations and fully delivered records only",
+  "live_calls": 0,
+  "phase_candidates": [
+    0
+  ],
+  "interpretations": {
+    "first_minus_second": {
+      "mapping": {
+        "A": 0,
+        "B": 3,
+        "C": 1,
+        "D": 2
+      },
+      "door_predictions": [
+        {
+          "call": 7,
+          "bank": 0,
+          "pulse": 2,
+          "sector": 2,
+          "predicted_door": "D",
+          "model_door": "D"
+        },
+        {
+          "call": 8,
+          "bank": 1,
+          "pulse": 2,
+          "sector": 3,
+          "predicted_door": "B",
+          "model_door": "C"
+        }
+      ]
+    },
+    "second_minus_first": {
+      "mapping": {
+        "A": 0,
+        "B": 1,
+        "C": 3,
+        "D": 2
+      },
+      "door_predictions": [
+        {
+          "call": 7,
+          "bank": 0,
+          "pulse": 2,
+          "sector": 2,
+          "predicted_door": "D",
+          "model_door": "D"
+        },
+        {
+          "call": 8,
+          "bank": 1,
+          "pulse": 2,
+          "sector": 3,
+          "predicted_door": "C",
+          "model_door": "C"
+        }
+      ]
+    }
+  },
+  "model_rationales": [
+    "Current clock pairs give phase 0. The current glyph constraints give A=0, B=1, C=3, and D=2. Bank 0 with pulse 2 requires sector 2, so choose D.",
+    "Current clock pairs establish phase 0, and the glyph constraints establish C as sector 3. Bank 1 with pulse 2 requires sector (0+1+2)%4=3."
+  ],
+  "implemented_convention": "first_minus_second",
+  "convention_source": "Evaluator inspection of borderland/world.py and borderland/solver.py after the run; not supplied to the model.",
+  "finding": "The model used the reverse subtraction direction. The public record encoding does not explicitly define that direction; the first door does not distinguish the two interpretations.",
+  "classification": "terminal puzzle failure confounded by an implicit record-encoding convention; not a memory result"
+}

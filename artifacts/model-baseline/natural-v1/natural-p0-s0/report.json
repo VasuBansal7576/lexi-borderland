@@ -1,0 +1,74 @@
+{
+  "name": "natural-p0-s0",
+  "model": "CohereLabs/tiny-aya-global-GGUF",
+  "quantization": "Q4_K_M",
+  "assisted_prefix": false,
+  "notebook_probe": false,
+  "start_room": 1,
+  "last_room": 1,
+  "success": false,
+  "reason": "tool_budget",
+  "rooms_cleared_by_model": [],
+  "model_calls": 65,
+  "total_calls_including_prefix": [
+    65,
+    0
+  ],
+  "completion_tokens": 3834,
+  "summed_prompt_tokens": 330677,
+  "score_including_prefix": 0.0,
+  "integrity": true,
+  "wipes": [],
+  "server_starts": [
+    {
+      "pid": 89941,
+      "args": [
+        "/opt/homebrew/bin/llama-server",
+        "--model",
+        "/Users/vasu/Desktop/Lexi/models/tiny-aya-global/model.gguf",
+        "--alias",
+        "tiny-aya-global-q4_k_m",
+        "--ctx-size",
+        "8192",
+        "--parallel",
+        "1",
+        "--cache-ram",
+        "0",
+        "--no-context-shift",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18791",
+        "--no-webui",
+        "--no-agent",
+        "--offline",
+        "--threads",
+        "4"
+      ]
+    }
+  ],
+  "errors": [],
+  "elapsed_seconds": 275.724,
+  "world_fingerprint": "a06a46c36d3d2be2221375038ed8152e7c1df809cfc927b57cc43273409bc47e",
+  "source_hashes": {
+    "borderland/__init__.py": "d7053be90e6b7dfac226968c5f73be166b06737c99758de34ad9b0c1d31de0c9",
+    "borderland/certify.py": "a98563ce7bbffab4b0c98193634dc4b29e8cff9d188fc78405af26ef1e26c881",
+    "borderland/env.py": "3e5c6da194780deccf552c4b9f0f26922d8700ffab0c810de8e832fd4a81aefa",
+    "borderland/mechanics.py": "df463d9ff9fce183acdf4b240d8f468817c3e87e312fd274b189454114e6f7a3",
+    "borderland/planning.py": "d160fb09b8636fdded018684d0d35894b8755e7171deda607480f8072e97665a",
+    "borderland/run.py": "e694bf4c85c0f901b5944072f46babd83f74b9e2b3e4978656856b7d4a47f1ad",
+    "borderland/solver.py": "b0a5598e434a4ac652413d2e7afd859214ae3b17e3d58ba95b37f6d45239fe11",
+    "borderland/worker.py": "c34061276ea6b53ca46e381776ac0ff16fbeb9819f344a470c1a88584f41ef43",
+    "borderland/world.py": "f22f6c04d1f8f51a04bc16e6eabb14d4f8d4d7cf0b5a4996ac1c02764d5ddf3e"
+  },
+  "prompt_sha256": "d1679560b4466a1b8c5c6f38921b6b6262b938cba2597fd4e824d98ad73f38de",
+  "decoding": {
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 1024,
+    "context": 8192,
+    "episode_generation_cap": 32768,
+    "format": "JSON object grammar; no action-answer constraint"
+  },
+  "exact_environment_replay": true
+}

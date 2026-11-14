@@ -1,0 +1,11 @@
+{
+  "exact_public_payload": true,
+  "no_coding_tools": true,
+  "fresh_state": "runtime/opencode-bridge/calls/e9d9f67da7298ef8de6e6a3e",
+  "session_ids": [
+    "ses_e26b6c492ffemmcWm738A1LDpI"
+  ],
+  "upstream_attempts": 1,
+  "live": false,
+  "output_cap": 1024
+}

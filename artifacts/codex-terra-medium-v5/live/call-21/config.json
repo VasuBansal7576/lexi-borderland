@@ -1,0 +1,23 @@
+{
+  "forced_login_method": "chatgpt",
+  "cli_auth_credentials_store": "file",
+  "model_provider": "subscription_bridge",
+  "model_providers.subscription_bridge.name": "Native Codex subscription bridge",
+  "model_providers.subscription_bridge.base_url": "http://127.0.0.1:33523/v1",
+  "model_providers.subscription_bridge.wire_api": "responses",
+  "model_providers.subscription_bridge.requires_openai_auth": true,
+  "model_providers.subscription_bridge.request_max_retries": 0,
+  "model_providers.subscription_bridge.stream_max_retries": 0,
+  "model_providers.subscription_bridge.supports_websockets": false,
+  "model_instructions_file": "/sessions/rcw-015ijjxunwxr21pbqpxupekh/.lexi-codex-calls/4d08199728d7ce3d53b4c785/system.txt",
+  "model_reasoning_effort": "medium",
+  "features.shell_tool": false,
+  "features.shell_snapshot": false,
+  "features.view_image": false,
+  "features.apps": false,
+  "features.codex_hooks": false,
+  "agents.enabled": false,
+  "web_search": "disabled",
+  "project_doc_max_bytes": 0,
+  "check_for_update_on_startup": false
+}

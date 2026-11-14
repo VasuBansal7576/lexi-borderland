@@ -1,0 +1,15 @@
+event: response.created
+data: {"type": "response.created", "response": {"id": "resp_offline", "status": "in_progress", "output": []}}
+
+event: response.output_item.added
+data: {"type": "response.output_item.added", "output_index": 0, "item": {"type": "message", "id": "msg_offline", "role": "assistant", "status": "in_progress", "content": []}}
+
+event: response.output_text.delta
+data: {"type": "response.output_text.delta", "item_id": "msg_offline", "output_index": 0, "content_index": 0, "delta": "{\"reason\": \"offline guard fixture\", \"tool\": \"inspect\", \"args\": {\"object_id\": \"rules\"}}"}
+
+event: response.output_item.done
+data: {"type": "response.output_item.done", "output_index": 0, "item": {"type": "message", "id": "msg_offline", "role": "assistant", "status": "completed", "content": [{"type": "output_text", "text": "{\"reason\": \"offline guard fixture\", \"tool\": \"inspect\", \"args\": {\"object_id\": \"rules\"}}", "annotations": []}]}}
+
+event: response.completed
+data: {"type": "response.completed", "response": {"id": "resp_offline", "model": "gpt-6.1-terra", "status": "completed", "max_output_tokens": 1024, "output": [{"type": "message", "id": "msg_offline", "role": "assistant", "status": "completed", "content": [{"type": "output_text", "text": "{\"reason\": \"offline guard fixture\", \"tool\": \"inspect\", \"args\": {\"object_id\": \"rules\"}}", "annotations": []}]}], "usage": {"input_tokens": 100, "output_tokens": 20, "total_tokens": 120}}}
+

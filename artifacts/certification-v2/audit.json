@@ -1,0 +1,17 @@
+{
+  "worlds_audited": 64,
+  "all_passed": true,
+  "steps_checked": 4604,
+  "citations_checked": 640,
+  "max_notebook_bytes": 374,
+  "checks": [
+    "current source hashes",
+    "legal advertised tools",
+    "no maintenance actions",
+    "delivered citation provenance",
+    "exact policy transport",
+    "actual process restart",
+    "exact eight-line transfer",
+    "independent score arithmetic"
+  ]
+}

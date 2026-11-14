@@ -1,0 +1,13 @@
+(version 1)
+(allow default)
+(deny network-outbound (require-all
+ (require-not (remote ip "localhost:54506"))
+ (require-not (remote ip "localhost:54505"))))
+(deny network-inbound (require-not (local ip "localhost:54506")))
+(deny file-read-data (require-all
+ (require-not (subpath "/Users/vasu/Desktop/Lexi/runtime/opencode-bridge/calls/e9d9f67da7298ef8de6e6a3e")) (require-not (subpath "/Users/vasu/Desktop/Lexi/runtime/opencode-bridge/client/install"))
+ (require-any (subpath "/Users") (subpath "/Volumes")
+ (subpath "/private/var/folders") (subpath "/var/folders")
+ (subpath "/private/tmp") (subpath "/tmp")
+ (subpath "/Library/Application Support") (subpath "/Library/Managed Preferences"))))
+(deny file-write* (require-not (subpath "/Users/vasu/Desktop/Lexi/runtime/opencode-bridge/calls/e9d9f67da7298ef8de6e6a3e")))

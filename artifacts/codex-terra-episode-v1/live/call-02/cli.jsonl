@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1d997-3a52-7c23-ab68-b1b9c05b2013"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The current glyph constraints do not establish the hidden phase; read another listed district record for calibration evidence.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e9634\",\"offset\":0}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1487,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":45,"reasoning_output_tokens":0}}

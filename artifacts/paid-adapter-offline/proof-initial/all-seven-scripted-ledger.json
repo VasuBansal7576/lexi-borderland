@@ -1,0 +1,487 @@
+{
+  "version": 1,
+  "contract_hash": "50778ca7309a7797039ea37d508565c01bfe93f2d4d79f418520b56c25958693",
+  "contract": {
+    "endpoint": "https://api.invalid/v1/chat/completions",
+    "model": "offline-fake-no-live-model",
+    "api_key_env": "LEXI_PAID_API_KEY",
+    "context_window": 16000,
+    "input_usd_per_million": "1",
+    "output_usd_per_million": "2",
+    "budget_usd": "10",
+    "max_calls": 160,
+    "max_input_tokens": 3000000,
+    "max_output_tokens": 30000,
+    "output_tokens_per_call": 128,
+    "pricing_note": "SYNTHETIC offline test rates. Not prices or limits for any real provider.",
+    "live_enabled": false,
+    "output_limit_field": "max_tokens",
+    "timeout_seconds": 30,
+    "max_response_bytes": 2097152,
+    "no_progress_limit": 3
+  },
+  "calls": 76,
+  "input_tokens_accounted": 7600,
+  "output_tokens_accounted": 2280,
+  "cost_accounted_usd": "0.012160",
+  "pending": null,
+  "halted": null,
+  "entries": [
+    {
+      "request_id": "313e06cbbd0a440aaec94c6de82860d4",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "611e7fcd603540398d8359d60abd0d31",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "d33faf47d00842a4b7f93fad423daaf8",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "85d1e73bc156456a8cf5bde004c5201c",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "26ef8f12502343aba15a64c738969944",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "519379fed3084557abf1b501119882e9",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "ee90cd763b3c4f4db1e7ff5b41c6ecf2",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "ee4b9cff43f6472e90c3a0986d0f3403",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "5c4f3cc735d7438a8b61dc0804f9247e",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2a52a6179b57496a9c83f5a83bff0429",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "ef922c5d249745f28fa7075cfd64f36b",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "80de0cdc5c90498193877a5a42c7243d",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "ee5213e3c6214515b53b25c936d9412f",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2c46a9bf6ba44c4783db5fc905958731",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "aa2d9afd2ab741b683c97af03848ef18",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "59be1f8b3c0b4597b0ab9695c7176ae2",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "bf224b543e1e4305bbffcd9d2a07bf94",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "0a6145aaf17c4d13923b645a989c554a",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "9325daee05bf410b8e7cbf1839a57cd3",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "9d4c228a37554e699345b1634ba33b21",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "d0245fd5662a47fd8fd98c5e3a64980a",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "66839d6752e945ee846b97098f15223b",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "38d78544ed064dcc9822b6990ae82ecc",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "7c67f285401249f6a5a86e32b924634c",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "fca0976e50df4f09b9b51008531d1ee5",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "5b82c6b27f1949c4bfdf6ed6858c5a13",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "89493bad8852428f86c3098318869838",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "e631f7055b734c85b6efe30311c7496f",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "b281fc30e04f4bd097511f6822eb9ca7",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "276206f7aad443ccb8925b82dccd68f2",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "3fddaa5a5097463fad06c2152c7c4795",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "04ac377e62e94ffa9c5f325aa95f9dfe",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "6dfb29e8f7e84b11b2bf359cf0bac864",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "dcb966d6bbb74dcebc03fe68f31ffdac",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "b18f74e55163499ba48a6030f02b6fb4",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "50b7268593814eedb49f2767b44be227",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "0a6a628d3dc140668fa64a9adeaf2477",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "e429afabe81f45ca9b19dcbab422999d",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "3bb178ae5da542b29ab533e15ee50c09",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "774d9049c58e4302879253280ec034c9",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "9c38d348a2394406b37c3f9a19a7ef7f",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2c14ec65808a4e36a22a65ed9bde3710",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "3900512ec0144b46b8982c0fb5035841",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "495fc862db36489c9078eec7c67d53a0",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "9c9eaedfe43f46dfbc237b0098c4d554",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2b099244d1b94e93a107ebbd8f81bf0c",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "b5389d3629dc4835b7122f2c2cfdb2fb",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2d435fdf8a6a4028824840dce228dae9",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "7b481f54704f415d9d628af6935f2887",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "f9b9141eec06485b9c6431dcc2c6c7e1",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "3d410dea9b024563b6f2ea11b39eecc5",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "aa55300a605d4d99ac08fbf7d7061e9e",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "c995e3614ed14f8c9c18cca00b972a5d",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2385ccf8dd4646d9a61036fdd0541af9",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "38dcd37211f64b3aaebac54c69edf386",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "9734a8e7891b4d80a36ff1e4b0b046ca",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "38caab865c0c4b92988af7b86120f188",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "d25dcc8e0d09404d8d95c4a9e27736a2",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "c834e37bb08649d7ae7b7103cd96aceb",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "d10531095ba4488c970b0df93ec4c6e3",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "0a63862e0e7a451aa15729f0bc13d27c",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2e99de379f454a1eaa22228c51870b9e",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "ba00aed1301b45339a054c24f1f1a10c",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "0c936bb66e36460f92a95e536c3c9c23",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "fad1c7533fd547e485ef7308bc7ff516",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "0a5e33c39e464d0aa8bbd105b4aa33f5",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "608b34fe82f740ae989a4605e5a832a9",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "f1985abba7fd4f4c9392f2fb8aef7425",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "9f3e742b093d4dc38d004a802e80197e",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "11c25b64996d4195a943fbcc7549d11f",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "03d38744f37f4a6eb298f2fda262e637",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "16b864072dc040cdbb02e7052000a8c3",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "e49d52fe003d4441be41fec2cf52af39",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "6f09f9a465e546a99d0d28c8d5110954",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "547f3949d1b84f41b8f2e665c27c33d7",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "52d76831d8fe43ebb8ca009ddd5312f2",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    }
+  ]
+}

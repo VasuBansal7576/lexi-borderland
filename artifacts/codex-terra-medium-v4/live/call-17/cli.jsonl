@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1d9ff-4670-7a72-9fd7-2d197e1f816e"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"Both the auxiliary and main buses are energized, so the Switchboard objectives are complete.\",\"tool\":\"exit_room\",\"args\":{}}"}}
+{"type":"turn.completed","usage":{"input_tokens":3501,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":33,"reasoning_output_tokens":0}}

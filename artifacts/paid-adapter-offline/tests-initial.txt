@@ -1,0 +1,29 @@
+test_all_seven_rooms_fake_fixture_and_actual_wipe_payload (test_paid_adapter.PaidAdapterTests) ... ok
+test_alternating_passive_calls_and_changing_notebooks_do_not_evade_guard (test_paid_adapter.PaidAdapterTests) ... ok
+test_config_rejects_unsafe_urls_bad_limits_unknown_fields_and_floats (test_paid_adapter.PaidAdapterTests) ... ok
+test_default_cli_is_preflight_without_credentials_transport_or_ledger (test_paid_adapter.PaidAdapterTests) ... ok
+test_every_budget_blocks_before_network (test_paid_adapter.PaidAdapterTests) ... ok
+test_exact_dollar_boundary_allows_one_reservation_then_blocks (test_paid_adapter.PaidAdapterTests) ... ok
+test_https_wire_headers_limits_no_credentials_in_payload_or_logs (test_paid_adapter.PaidAdapterTests) ... ok
+test_invalid_missing_and_over_limit_usage_halt (test_paid_adapter.PaidAdapterTests) ... ok
+test_ledger_lock_prevents_concurrent_runners (test_paid_adapter.PaidAdapterTests) ... ok
+test_ledger_reopen_preserves_spend_and_rejects_config_reset (test_paid_adapter.PaidAdapterTests) ... ok
+test_live_transport_needs_both_opt_ins_and_never_sends_by_constructing (test_paid_adapter.PaidAdapterTests) ... ok
+test_loop_guard_stops_rules_even_with_clock_and_reason_changes (test_paid_adapter.PaidAdapterTests) ... ok
+test_malformed_action_is_not_repaired_or_dispatched (test_paid_adapter.PaidAdapterTests) ... ok
+test_novel_pages_and_legitimate_timing_round_progress_do_not_trigger_guard (test_paid_adapter.PaidAdapterTests) ... ok
+test_paid_wipe_blank_notebook_prompts_identical_across_hidden_twins (test_paid_adapter.PaidAdapterTests) ... ok
+test_pending_reservation_survives_crash (test_paid_adapter.PaidAdapterTests) ... ok
+test_redirect_http_errors_and_credential_echo_never_retry_or_log_secrets (test_paid_adapter.PaidAdapterTests) ... ok
+test_refusal_truncation_and_extra_choices_charge_once_then_stop (test_paid_adapter.PaidAdapterTests) ... ok
+test_reservation_exact_decimal_and_written_before_transport (test_paid_adapter.PaidAdapterTests) ... ok
+test_strict_json_rejects_duplicate_keys_nonfinite_and_prose (test_paid_adapter.PaidAdapterTests) ... ok
+test_threaded_reservations_cannot_double_spend (test_paid_adapter.PaidAdapterTests) ... ok
+test_timeout_no_retry_no_refund_no_resume (test_paid_adapter.PaidAdapterTests) ... ok
+test_token_budgets_are_cumulative_even_after_settlement (test_paid_adapter.PaidAdapterTests) ... ok
+test_unsafe_valid_action_still_fails_in_unchanged_engine (test_paid_adapter.PaidAdapterTests) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.689s
+
+OK

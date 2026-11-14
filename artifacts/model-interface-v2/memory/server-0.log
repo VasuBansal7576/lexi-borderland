@@ -1,0 +1,13 @@
+0.00.000.430 I srv  llama_server: initializing ...
+0.00.055.419 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.055.649 I srv  init_listene: The UI is disabled
+0.00.055.651 I srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.055.684 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.057.098 I srv    load_model: loading model '/Users/vasu/Desktop/Lexi/models/tiny-aya-global/model.gguf'
+0.00.473.280 W load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+0.00.650.588 I cmn          init: llama threadpool init, n_threads = 4
+0.00.739.980 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 8192, kv_unified = 'false'
+0.00.740.007 W srv          init: --cache-idle-slots requires --cache-ram, disabling
+0.00.743.678 I srv  llama_server: model loaded
+0.00.743.682 I srv  llama_server: listening on http://127.0.0.1:18791
+0.00.763.825 I srv    operator(): operator(): cleaning up before exit...

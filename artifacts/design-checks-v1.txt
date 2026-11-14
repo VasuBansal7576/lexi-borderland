@@ -1,0 +1,107 @@
+{
+  "status": "limited_design_checks_passed",
+  "environment_implementation_checked_by_this_script": false,
+  "model_training_run": false,
+  "lock": {
+    "deterministic_policies_enumerated": 256,
+    "balanced_cases_per_policy": 16,
+    "maximum_memoryless_success": "1/4",
+    "two_bit_memory_success": "1",
+    "scope": "Algebraic lock only; see implementation tests for observation-interface checks."
+  },
+  "rewards": {
+    "max_ordinary_failure_score": "8/25",
+    "minimum_success_score": "19/20",
+    "maximum_success_score": "1",
+    "duplicate_milestone_payment": "0",
+    "forbidden_tool_total_after_clawback": "0",
+    "scope": "Proposed formula and ledger algebra; trainer integration untested."
+  },
+  "balance": {
+    "candidate_parameter_sets": 96,
+    "locally_feasible_parameter_sets": 96,
+    "infeasible_parameter_sets": 0,
+    "universal_successful_constant_bids": [],
+    "fixed_sequences_checked": 9261,
+    "universal_successful_fixed_sequences": [],
+    "witnesses": [
+      {
+        "mode": "echo",
+        "phase": 0,
+        "q": "3/5",
+        "offsets": [
+          0,
+          4
+        ],
+        "maximum_wins": 3,
+        "winning_sequence": [
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "mode": "echo",
+        "phase": 0,
+        "q": "3/5",
+        "offsets": [
+          2,
+          5
+        ],
+        "maximum_wins": 3,
+        "winning_sequence": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "mode": "echo",
+        "phase": 0,
+        "q": "3/5",
+        "offsets": [
+          1,
+          13
+        ],
+        "maximum_wins": 3,
+        "winning_sequence": [
+          3,
+          5,
+          5
+        ]
+      },
+      {
+        "mode": "echo",
+        "phase": 0,
+        "q": "3/5",
+        "offsets": [
+          8,
+          16
+        ],
+        "maximum_wins": 2,
+        "winning_sequence": [
+          0,
+          3,
+          2
+        ]
+      }
+    ],
+    "scope": "Exact three-round local game, not full-world or arena feasibility."
+  },
+  "battle": {
+    "unequal_positive_group_cases": 1740,
+    "point_conservation": true,
+    "polarity_reverses_winner": true,
+    "scope": "Single battle totals; see implementation tests and certificates for full arena checks."
+  },
+  "notebook": {
+    "illustrative_note_bytes": 465,
+    "maximum_line_bytes": 70,
+    "budget_bytes": 768,
+    "scope": "Capacity example only; values are illustrative, not a solved seven-room fixture."
+  },
+  "links": {
+    "local_file_links_checked": 51,
+    "scope": "File targets, not Markdown fragment anchors."
+  }
+}

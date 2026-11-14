@@ -1,0 +1,17 @@
+{
+  "Content-Type": "application/json",
+  "User-Agent": "opencode/latest/2.2.7/cli",
+  "b3": "418e45d88fd0483d235dcb17f3ebe0d6-3a31ce555ea9d504-1-3be1cac45c6b0495",
+  "traceparent": "00-418e45d88fd0483d235dcb17f3ebe0d6-3a31ce555ea9d504-01",
+  "x-opencode-client": "cli",
+  "x-opencode-project": "e4355a15b0de8846c837f385a885776cc9f7d96e",
+  "x-opencode-session": "ses_e26b6abd8ffePDbKQH7lmDi3rx",
+  "x-opencode-session-id": "ses_e26b6abd8ffePDbKQH7lmDi3rx",
+  "x-session-affinity": "ses_e26b6abd8ffePDbKQH7lmDi3rx",
+  "x-session-id": "ses_e26b6abd8ffePDbKQH7lmDi3rx",
+  "Connection": "keep-alive",
+  "Accept": "*/*",
+  "Host": "127.0.0.1:54567",
+  "Accept-Encoding": "gzip, deflate, br, zstd",
+  "Content-Length": "7407"
+}

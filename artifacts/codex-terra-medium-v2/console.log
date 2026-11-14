@@ -1,0 +1,11 @@
+Started Sat Nov 14 12:07:24 UTC 2026 host=linux-vm
+{
+  "mode": "native_codex_subscription_live",
+  "actions": 0,
+  "last_room": 1,
+  "stop": "[Errno -3] Temporary failure in name resolution",
+  "success": false,
+  "wipes": [],
+  "exact_replay": true
+}
+Finished Sat Nov 14 12:07:35 UTC 2026 exit=0

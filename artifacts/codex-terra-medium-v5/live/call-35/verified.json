@@ -1,0 +1,12 @@
+{
+  "native_codex": true,
+  "model": "gpt-6.1-terra",
+  "live": true,
+  "state": "119b05bcc3f1075dffcc311e",
+  "thread_ids": [
+    "01a1da0e-3234-7510-b326-868b0dac3196"
+  ],
+  "exact_public_payload": true,
+  "tools_removed": true,
+  "api_key_present": false
+}

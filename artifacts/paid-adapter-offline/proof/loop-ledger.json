@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "contract_hash": "fd51ffdc94651b69911b73ef2c87897817cc03db87f5c44adc73ad8194fcf049",
+  "contract": {
+    "endpoint": "https://api.invalid/v1/chat/completions",
+    "model": "offline-fake-no-live-model",
+    "api_key_env": "LEXI_PAID_API_KEY",
+    "context_window": 16000,
+    "input_usd_per_million": "1",
+    "output_usd_per_million": "2",
+    "budget_usd": "0.05",
+    "max_calls": 5,
+    "max_input_tokens": 80000,
+    "max_output_tokens": 640,
+    "output_tokens_per_call": 128,
+    "pricing_note": "SYNTHETIC offline test rates. Not prices or limits for any real provider.",
+    "live_enabled": false,
+    "output_limit_field": "max_tokens",
+    "timeout_seconds": 30,
+    "max_response_bytes": 2097152,
+    "no_progress_limit": 3
+  },
+  "calls": 4,
+  "input_tokens_accounted": 400,
+  "output_tokens_accounted": 120,
+  "cost_accounted_usd": "0.000640",
+  "pending": null,
+  "halted": "evaluator_no_progress",
+  "entries": [
+    {
+      "request_id": "b489b2341aba48b1b6c84c9a527d18ce",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "4e8501756b6f475bb532ef2d81205b45",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "178b9ddd2806470f912cd6fd2a05affc",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    },
+    {
+      "request_id": "2d3a3c403e8a4a9badec047f3d12af37",
+      "status": "settled",
+      "inputs": 100,
+      "outputs": 30
+    }
+  ]
+}

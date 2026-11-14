@@ -1,0 +1,27 @@
+0.00.001.323 I srv  llama_server: initializing ...
+0.00.153.699 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.153.898 I srv  init_listene: The UI is disabled
+0.00.153.899 I srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.153.935 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.155.366 I srv    load_model: loading model '/Users/vasu/Desktop/Lexi/models/tiny-aya-global/model.gguf'
+0.00.580.429 W load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+0.00.768.903 I cmn          init: llama threadpool init, n_threads = 4
+0.00.874.720 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 8192, kv_unified = 'false'
+0.00.874.784 W srv          init: --cache-idle-slots requires --cache-ram, disabling
+0.00.879.055 I srv  llama_server: model loaded
+0.00.879.058 I srv  llama_server: listening on http://127.0.0.1:18791
+0.01.015.761 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.01.015.868 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.04.928.363 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1828, progress = 0.33, t =   3.91 s / 467.22 tokens per second
+0.05.810.678 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2150, progress = 0.39, t =   4.79 s / 448.40 tokens per second
+0.11.220.270 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   4198, progress = 0.76, t =  10.20 s / 411.39 tokens per second
+0.14.438.914 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   5002, progress = 0.91, t =  13.42 s / 372.64 tokens per second
+0.15.461.506 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   5480, progress = 0.99, t =  14.45 s / 379.35 tokens per second
+0.17.021.140 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   5514, progress = 1.00, t =  16.01 s / 344.51 tokens per second
+0.17.654.183 I slot print_timing: id  0 | task 0 | prompt eval time =   16250.81 ms /  5518 tokens (    2.95 ms per token,   339.55 tokens per second)
+0.17.654.187 I slot print_timing: id  0 | task 0 |        eval time =     387.50 ms /    13 tokens (   32.29 ms per token,    30.97 tokens per second)
+0.17.654.188 I slot print_timing: id  0 | task 0 |       total time =   16638.30 ms /  5531 tokens
+0.17.654.188 I slot print_timing: id  0 | task 0 |    graphs reused =         12
+0.17.654.189 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.17.654.467 I slot      release: id  0 | task 0 | stop processing: n_tokens = 5530, truncated = 0
+0.17.655.590 I srv    operator(): operator(): cleaning up before exit...

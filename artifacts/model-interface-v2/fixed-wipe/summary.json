@@ -1,0 +1,24 @@
+[
+  {
+    "phase": 0,
+    "sigma": 0,
+    "evaluator_exit": true,
+    "bytes": 486,
+    "model_calls": 5,
+    "gate_passed": false,
+    "reason": "probe_step_cap_or_gate_passed",
+    "old_pid": 94611,
+    "new_pid": 94631
+  },
+  {
+    "phase": 0,
+    "sigma": 1,
+    "evaluator_exit": true,
+    "bytes": 486,
+    "model_calls": 5,
+    "gate_passed": false,
+    "reason": "probe_step_cap_or_gate_passed",
+    "old_pid": 94663,
+    "new_pid": 94686
+  }
+]

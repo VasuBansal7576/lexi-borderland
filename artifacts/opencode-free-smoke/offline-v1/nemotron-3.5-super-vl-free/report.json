@@ -1,0 +1,229 @@
+{
+  "mode": "opencode_offline_fixture",
+  "success": false,
+  "stop": "evaluator_no_progress",
+  "external_stop": true,
+  "environment_reason": null,
+  "environment_terminated": false,
+  "environment_truncated": false,
+  "actions": 4,
+  "last_room": 1,
+  "wipes": [],
+  "score": 0.0,
+  "integrity": true,
+  "exact_replay": true,
+  "ledger": {
+    "mode": "offline",
+    "attempts": [
+      {
+        "number": 1,
+        "model": "inkling-2-small-free",
+        "request_sha256": "6e034ddfb381aa1647380bb5c08fc6298d9b9942471bba8d7caa26aa327c450c",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 2,
+        "model": "inkling-2-small-free",
+        "request_sha256": "6e19a5d42e0324d624605bf0015483b2d494f8582c04d6021db21cb62ad479d8",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 3,
+        "model": "inkling-2-small-free",
+        "request_sha256": "d581b3f8f2699c76630c2e5c27cc5fc6aeb28e82c6a514a10ec69275f3946334",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 4,
+        "model": "inkling-2-small-free",
+        "request_sha256": "78327d93c4b3cc09e7903ae02c25bbff091ecdcedd499e2d019eaeeb92d494ef",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 5,
+        "model": "longcat-2.5-free",
+        "request_sha256": "f41ef0697f1103b31151936a1ee78e801facc141cbf2d0f3c15d0e1813d33bb4",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 6,
+        "model": "longcat-2.5-free",
+        "request_sha256": "b1617ccb3a6cd91c6fb0f26774453d2d192d2cfb0e0b20cf5bd2ea284cf0c27d",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 7,
+        "model": "longcat-2.5-free",
+        "request_sha256": "c1c3b6c66b57ae8bf468eb76ee98357a4d688138e385b403a72010697d5eb9e1",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 8,
+        "model": "longcat-2.5-free",
+        "request_sha256": "231c383ad306d805136ce523fcabdce42cc18bc440c81e782312abbfa714decb",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 9,
+        "model": "nemotron-3.5-super-vl-free",
+        "request_sha256": "5bcba8af6098f73f29ac152d5692ffdbd6ccbc3a575b8d144f7902d1ab03eb57",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 10,
+        "model": "nemotron-3.5-super-vl-free",
+        "request_sha256": "f4640f73f540ff519be29fddd6b5105302b07fcaef322db345b9b19230422e61",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 11,
+        "model": "nemotron-3.5-super-vl-free",
+        "request_sha256": "061b2fc9ccb6276331107a7f06f3cd2abea8a47c3639ccce4ec9ad209b4354b2",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      },
+      {
+        "number": 12,
+        "model": "nemotron-3.5-super-vl-free",
+        "request_sha256": "baa7c93fe0b99611c9d3ca9d567bada312e5ad5a9e507b6418843eeee88392e7",
+        "status": "complete",
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 20,
+          "total_tokens": 120,
+          "cost": 0,
+          "opencode": {
+            "billing_source": "free"
+          }
+        }
+      }
+    ],
+    "halts": {
+      "inkling-2-small-free": "evaluator_no_progress",
+      "longcat-2.5-free": "evaluator_no_progress",
+      "nemotron-3.5-super-vl-free": "evaluator_no_progress"
+    },
+    "limit_per_model": 5,
+    "limit_total": 25,
+    "output_cap": 1024
+  },
+  "source_hashes": {
+    "baseline/interface_v2.py": "5d0def24f8711fc4c5b40c6749af7eac6ddf4bfb2f064b08400e0f778b037c5f",
+    "baseline/interface_v3.py": "c528e19c752b2aaf2461235964690c03993ef912e0d8b8c31555763b7df8dd05",
+    "baseline/paid/__init__.py": "8f697b053afb658963703664482349928507458de98fb73950cfa1252fcb17fc",
+    "baseline/paid/__main__.py": "028d943159dde9fb398d8a31cc4f53cbb9a88fa16a1c867832ed129bfe70b707",
+    "baseline/paid/budget.py": "1f97f8de762c38bb6059d01986873bf7b996d153c458099951639356a116613f",
+    "baseline/paid/client.py": "2be94f05931761992a5d990461b0848792103b809f831023f5e9de413c7a4e17",
+    "baseline/paid/config.py": "7456e26b7af8798e1b4f47169a72cd44097db6c8306b7542743c4d7c1c6b9be8",
+    "baseline/paid/guard.py": "74f1425282ede0cdeb826c315b585ec15b9ea20cab474304ae108636a79917a3",
+    "baseline/paid/run.py": "b9e3855f8d48dd9de87b9cb42e01485dfe753150023aef67f1ec4634a033aa76",
+    "baseline/public_rules.txt": "d1679560b4466a1b8c5c6f38921b6b6262b938cba2597fd4e824d98ad73f38de",
+    "borderland/__init__.py": "009b93a2dc47a5587c5726bc2339f0b34d6ee15ac4df109056be7267679b8732",
+    "borderland/certify.py": "78cb23cd402fe9712cd2ae6c2f1cbb3b88d4ab69bf49a2634981d2bbe7feb270",
+    "borderland/env.py": "5cf3c733fd7c274d889d68b46a7cdba87e294b49354139a1a41bcc21b1df155c",
+    "borderland/mechanics.py": "df6d386a445c28871fc961c1660eb71d81c176cb162afbe3bddb36826a87269c",
+    "borderland/planning.py": "ba581f11e12b8efdd74cd5be09bca78026f3e37d7901203901b69e6a3c2ec882",
+    "borderland/run.py": "e4fa0b4a693cfedb47cd172f5508d6b02b95748a0f205fbd97731a8a8c5539b2",
+    "borderland/solver.py": "6c20122665e125197135d88ca7cfb722412ddd1ef9077c1daaaf69ab01504816",
+    "borderland/worker.py": "7ef026e4f75004a6c0ba4b6331c513ed7f6fb2aa862c663fa137120737ccd803",
+    "borderland/world.py": "1c4ee3cf7325572e7150cd99e8db7d76756801eb1a49385e04f4fb86493d2ec3"
+  }
+}

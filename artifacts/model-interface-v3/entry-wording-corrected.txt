@@ -1,0 +1,1 @@
+Room4 request now uses the actual public position/unlocked fields. Natural room1 prompts unchanged. Prior adapter archived.

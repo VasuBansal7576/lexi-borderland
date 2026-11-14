@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1da0e-3234-7510-b326-868b0dac3196"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The surveyed 0–5 crossing is unpowered and open at every phase. Relay node 5 is one travel tick away.\",\"tool\":\"move\",\"args\":{\"destination_id\":\"5\"}}"}}
+{"type":"turn.completed","usage":{"input_tokens":3103,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":44,"reasoning_output_tokens":0}}

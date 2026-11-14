@@ -1,0 +1,11 @@
+Started Sat Nov 14 16:58:51 IST 2026
+{
+  "mode": "native_codex_subscription_live",
+  "actions": 24,
+  "last_room": 3,
+  "stop": "invalid_certification",
+  "success": false,
+  "wipes": [],
+  "exact_replay": true
+}
+Finished Sat Nov 14 17:00:04 IST 2026 exit=0

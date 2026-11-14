@@ -1,0 +1,14 @@
+{
+  "changed_runtime_files": [
+    "baseline/public_rules.txt"
+  ],
+  "before_sha256": "d1679560b4466a1b8c5c6f38921b6b6262b938cba2597fd4e824d98ad73f38de",
+  "after_sha256": "cfcc761b6d5ea44d28f3b6ea119945ac5b4572ff2bd340a0dafbc98b0408b310",
+  "definitions": [
+    "(K[a]-K[b]) mod 4 = d",
+    "(K[g]-phase) mod 4 = o"
+  ],
+  "sampled_values_added": false,
+  "tests_passed": 103,
+  "unchanged_environment_certificates": 64
+}

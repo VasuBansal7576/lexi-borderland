@@ -1,0 +1,7 @@
+# never publish credentials, local runtime state or model weights
+runtime/
+models/
+**/auth.json
+*.gguf
+*.safetensors
+__pycache__/

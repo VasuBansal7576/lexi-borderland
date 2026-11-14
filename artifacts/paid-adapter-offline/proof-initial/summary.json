@@ -1,0 +1,33 @@
+{
+  "actual_network_calls": 0,
+  "actual_paid_spend_usd": "0",
+  "actual_model_calls": 0,
+  "model_success_measured": false,
+  "cases": [
+    {
+      "name": "loop",
+      "fake_requests": 4,
+      "actions": 4,
+      "stop": "evaluator_no_progress",
+      "fixture_success": false,
+      "wipes": 0
+    },
+    {
+      "name": "budget",
+      "fake_requests": 0,
+      "actions": 0,
+      "stop": "dollar_budget",
+      "fixture_success": false,
+      "wipes": 0
+    },
+    {
+      "name": "all-seven-scripted",
+      "fake_requests": 76,
+      "actions": 76,
+      "stop": "legal_escape",
+      "fixture_success": true,
+      "wipes": 1
+    }
+  ],
+  "note": "The full-room fixture replays known legal actions ONLY as fake provider responses; it is not model performance."
+}

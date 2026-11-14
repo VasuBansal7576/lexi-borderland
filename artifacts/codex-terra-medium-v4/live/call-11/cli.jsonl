@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1d9fd-6296-7681-9098-a89c58e659f3"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"Read the listed circuit record before probing or changing live switches.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e2189\",\"offset\":0}}"}}
+{"type":"turn.completed","usage":{"input_tokens":2716,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":37,"reasoning_output_tokens":0}}

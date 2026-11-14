@@ -1,0 +1,12 @@
+[
+  {
+    "model": "inkling-2-small-free",
+    "mode": "opencode_free_live",
+    "actions": 0,
+    "last_room": 1,
+    "stop": "upstream_http_429",
+    "success": false,
+    "wipes": [],
+    "exact_replay": true
+  }
+]

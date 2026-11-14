@@ -1,0 +1,11 @@
+{
+  "mode": "offline_preflight",
+  "network_calls": 0,
+  "model": "offline-fake-no-live-model",
+  "maximum_reserved_usd_per_request": "0.016256",
+  "budget_usd": "0.05",
+  "call_limit": 5,
+  "first_request_affordable": true,
+  "public_messages_utf8_bytes": 6432,
+  "note": "Bytes are NOT a token estimate. Live provider/pricing compatibility is not verified."
+}
