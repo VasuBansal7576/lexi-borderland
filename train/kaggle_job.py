@@ -1,127 +1,173 @@
-"""Runs inside a Kaggle GPU notebook (2x T4). PHASE is set by kaggle_launch.py.
-Phases: eval_base | sft (train + eval) | grpo (merge SFT, GRPO, eval) | grpo_control (same with random reward)."""
+"""Kaggle GPU job (2x T4, fp16). Set at launch: PHASE, EXPECTED_SHA (sha256 of code.tgz), HF token.
+Phases:
+  preflight - check() for base and SFT only.
+  every eval phase first runs check() on its own model (finite logits, memory, throughput -> projection <= 10 h,
+              teacher-tool agreement on 30 training states recorded as a diagnostic) and refuses to run if RED.
+  int_sft - notebook interventions for SFT at room 4 (GPU0 blank notebook, GPU1 anti-twin notebook), same check().
+  eval_base / eval_sft - crash-safe evaluation (GPU0: room4_all on 64 worlds; GPU1: rooms then full on 16 worlds);
+              results uploaded every 10 minutes and at the end."""
 PHASE = "__PHASE__"
-GRPO_STEPS = int("__GRPO_STEPS__")
-import glob, json, os, shutil, subprocess, sys, time
-W = "/kaggle/working"
-BUNDLE = "/kaggle/bundle"
-DATA_REPO = "__HF_USER__/lexi-borderland-data"
-os.environ["HF_TOKEN"] = "__HF_TOKEN__"  # private notebook only; used for the gated model and result uploads
-CODE = "/kaggle/lexi"
+EXPECTED_SHA = "__EXPECTED_SHA__"
+import base64, glob, hashlib, json, os, subprocess, sys, threading, time
+os.environ["HF_TOKEN"] = "__HF_TOKEN__"  # private notebook only
+W, BUNDLE, CODE = "/kaggle/working", "/kaggle/bundle", "/kaggle/lexi"
 BASE = "CohereLabs/tiny-aya-global"
-HF_USER = "__HF_USER__"
-SFT_REPO = f"{HF_USER}/tiny-aya-borderland-sft"
-GRPO_REPO = f"{HF_USER}/tiny-aya-borderland-grpo"
-CONTROL_REPO = f"{HF_USER}/tiny-aya-borderland-grpo-randreward-control"
+DATA_REPO = "FatUnc6969/lexi-borderland-data"
+SFT_REPO = "FatUnc6969/tiny-aya-borderland-sft"
 T0 = time.time()
 
 
-def sh(cmd, env=None, check=True):
-    print(f"[{time.time()-T0:7.0f}s] + {cmd}", flush=True)
+def log(*a):
+    print(f"[{time.time()-T0:6.0f}s]", *a, flush=True)
+
+
+def sh(cmd, check=True, env=None):
+    log("+", cmd)
     r = subprocess.run(cmd, shell=True, env={**os.environ, **(env or {})})
     if check and r.returncode:
-        raise SystemExit(f"FAILED ({r.returncode}): {cmd}")
+        raise SystemExit(f"FAILED rc={r.returncode}: {cmd}")
     return r.returncode
 
 
 def setup():
-    sh('pip -q uninstall -y torchao 2>&1 | tail -1', check=False)  # Kaggle's torchao 0.10 breaks current PEFT imports
-    sh('pip -q install "trl==1.7.1" "transformers>=5.15,<6" "peft>=0.13" datasets accelerate auditkit huggingface_hub 2>&1 | tail -3')
-    sh('pip -q install --no-deps "git+https://github.com/Lexsi-Labs/AgentTune@1dfd054ce59e1c1bdd566cb7e5826f836b1c8c2e" 2>&1 | tail -3')
+    sh("pip -q uninstall -y torchao 2>&1 | tail -1", check=False)  # Kaggle's torchao breaks current PEFT imports
+    sh('pip -q install "transformers>=5.15,<6" "peft>=0.13" huggingface_hub accelerate 2>&1 | tail -2')
     from huggingface_hub import snapshot_download
-    import hashlib, base64
     d = snapshot_download(DATA_REPO, repo_type="dataset", allow_patterns=["bundle/*"], token=os.environ["HF_TOKEN"]) + "/bundle"
     os.makedirs(BUNDLE, exist_ok=True); os.makedirs(CODE, exist_ok=True)
-    open(f"{BUNDLE}/code.tgz", "wb").write(base64.b64decode(open(f"{d}/code.tgz.b64.txt").read()))
-    for name in ("sft-subset", "grpo-states"):
-        with open(f"{BUNDLE}/{name}.jsonl", "w") as out:
-            for part in sorted(glob.glob(f"{d}/{name}.part*.txt")):
-                out.write(open(part).read())
-    want = {l.split()[2]: l.split()[1] for l in open(f"{d}/MANIFEST.sha256.txt") if l.startswith("orig ")}
-    for name, h in want.items():
-        got = hashlib.sha256(open(f"{BUNDLE}/{name}", "rb").read()).hexdigest()
-        assert got == h, f"bundle checksum mismatch {name}"
-    print("bundle verified", sorted(want), flush=True)
+    raw = base64.b64decode(open(f"{d}/code.tgz.b64.txt").read())
+    sha = hashlib.sha256(raw).hexdigest()
+    if sha != EXPECTED_SHA:
+        raise SystemExit(f"STALE CODE: bundle sha {sha[:12]} != expected {EXPECTED_SHA[:12]}")
+    open(f"{BUNDLE}/code.tgz", "wb").write(raw)
+    with open(f"{BUNDLE}/sft-subset.jsonl", "w") as out:
+        for part in sorted(glob.glob(f"{d}/sft-subset.part*.txt")):
+            out.write(open(part).read())
     sh(f"tar xzf {BUNDLE}/code.tgz -C {CODE}")
     os.environ["PYTHONPATH"] = CODE
-    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
-    sh('python -c "import torch,transformers,trl,peft,agenttune;print(torch.__version__,torch.cuda.device_count(),transformers.__version__,trl.__version__,peft.__version__)"')
+    log("code sha verified", sha[:12])
 
 
-def evaluate(label, model, adapter=None):
-    """rooms on GPU0 and full episodes on GPU1, in parallel."""
-    out = f"{W}/eval"
-    common = f"cd {CODE} && python -m train.eval_model --model {model} --backend hf --outdir {out} --max-tokens 640"
-    ad = f" --adapter {adapter}" if adapter else ""
-    p1 = subprocess.Popen(f"{common}{ad} --modes rooms --label {label}-rooms > {W}/{label}-rooms.log 2>&1", shell=True,
-                          env={**os.environ, "CUDA_VISIBLE_DEVICES": "0"})
-    p2 = subprocess.Popen(f"{common}{ad} --modes full --label {label}-full > {W}/{label}-full.log 2>&1", shell=True,
-                          env={**os.environ, "CUDA_VISIBLE_DEVICES": "1"})
-    codes = [p1.wait(), p2.wait()]
-    sh(f"tail -c 3000 {W}/{label}-rooms.log; tail -c 2000 {W}/{label}-full.log", check=False)
-    if any(codes):
-        raise SystemExit(f"eval failed {codes}")
-
-
-def push(folder, repo):
-    from huggingface_hub import HfApi
-    api = HfApi(token=os.environ["HF_TOKEN"])
-    api.create_repo(repo, exist_ok=True, private=False)
-    api.upload_folder(folder_path=folder, repo_id=repo, commit_message=f"{PHASE} from Kaggle")
-    print("pushed", repo, flush=True)
-
-
-def upload_results(tag):
+def upload(tag):
     try:
         from huggingface_hub import HfApi
         HfApi(token=os.environ["HF_TOKEN"]).upload_folder(folder_path=W, repo_id=DATA_REPO, repo_type="dataset",
-            path_in_repo=f"runs/{PHASE}", commit_message=f"{PHASE}: {tag}",
-            ignore_patterns=["*-adapter/*", "*.safetensors", "*.bin", "*.pt", "checkpoint-*/*"])
-        print("results uploaded:", tag, flush=True)
+            path_in_repo=f"runs/{PHASE}", commit_message=f"{PHASE}: {tag}", allow_patterns=["*.json", "*.jsonl", "*.log", "*.txt"])
+        log("uploaded", tag)
     except Exception as e:
-        print("result upload failed:", e, flush=True)
+        log("upload failed", e)
 
 
-def merged_sft():
+def check(name, adapter):
+    """In-job gate on the exact eval stack (same dtype, generator, prompts): finite logits on the longest prompt,
+    peak memory, throughput on a realistic batch, and tool agreement with the teacher on 30 training states."""
+    import torch
+    sys.path.insert(0, CODE)
+    from train.generate import HFGenerator
+    from train.eval_model import plan, make_episode
+    eps = [make_episode(w, r, "rooms") for w, r in plan("rooms") if r in (6, 7)][:4] + \
+          [make_episode(w, r, "room4_all") for w, r in plan("room4_all")][:8]
+    msgs = [e.messages() for e in eps]
+    g = HFGenerator(BASE, adapter=adapter, max_tokens=400)
+    lens = [len(g.tok.apply_chat_template(m, tokenize=True, add_generation_prompt=True)["input_ids"]) for m in msgs]
+    longest = max(range(len(msgs)), key=lambda i: lens[i])
+    enc = g.tok(g.tok.apply_chat_template(msgs[longest], tokenize=False, add_generation_prompt=True),
+                return_tensors="pt", add_special_tokens=False).to("cuda")
+    with torch.inference_mode():
+        logits = g.model(**enc).logits[0, -1].float()
+    rep = {"gpu": torch.cuda.get_device_name(0), "dtype": g.dtype, "logits_finite": bool(torch.isfinite(logits).all()),
+           "longest_prompt_tokens": lens[longest]}
+    t = time.time(); outs = g(msgs); dt = time.time() - t
+    rep.update({"batch": len(msgs), "batch_seconds": round(dt, 1), "sec_per_episode_step": round(dt / len(msgs), 2),
+                "new_tokens": g.new_tokens, "peak_gb": round(g.peak_gb, 2), "oom_retries": g.oom_retries,
+                "sample_output": outs[longest][:300]})
+    rows = [json.loads(l) for l in open(f"{BUNDLE}/sft-subset.jsonl")][:30]
+    preds = g([r["messages"][:-1] for r in rows])
+    def tool(x):
+        try:
+            x = x[x.index("{"):]
+            return json.JSONDecoder().raw_decode(x)[0]["tool"]
+        except Exception:
+            return None
+    pairs = [(tool(p), json.loads(r["messages"][-1]["content"])["tool"]) for p, r in zip(preds, rows)]
+    rep.update({"teacher_tool_match_30": sum(a == b for a, b in pairs), "valid_json_30": sum(a is not None for a, _ in pairs),
+                "mismatches": [[a, b] for a, b in pairs if a != b]})
+    # per model ~4,500 episode-steps (room4_all 64x~25, rooms 112x~12, full 16x~70), split over 2 GPUs
+    rep["projected_eval_hours"] = round(4500 * rep["sec_per_episode_step"] / 2 / 3600, 1)
+    rep["gates"] = {"logits_finite": rep["logits_finite"], "memory_ok": rep["peak_gb"] < 14.0,
+                    "projected_le_10h": rep["projected_eval_hours"] <= 10.0}
+    rep["GREEN"] = all(rep["gates"].values())
+    del g; torch.cuda.empty_cache()
+    json.dump(rep, open(f"{W}/check-{name}.json", "w"), indent=1)
+    log("CHECK", name, json.dumps(rep)[:600])
+    upload(f"check {name}")
+    return rep
+
+
+def preflight():
     from huggingface_hub import snapshot_download
-    ad = snapshot_download(SFT_REPO, token=os.environ["HF_TOKEN"])
-    out = "/kaggle/tmp/sft-merged"
-    sh(f"cd {CODE} && python -m train.merge --base {BASE} --adapter {ad} --output {out}")
-    return out
+    check("base", None); check("sft", snapshot_download(SFT_REPO, token=os.environ["HF_TOKEN"]))
 
 
-def main():
-    setup()
-    if PHASE == "eval_base":
-        evaluate("base", BASE)
-    elif PHASE == "sft":
-        sh(f"cd {CODE} && python -m train.sft_train --model {BASE} --data {BUNDLE}/sft-subset.jsonl --output {W}/sft-adapter "
-           f"--per-bucket 100000 --epochs 1 --lr 1e-4 --batch 1 --accum 16 --max-length 6144 > {W}/sft-train.log 2>&1; "
-           f"tail -c 4000 {W}/sft-train.log")
-        if not os.path.exists(f"{W}/sft-adapter/adapter_model.safetensors"):
-            raise SystemExit("SFT produced no adapter")
-        push(f"{W}/sft-adapter", SFT_REPO)
-        upload_results("sft trained")
-        evaluate("sft", BASE, f"{W}/sft-adapter")
-    elif PHASE in ("grpo", "grpo_control"):
-        m = merged_sft()
-        ctl = " --control" if PHASE == "grpo_control" else ""
-        out = f"{W}/{PHASE}-adapter"
-        sh(f"cd {CODE} && CUDA_VISIBLE_DEVICES=0 python -m train.grpo_train --model {m} --states {BUNDLE}/grpo-states.jsonl "
-           f"--output {out} --steps {GRPO_STEPS} --generations 8 --lr 1e-5 --completion-len 512 --max-prompt-tokens 5600{ctl} "
-           f"> {W}/{PHASE}-train.log 2>&1; tail -c 4000 {W}/{PHASE}-train.log")
-        if not os.path.exists(f"{out}/adapter_model.safetensors"):
-            raise SystemExit("GRPO produced no adapter")
-        push(out, CONTROL_REPO if ctl else GRPO_REPO)
-        upload_results("grpo trained")
-        evaluate(PHASE, m, out)
-    print(f"PHASE {PHASE} DONE in {time.time()-T0:.0f}s", flush=True)
+def run_specs(specs, lenient=()):
+    """specs: [(gpu, label, adapter, modes)]; labels in `lenient` get --lenient-json. Each model is checked once (in-job gate) before any eval starts."""
+    checked = {}
+    for _, label, adapter, _ in specs:
+        if label not in checked:
+            checked[label] = check(label, adapter)
+            if not checked[label]["GREEN"]:
+                raise SystemExit(f"CHECK RED for {label}, not evaluating: {checked[label]['gates']}")
+    stop = threading.Event()
+    def pump():
+        while not stop.wait(600):
+            upload("progress")
+    threading.Thread(target=pump, daemon=True).start()
+    procs = []
+    for gpu, label, adapter, modes in specs:
+        ad = f" --adapter {adapter}" if adapter else ""
+        cmd = (f"cd {CODE} && {sys.executable} -m train.eval_model --policy hf --model {BASE}{ad} --outdir {W}/eval "
+               f"--label {label} --max-tokens 400 --bundle-sha {EXPECTED_SHA[:12]} --modes {modes} "
+               f"{'--lenient-json ' if label in lenient else ''}"
+               f"> {W}/{label}-gpu{gpu}.log 2>&1")
+        procs.append(subprocess.Popen(cmd, shell=True, env={**os.environ, "CUDA_VISIBLE_DEVICES": str(gpu)}))
+    rc = [p.wait() for p in procs]
+    stop.set()
+    log("eval rc", rc)
+    sh(f"tail -c 1500 {W}/*-gpu*.log", check=False)
+
+
+def evaluate(label, adapter, gpu0="room4_all", gpu1="rooms,full"):
+    run_specs([(0, label, adapter, gpu0), (1, label, adapter, gpu1)])
+
+
+def repo(name):
+    from huggingface_hub import snapshot_download
+    return snapshot_download(name, token=os.environ["HF_TOKEN"])
+
+
+SFT2_REPO = "FatUnc6969/tiny-aya-borderland-sft-v2"
 
 
 try:
-    main()
-    upload_results("done")
+    setup()
+    if PHASE == "preflight":
+        preflight()
+    elif PHASE == "eval_base":
+        evaluate("base", None)
+    elif PHASE == "eval_sft":
+        from huggingface_hub import snapshot_download
+        evaluate("sft", snapshot_download(SFT_REPO, token=os.environ["HF_TOKEN"]))
+    elif PHASE == "int_sft":
+        from huggingface_hub import snapshot_download
+        evaluate("sft", snapshot_download(SFT_REPO, token=os.environ["HF_TOKEN"]), gpu0="room4_blank", gpu1="room4_swap")
+    elif PHASE == "eval_sft2":
+        evaluate("sft2", repo(SFT2_REPO))
+    elif PHASE == "int_sft2_baselen_rooms":
+        # GPU0: SFT v2 notebook interventions; GPU1: base, lenient JSON arm, rooms
+        run_specs([(0, "sft2", repo(SFT2_REPO), "room4_blank,room4_swap"), (1, "base_lenient", None, "rooms")],
+                  lenient=("base_lenient",))
+    elif PHASE == "baselen_rest":
+        run_specs([(0, "base_lenient", None, "room4_all"), (1, "base_lenient", None, "full")], lenient=("base_lenient",))
+    upload("done")
 except BaseException as e:
-    open(f"{W}/FAILED.txt", "w").write(repr(e))
-    upload_results("failed")
-    raise
+    open(f"{W}/FAILED.txt", "w").write(repr(e)); upload("failed"); raise

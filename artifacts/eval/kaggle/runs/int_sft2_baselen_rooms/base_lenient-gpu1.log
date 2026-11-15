@@ -1,0 +1,85 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<07:30,  1.56s/it]Loading weights:  34%|███▍      | 99/290 [00:01<00:02, 76.21it/s]Loading weights:  44%|████▍     | 128/290 [00:02<00:02, 72.30it/s]Loading weights:  51%|█████     | 147/290 [00:02<00:02, 64.55it/s]Loading weights:  55%|█████▌    | 160/290 [00:02<00:01, 65.35it/s]Loading weights:  59%|█████▉    | 171/290 [00:03<00:01, 59.66it/s]Loading weights:  62%|██████▏   | 180/290 [00:03<00:01, 59.29it/s]Loading weights:  65%|██████▍   | 188/290 [00:03<00:01, 59.17it/s]Loading weights:  68%|██████▊   | 196/290 [00:03<00:01, 52.44it/s]Loading weights:  70%|███████   | 203/290 [00:03<00:01, 50.34it/s]Loading weights:  73%|███████▎  | 212/290 [00:03<00:01, 52.14it/s]Loading weights:  76%|███████▌  | 219/290 [00:04<00:01, 50.96it/s]Loading weights:  79%|███████▉  | 229/290 [00:04<00:01, 53.65it/s]Loading weights:  81%|████████  | 235/290 [00:04<00:01, 54.41it/s]Loading weights:  84%|████████▍ | 244/290 [00:04<00:00, 60.71it/s]Loading weights:  87%|████████▋ | 251/290 [00:04<00:00, 58.98it/s]Loading weights:  90%|█████████ | 261/290 [00:04<00:00, 54.62it/s]Loading weights:  95%|█████████▍| 275/290 [00:04<00:00, 67.02it/s]Loading weights:  97%|█████████▋| 282/290 [00:05<00:00, 66.94it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 56.90it/s]
+[    393s] live=112 round=389.4s steps=112 new_tok=11146 peak=12.0GB oom=0
+[    808s] live=112 round=414.6s steps=224 new_tok=21793 peak=12.6GB oom=0
+[   1297s] live=112 round=489.2s steps=336 new_tok=33586 peak=12.6GB oom=0
+[   1697s] live=101 round=399.8s steps=437 new_tok=42570 peak=12.6GB oom=0
+[   2073s] live=97 round=375.9s steps=534 new_tok=50623 peak=12.6GB oom=0
+[   2297s] live=57 round=224.5s steps=591 new_tok=55668 peak=12.6GB oom=0
+[   2482s] live=41 round=184.2s steps=632 new_tok=59371 peak=12.6GB oom=0
+[   2628s] live=24 round=146.6s steps=656 new_tok=61675 peak=12.6GB oom=0
+[   2692s] live=12 round= 63.2s steps=668 new_tok=62850 peak=12.6GB oom=0
+[   2750s] live=9 round= 58.3s steps=677 new_tok=63884 peak=12.6GB oom=0
+[   2803s] live=4 round= 53.1s steps=681 new_tok=64735 peak=12.6GB oom=0
+[   2830s] live=2 round= 27.0s steps=683 new_tok=65311 peak=12.6GB oom=0
+[   2858s] live=2 round= 28.4s steps=685 new_tok=65920 peak=12.6GB oom=0
+[   2864s] live=1 round=  5.8s steps=686 new_tok=65981 peak=12.6GB oom=0
+{
+ "rooms": {
+  "overall": {
+   "episodes": 112,
+   "success_rate": 0.0,
+   "valid_call_rate": 0.876,
+   "trap_rate": 0.0,
+   "mean_steps": 6.12,
+   "sec_per_step": 4.17
+  },
+  "by_room": {
+   "1": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.958,
+    "trap_rate": 0.0,
+    "mean_steps": 7.38,
+    "sec_per_step": 4.24
+   },
+   "2": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.862,
+    "trap_rate": 0.0,
+    "mean_steps": 7.69,
+    "sec_per_step": 4.14
+   },
+   "3": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.835,
+    "trap_rate": 0.0,
+    "mean_steps": 6.81,
+    "sec_per_step": 4.44
+   },
+   "4": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.538,
+    "trap_rate": 0.0,
+    "mean_steps": 5.69,
+    "sec_per_step": 4.45
+   },
+   "5": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.976,
+    "trap_rate": 0.0,
+    "mean_steps": 5.19,
+    "sec_per_step": 4.02
+   },
+   "6": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 5.06,
+    "sec_per_step": 3.88
+   },
+   "7": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.988,
+    "trap_rate": 0.0,
+    "mean_steps": 5.06,
+    "sec_per_step": 3.88
+   }
+  }
+ }
+}

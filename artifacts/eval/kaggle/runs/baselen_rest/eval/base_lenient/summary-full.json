@@ -1,0 +1,31 @@
+{
+ "label": "base_lenient",
+ "policy": "hf",
+ "model": "CohereLabs/tiny-aya-global",
+ "adapter": null,
+ "bundle_sha": "eeeac4ac0616",
+ "max_new_tokens": 400,
+ "decoding": "greedy",
+ "lenient_json": true,
+ "seconds": {
+  "full": 364.3
+ },
+ "peak_gpu_gb": 12.63,
+ "oom_retries": 0,
+ "dtype": "float16",
+ "new_tokens": 10145,
+ "scorecard": {
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 0.958,
+   "trap_rate": 0.0,
+   "mean_steps": 7.38,
+   "sec_per_step": 3.09,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  }
+ }
+}

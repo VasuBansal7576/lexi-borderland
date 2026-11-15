@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd82-799a-7ff2-b3fa-cff313c9b492"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The notebook gives phase=0 and the state gives pulse=0, so route=0. It does not identify a registry bit, so the badge cannot yet be determined safely. Check the public state before committing.\",\"tool\":\"status\",\"args\":{}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1281,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":187,"reasoning_output_tokens":127}}

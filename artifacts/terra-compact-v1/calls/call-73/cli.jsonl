@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd91-9087-74e1-9c3c-92e1ad1b8ca1"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The notebook gives phase 0 and associates I with registry value 0. With pulse 0 and challenge 1, the route is 0 and the badge is 1.\",\"tool\":\"unlock\",\"args\":{\"route\":0,\"badge\":1}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1334,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":155,"reasoning_output_tokens":96}}

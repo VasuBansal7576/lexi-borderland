@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd81-da98-7212-9966-eeaf7675f5de"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The credential tags show registry_bit=0: four match the tag rule, while c9410 is the sole mismatch. With challenge=1, the required XOR response is true.\",\"tool\":\"validate_registry\",\"args\":{\"response\":true}}"}}
+{"type":"turn.completed","usage":{"input_tokens":2826,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":114,"reasoning_output_tokens":58}}

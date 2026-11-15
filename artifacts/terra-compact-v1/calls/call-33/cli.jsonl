@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd84-6ef3-7251-9e0c-b40a335d7fd1"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The powered crossings from node 8 require an initial polarity that is not established by the available evidence. Return over the always-open, unpowered edge and investigate the other route from node 6.\",\"tool\":\"move\",\"args\":{\"destination_id\":\"6\"}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1900,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":171,"reasoning_output_tokens":112}}

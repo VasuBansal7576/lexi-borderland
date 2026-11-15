@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd8b-199c-7621-8067-65b3be9a1f0a"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The accusation, credential revocation, and amendment acceptance are already committed; the room objectives are complete.\",\"tool\":\"exit_room\",\"args\":{}}"}}
+{"type":"turn.completed","usage":{"input_tokens":2769,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":36,"reasoning_output_tokens":0}}

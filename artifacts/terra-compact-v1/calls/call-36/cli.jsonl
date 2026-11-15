@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd85-5474-77f2-8b47-d8a5f287c07f"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The surveyed unpowered edge from 7 to relay node 5 is open at clock 10: (10 + 0) % 4 = 2, an allowed phase.\",\"tool\":\"move\",\"args\":{\"destination_id\":\"5\"}}"}}
+{"type":"turn.completed","usage":{"input_tokens":2115,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":84,"reasoning_output_tokens":27}}

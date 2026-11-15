@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd7f-3467-7fe0-b79a-155ecc4dece6"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"A has phase 0, so the bias is zero. The C probe produced [0,1,1], identifying the second matrix. With only C switched on, the live output is the auxiliary target [0,1,1].\",\"tool\":\"energize\",\"args\":{\"bus_id\":\"auxiliary\"}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1952,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":136,"reasoning_output_tokens":65}}

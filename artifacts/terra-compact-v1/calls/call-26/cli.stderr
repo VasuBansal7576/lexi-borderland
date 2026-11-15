@@ -1,0 +1,28 @@
+2026-11-15T04:40:56.400362Z ERROR codex_models_manager::manager: failed to refresh available models: unexpected status 404 Not Found: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: remote metadata disabled; use bundled catalog.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>, url: http://127.0.0.1:38337/v1/models?client_version=0.169.0
+2026-11-15T04:40:56.404376Z ERROR codex_models_manager::manager: failed to refresh available models: unexpected status 404 Not Found: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: remote metadata disabled; use bundled catalog.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>, url: http://127.0.0.1:38337/v1/models?client_version=0.169.0

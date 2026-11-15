@@ -86,16 +86,27 @@ class Episode:
                 "success": (self.room0 in cleared) if self.start_room else env.success,
                 "rooms_cleared": cleared, "last_room": env.room, "steps": self.steps, "invalid": self.invalid,
                 "trap_used": not env.integrity, "score": env.score, "wipes": self.wipes,
-                "stop": self.stop or env.reason, "notebook": list(env.notebook), "log": self.log}
+                "stop": self.stop or env.reason, "notebook": list(env.notebook), "log": self.log,
+                "reason": env.reason, "delivered": sorted(env.delivered),
+                "unlock_attempted": any((x.get("action") or {}).get("tool") == "unlock" for x in self.log),
+                "lock_failed": env.reason == "seal_lock",
+                "unlock_args": next(((x["action"]["args"]) for x in self.log if (x.get("action") or {}).get("tool") == "unlock"), None), "seconds": round(getattr(self, "seconds", 0.0), 2)}
 
 
-def run_batch(episodes, generate, on_wipe=None, max_rounds=1000):
-    """generate(list_of_messages) -> list_of_raw_texts. Steps all live episodes together."""
+def run_batch(episodes, policy, on_done=None, max_rounds=1000):
+    """policy(list_of_live_episodes) -> list of raw texts (call ep.messages() inside). on_done(ep) fires once per
+    finished episode so callers can persist results immediately (crash-safe)."""
+    import time
     for _ in range(max_rounds):
         live = [e for e in episodes if not e.done]
         if not live:
             break
-        outs = generate([e.messages() for e in live])
+        t = time.time()
+        outs = policy(live)
+        dt = (time.time() - t) / max(1, len(live))
         for e, raw in zip(live, outs):
+            e.seconds = getattr(e, "seconds", 0.0) + dt
             e.feed(raw)
+            if e.done and on_done:
+                on_done(e)
     return [e.result() for e in episodes]

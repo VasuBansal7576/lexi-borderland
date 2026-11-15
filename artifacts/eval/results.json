@@ -1,0 +1,744 @@
+{
+ "random": {
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.422,
+   "mean_steps": 4.61,
+   "sec_per_step": 0.0,
+   "lock_success": 0.141,
+   "lock_ci95": [
+    0.062,
+    0.219
+   ],
+   "pairwise_dse": 0.01,
+   "pairwise_dse_ci95": [
+    0.003,
+    0.037
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.348,
+    "mean_steps": 4.23,
+    "sec_per_step": 0.0
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 5.38,
+     "sec_per_step": 0.0
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 4.5,
+     "sec_per_step": 0.0
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 4.38,
+     "sec_per_step": 0.0
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.562,
+     "mean_steps": 3.94,
+     "sec_per_step": 0.0
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.812,
+     "mean_steps": 4.12,
+     "sec_per_step": 0.0
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.375,
+     "mean_steps": 2.69,
+     "sec_per_step": 0.0
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.688,
+     "mean_steps": 4.62,
+     "sec_per_step": 0.0
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 5.06,
+   "sec_per_step": 0.0,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "room4_all": 64,
+   "rooms": 112,
+   "full": 16
+  },
+  "invalid_kinds": {}
+ },
+ "teacher (oracle)": {
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 18.06,
+   "sec_per_step": 0.0,
+   "lock_success": 1.0,
+   "lock_ci95": [
+    1.0,
+    1.0
+   ],
+   "pairwise_dse": 1.0,
+   "pairwise_dse_ci95": [
+    1.0,
+    1.0
+   ],
+   "room4_clear": 1.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 1.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 10.33,
+    "sec_per_step": 0.01
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 10.0,
+     "sec_per_step": 0.01
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 7.88,
+     "sec_per_step": 0.02
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 12.0,
+     "sec_per_step": 0.01
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 18.44,
+     "sec_per_step": 0.01
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 4.0,
+     "sec_per_step": 0.03
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 9.0,
+     "sec_per_step": 0.01
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 11.0,
+     "sec_per_step": 0.01
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 72.31,
+   "sec_per_step": 0.01,
+   "escape_rate": 1.0,
+   "mean_rooms_cleared": 7.0,
+   "lock_attribution": {
+    "lock_correct": 16
+   }
+  },
+  "episodes_by_mode": {
+   "room4_all": 64,
+   "rooms": 112,
+   "full": 16
+  },
+  "invalid_kinds": {}
+ },
+ "Tiny Aya base (strict JSON)": {
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 0.0,
+   "trap_rate": 0.0,
+   "mean_steps": 3.0,
+   "sec_per_step": 7.51,
+   "lock_success": 0.0,
+   "lock_ci95": [
+    0.0,
+    0.0
+   ],
+   "pairwise_dse": 0.0,
+   "pairwise_dse_ci95": [
+    0.0,
+    0.0
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.0,
+    "trap_rate": 0.0,
+    "mean_steps": 3.0,
+    "sec_per_step": 3.33
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.0,
+     "sec_per_step": 3.33
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.0,
+     "sec_per_step": 3.33
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.0,
+     "sec_per_step": 3.33
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.0,
+     "sec_per_step": 3.33
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.0,
+     "sec_per_step": 3.33
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.0,
+     "sec_per_step": 3.33
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.0,
+     "sec_per_step": 3.33
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 0.0,
+   "trap_rate": 0.0,
+   "mean_steps": 3.0,
+   "sec_per_step": 3.09,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "room4_all": 64,
+   "rooms": 112,
+   "full": 16
+  },
+  "invalid_kinds": {
+   "markdown_fenced_json": 576
+  }
+ },
+ "Tiny Aya base (lenient JSON, fences stripped)": {
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 0.421,
+   "trap_rate": 0.0,
+   "mean_steps": 3.64,
+   "sec_per_step": 6.02,
+   "lock_success": 0.125,
+   "lock_ci95": [
+    0.062,
+    0.188
+   ],
+   "pairwise_dse": 0.0,
+   "pairwise_dse_ci95": [
+    0.0,
+    0.017
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.876,
+    "trap_rate": 0.0,
+    "mean_steps": 6.12,
+    "sec_per_step": 4.17
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.958,
+     "trap_rate": 0.0,
+     "mean_steps": 7.38,
+     "sec_per_step": 4.24
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.862,
+     "trap_rate": 0.0,
+     "mean_steps": 7.69,
+     "sec_per_step": 4.14
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.835,
+     "trap_rate": 0.0,
+     "mean_steps": 6.81,
+     "sec_per_step": 4.44
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.538,
+     "trap_rate": 0.0,
+     "mean_steps": 5.69,
+     "sec_per_step": 4.45
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.976,
+     "trap_rate": 0.0,
+     "mean_steps": 5.19,
+     "sec_per_step": 4.02
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 5.06,
+     "sec_per_step": 3.88
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.988,
+     "trap_rate": 0.0,
+     "mean_steps": 5.06,
+     "sec_per_step": 3.88
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 0.958,
+   "trap_rate": 0.0,
+   "mean_steps": 7.38,
+   "sec_per_step": 3.09,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "rooms": 112,
+   "room4_all": 64,
+   "full": 16
+  },
+  "invalid_kinds": {
+   "other": 188,
+   "markdown_fenced_json": 37
+  }
+ },
+ "Tiny Aya + SFT v1": {
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 8.28,
+   "sec_per_step": 3.85,
+   "lock_success": 0.344,
+   "lock_ci95": [
+    0.281,
+    0.406
+   ],
+   "pairwise_dse": 0.062,
+   "pairwise_dse_ci95": [
+    0.048,
+    0.118
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.134,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 7.98,
+    "sec_per_step": 4.88
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 6.88,
+     "sec_per_step": 4.29
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 4.56,
+     "sec_per_step": 3.92
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 8.56,
+     "sec_per_step": 4.69
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 11.88,
+     "sec_per_step": 5.51
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.125,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.12,
+     "sec_per_step": 3.56
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.625,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 7.12,
+     "sec_per_step": 4.34
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 13.75,
+     "sec_per_step": 5.65
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 7.12,
+   "sec_per_step": 2.04,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.06,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "room4_all": 64,
+   "rooms": 112,
+   "full": 16
+  },
+  "invalid_kinds": {}
+ },
+ "Tiny Aya + SFT v2": {
+  "room4_blank": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 3.47,
+   "sec_per_step": 3.13,
+   "lock_success": 0.25,
+   "lock_ci95": [
+    0.25,
+    0.25
+   ],
+   "pairwise_dse": 0.0,
+   "pairwise_dse_ci95": [
+    0.008,
+    0.028
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "room-4 checkpoint after the wipe with the surviving notebook replaced: blank (memoryless) or the anti-twin's teacher notebook (both entry bits differ)",
+   "unlock_attempt_rate": 1.0,
+   "matches_true_pair": 0.25
+  },
+  "room4_swap": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 1.0,
+   "sec_per_step": 3.16,
+   "lock_success": 0.0,
+   "lock_ci95": [
+    0.0,
+    0.0
+   ],
+   "pairwise_dse": 0.0,
+   "pairwise_dse_ci95": [
+    0.0,
+    0.0
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "room-4 checkpoint after the wipe with the surviving notebook replaced: blank (memoryless) or the anti-twin's teacher notebook (both entry bits differ)",
+   "unlock_attempt_rate": 1.0,
+   "matches_true_pair": 0.0,
+   "follows_notebook_pair": 1.0
+  },
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 8.86,
+   "sec_per_step": 2.81,
+   "lock_success": 1.0,
+   "lock_ci95": [
+    1.0,
+    1.0
+   ],
+   "pairwise_dse": 1.0,
+   "pairwise_dse_ci95": [
+    1.0,
+    1.0
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.098,
+    "valid_call_rate": 0.993,
+    "trap_rate": 0.0,
+    "mean_steps": 7.74,
+    "sec_per_step": 4.38
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 2.25,
+     "sec_per_step": 3.15
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 5.62,
+     "sec_per_step": 3.91
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.969,
+     "trap_rate": 0.0,
+     "mean_steps": 12.0,
+     "sec_per_step": 4.75
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 9.81,
+     "sec_per_step": 4.43
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.62,
+     "sec_per_step": 3.45
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.625,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 7.94,
+     "sec_per_step": 4.13
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 12.94,
+     "sec_per_step": 4.82
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 2.25,
+   "sec_per_step": 2.41,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "room4_all": 64,
+   "rooms": 112,
+   "full": 16,
+   "room4_blank": 64,
+   "room4_swap": 64
+  },
+  "invalid_kinds": {
+   "other": 6
+  }
+ }
+}

@@ -32,7 +32,8 @@ def kernel(phase, hf_user, grpo_steps):
     d = STAGE / f"k-{phase}"
     d.mkdir(parents=True, exist_ok=True)
     src = (ROOT / "train/kaggle_job.py").read_text().replace("__PHASE__", phase).replace("__HF_USER__", hf_user) \
-        .replace("__GRPO_STEPS__", str(grpo_steps)).replace("__HF_TOKEN__", (SECRETS / "hf_token").read_text().strip())
+        .replace("__HF_TOKEN__", (SECRETS / "hf_token").read_text().strip()) \
+        .replace("__EXPECTED_SHA__", __import__("hashlib").sha256((ROOT / "runtime/kaggle-bundle/code.tgz").read_bytes()).hexdigest())
     (d / "job.py").write_text(src)
     slug = f"lexi-borderland-{phase.replace('_', '-')}"
     meta = {"id": f"{user()}/{slug}", "title": slug, "code_file": "job.py", "language": "python", "kernel_type": "script",

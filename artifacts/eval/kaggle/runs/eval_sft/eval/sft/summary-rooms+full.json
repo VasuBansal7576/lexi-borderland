@@ -1,0 +1,99 @@
+{
+ "label": "sft",
+ "policy": "hf",
+ "model": "CohereLabs/tiny-aya-global",
+ "adapter": "/root/.cache/huggingface/hub/models--FatUnc6969--tiny-aya-borderland-sft/snapshots/6f067b42403906f29860ad7f2d1749a73b63bb67",
+ "bundle_sha": "6a87dface985",
+ "max_new_tokens": 400,
+ "decoding": "greedy",
+ "seconds": {
+  "rooms": 4368.7,
+  "full": 232.8
+ },
+ "peak_gpu_gb": 14.22,
+ "oom_retries": 2,
+ "dtype": "float16",
+ "new_tokens": 80722,
+ "scorecard": {
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.134,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 7.98,
+    "sec_per_step": 4.88
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 6.88,
+     "sec_per_step": 4.29
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 4.56,
+     "sec_per_step": 3.92
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 8.56,
+     "sec_per_step": 4.69
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 11.88,
+     "sec_per_step": 5.51
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.125,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.12,
+     "sec_per_step": 3.56
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.625,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 7.12,
+     "sec_per_step": 4.34
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 13.75,
+     "sec_per_step": 5.65
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 7.12,
+   "sec_per_step": 2.04,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.06,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  }
+ }
+}

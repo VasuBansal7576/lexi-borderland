@@ -20,7 +20,9 @@ def main():
     p.add_argument("--completion-len", type=int, default=512)
     p.add_argument("--temperature", type=float, default=1.0)
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--batch", type=int, default=4)
     p.add_argument("--max-prompt-tokens", type=int, default=6000)
+    p.add_argument("--save-steps", type=int, default=10**9)
     a = p.parse_args()
     import torch
     from datasets import Dataset
@@ -47,9 +49,11 @@ def main():
     peft = LoraConfig(r=16, lora_alpha=32, lora_dropout=0.0, task_type="CAUSAL_LM",
                       target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])
     want = dict(output_dir=a.output, max_steps=a.steps, learning_rate=a.lr, beta=a.beta,
-                num_generations=a.generations, per_device_train_batch_size=a.generations,
-                gradient_accumulation_steps=1, max_completion_length=a.completion_len, temperature=a.temperature,
-                warmup_steps=max(1, a.steps // 20) if a.steps >= 20 else 0, logging_steps=1, save_steps=10**9,
+                num_generations=a.generations, per_device_train_batch_size=a.batch,
+                gradient_accumulation_steps=max(1, a.generations // a.batch),
+                generation_batch_size=a.generations,  # generate one group at a time
+                max_completion_length=a.completion_len, temperature=a.temperature,
+                warmup_steps=max(1, a.steps // 20) if a.steps >= 20 else 0, logging_steps=1, save_steps=a.save_steps,
                 bf16=cuda and torch.cuda.is_bf16_supported(), fp16=cuda and not torch.cuda.is_bf16_supported(),
                 gradient_checkpointing=cuda, seed=a.seed, report_to=[], log_completions=False)
     trainer = create_agentic_trainer("grpo", backend="trl", model=a.model, processing_class=tok,

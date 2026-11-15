@@ -32,8 +32,9 @@ def load_rows(paths, per_room_cap, seed):
 
 class CompletionOnlyFactory:
     """AgentTune trainer_factory: LoRA + TRL SFTTrainer on prompt/completion pairs (loss on completion only)."""
-    def __init__(self, rows, lora_r=32, lora_alpha=64, max_length=6144):
+    def __init__(self, rows, lora_r=32, lora_alpha=64, max_length=6144, init_adapter=None):
         self.rows, self.lora_r, self.lora_alpha, self.max_length = rows, lora_r, lora_alpha, max_length
+        self.init_adapter = init_adapter
 
     def __call__(self, *, model, train_dataset, **kwargs):
         import torch
@@ -70,6 +71,14 @@ class CompletionOnlyFactory:
                         gradient_checkpointing=cuda, report_to=[], **kwargs)
         peft = LoraConfig(r=self.lora_r, lora_alpha=self.lora_alpha, lora_dropout=0.05, task_type="CAUSAL_LM",
                           target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])
+        if self.init_adapter:  # continue training an existing LoRA (SFT v1 -> v2) instead of a fresh one
+            from peft import PeftModel
+            net = PeftModel.from_pretrained(net, self.init_adapter, is_trainable=True)
+            n_train = sum(p.numel() for p in net.parameters() if p.requires_grad)
+            print("continuing adapter", self.init_adapter, "trainable params", n_train, flush=True)
+            if n_train == 0:
+                raise RuntimeError("init adapter loaded without trainable parameters")
+            peft = None
         self.trainer = SFTTrainer(model=net, args=cfg, train_dataset=data, processing_class=tok, peft_config=peft)
         self.tokenizer = tok
         return self.trainer
@@ -88,6 +97,7 @@ def main():
     p.add_argument("--max-steps", type=int, default=-1)
     p.add_argument("--max-length", type=int, default=6144)
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--init-adapter", default=None)
     a = p.parse_args()
     from agenttune.agentic.distill_trainer import create_distill_trainer
     rows = load_rows(a.data, a.per_bucket, a.seed)
@@ -97,7 +107,7 @@ def main():
     total = a.max_steps if a.max_steps > 0 else max(1, int(len(rows) * a.epochs / (a.batch * a.accum)))
     warmup = max(1, int(0.05 * total)) if total >= 20 else 0  # never let warmup swallow a short run
     stats.update(total_steps=total, warmup_steps=warmup)
-    factory = CompletionOnlyFactory(rows, max_length=a.max_length)
+    factory = CompletionOnlyFactory(rows, max_length=a.max_length, init_adapter=a.init_adapter)
     demos = [{"prompt": r["messages"][1]["content"], "response": r["messages"][-1]["content"]} for r in rows]
     trainer = create_distill_trainer(a.model, demonstrations=demos, system_prompt=SYSTEM, trainer_factory=factory,
                                      output_dir=a.output, num_train_epochs=a.epochs, learning_rate=a.lr,

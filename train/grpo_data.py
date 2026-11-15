@@ -46,7 +46,7 @@ def main():
                 row = {"prompt": s["messages"], "world": str(path.relative_to(ROOT)),
                        "prefix": json.dumps(s["actions_so_far"], separators=(",", ":")),
                        "facts": json.dumps(notebook_facts(s["knowledge"]) if tool == "notebook_write" else []),
-                       "room": s["room"], "teacher_tool": tool, "teacher": target_text(s["action"], s["knowledge"])}
+                       "room": s["room"], "teacher_tool": tool, "teacher": target_text(s["action"], s["knowledge"], s.get("obs"))}
                 f.write(json.dumps(row, separators=(",", ":")) + "\n"); tools[tool] += 1
     print(json.dumps(dict(tools.most_common())))
 

@@ -1,0 +1,108 @@
+{
+ "gpu": "Tesla T4",
+ "dtype": "float16",
+ "logits_finite": true,
+ "longest_prompt_tokens": 3610,
+ "batch": 12,
+ "batch_seconds": 57.9,
+ "sec_per_episode_step": 4.83,
+ "new_tokens": 2733,
+ "peak_gb": 10.14,
+ "oom_retries": 0,
+ "sample_output": "```json\n{\n  \"reason\": \"Room 7 objectives require allocating 10000 points (1000 per ally) before play. Allies must have >=100 points each. Current allies (I, N, V, S) have 0 points, violating the rule.\",\n  \"tool\": \"allocate_points\",\n  \"args\": {\n    \"allocation\": {\n      \"I\": 1000,\n      \"N\": 1000,\n  ",
+ "teacher_tool_match_30": 9,
+ "valid_json_30": 27,
+ "mismatches": [
+  [
+   "read_record",
+   "exit_room"
+  ],
+  [
+   "probe",
+   "read_record"
+  ],
+  [
+   "submit_bid",
+   "exit_room"
+  ],
+  [
+   "read_record",
+   "notebook_write"
+  ],
+  [
+   "probe",
+   "exit_room"
+  ],
+  [
+   "read_record",
+   "question"
+  ],
+  [
+   "probe",
+   "exit_room"
+  ],
+  [
+   "probe",
+   "read_record"
+  ],
+  [
+   "inspect",
+   "exit_room"
+  ],
+  [
+   "read_record",
+   "notebook_write"
+  ],
+  [
+   "notebook_write",
+   "unlock"
+  ],
+  [
+   "unlock",
+   "wait"
+  ],
+  [
+   "probe",
+   "read_record"
+  ],
+  [
+   "read_record",
+   "accept_amendment"
+  ],
+  [
+   null,
+   "settle"
+  ],
+  [
+   null,
+   "settle"
+  ],
+  [
+   "read_record",
+   "notebook_write"
+  ],
+  [
+   "read_record",
+   "question"
+  ],
+  [
+   "unlock",
+   "survey"
+  ],
+  [
+   null,
+   "settle"
+  ],
+  [
+   "probe",
+   "energize"
+  ]
+ ],
+ "projected_eval_hours": 3.0,
+ "gates": {
+  "logits_finite": true,
+  "memory_ok": true,
+  "projected_le_10h": true
+ },
+ "GREEN": true
+}

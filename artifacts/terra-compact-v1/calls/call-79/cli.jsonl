@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd93-8242-78b3-ab77-0491f994ff58"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"At tick 2 with phase 1, the crossing to node 8 is open in every phase, is unpowered, and costs no battery. Its destination can be surveyed after crossing.\",\"tool\":\"move\",\"args\":{\"destination_id\":\"8\"}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1644,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":89,"reasoning_output_tokens":31}}

@@ -1,5 +1,0 @@
-{"type":"thread.started","thread_id":"01a1d9f6-6753-7440-96cc-dc8d0ca680ff"}
-{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
-{"type":"turn.started"}
-{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The current glyph constraints establish relative sectors, but the remaining catalog records may contain relevant calibration evidence. Read the next record before committing.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e7260\",\"offset\":0}}"}}
-{"type":"turn.completed","usage":{"input_tokens":1686,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":104,"reasoning_output_tokens":51}}

@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd7d-788a-75a2-8ae7-4e14ca1514d9"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The circuit record has not yet been read. Inspect its contents before probing or changing any switches.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e2189\",\"offset\":0}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1308,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":44,"reasoning_output_tokens":0}}

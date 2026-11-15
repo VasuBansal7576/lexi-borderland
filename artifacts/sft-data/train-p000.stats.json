@@ -1,0 +1,41 @@
+{
+  "worlds": 40,
+  "rows": 2930,
+  "rows_per_room": {
+    "1": 400,
+    "2": 340,
+    "3": 480,
+    "4": 750,
+    "5": 160,
+    "6": 360,
+    "7": 440
+  },
+  "tools": {
+    "read_record": 640,
+    "move": 324,
+    "team_step": 320,
+    "exit_room": 240,
+    "survey": 240,
+    "question": 160,
+    "set_switch": 140,
+    "choose_door": 120,
+    "submit_bid": 120,
+    "energize": 80,
+    "notebook_write": 80,
+    "wait": 66,
+    "probe": 40,
+    "validate_registry": 40,
+    "certify_roster": 40,
+    "unlock": 40,
+    "activate_relay": 40,
+    "accuse": 40,
+    "revoke": 40,
+    "accept_amendment": 40,
+    "allocate_points": 40,
+    "settle": 40
+  },
+  "chars_p50": 8638,
+  "chars_p95": 15746,
+  "chars_max": 17235,
+  "sha256": "420ab207aecefe8216ca3c34cd67d9880b468f12f73380a13119589e7ed4e9b4"
+}

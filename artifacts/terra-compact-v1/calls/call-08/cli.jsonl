@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd7c-98e8-7c60-b70d-2fae4f5ef7cf"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"Current clock samples give phase 0. The glyph constraints then give A=0, B=3, C=1, D=2. Bank 1 with pulse 2 requires sector 3, so choose B.\",\"tool\":\"choose_door\",\"args\":{\"door_id\":\"B\"}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1890,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":94,"reasoning_output_tokens":27}}

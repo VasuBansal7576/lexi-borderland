@@ -1,5 +1,0 @@
-{"type":"thread.started","thread_id":"01a1d9f6-fc42-7193-a0a4-14bd5e62aafa"}
-{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
-{"type":"turn.started"}
-{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"Two catalog records remain unread; inspect them for current evidence before committing.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e0567\",\"offset\":0}}"}}
-{"type":"turn.completed","usage":{"input_tokens":1933,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":39,"reasoning_output_tokens":0}}

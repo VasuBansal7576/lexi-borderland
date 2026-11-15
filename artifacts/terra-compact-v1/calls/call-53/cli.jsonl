@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd8a-b415-7ef1-9459-53190311d5ce"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"e5522 is issued by ash (I, the recorded authority), matches the registry challenge response and main-bus channel, applies to Osmosis, and reverses the recorded polarity from -1 to +1. The newer e8197 fails authentication.\",\"tool\":\"accept_amendment\",\"args\":{\"record_id\":\"e5522\"}}"}}
+{"type":"turn.completed","usage":{"input_tokens":2736,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":124,"reasoning_output_tokens":48}}

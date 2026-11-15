@@ -1,0 +1,109 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<10:19,  2.14s/it]Loading weights:  34%|███▍      | 99/290 [00:02<00:03, 59.14it/s]Loading weights:  46%|████▌     | 134/290 [00:02<00:02, 59.57it/s]Loading weights:  54%|█████▍    | 156/290 [00:03<00:02, 57.51it/s]Loading weights:  59%|█████▉    | 171/290 [00:03<00:02, 56.76it/s]Loading weights:  63%|██████▎   | 183/290 [00:03<00:01, 56.22it/s]Loading weights:  67%|██████▋   | 193/290 [00:04<00:01, 54.67it/s]Loading weights:  69%|██████▉   | 201/290 [00:04<00:01, 52.56it/s]Loading weights:  72%|███████▏  | 208/290 [00:04<00:01, 48.54it/s]Loading weights:  74%|███████▍  | 214/290 [00:04<00:01, 44.85it/s]Loading weights:  78%|███████▊  | 227/290 [00:04<00:01, 51.30it/s]Loading weights:  81%|████████  | 235/290 [00:05<00:01, 45.75it/s]Loading weights:  84%|████████▍ | 243/290 [00:05<00:00, 50.12it/s]Loading weights:  87%|████████▋ | 251/290 [00:05<00:00, 46.05it/s]Loading weights:  89%|████████▉ | 259/290 [00:05<00:00, 51.53it/s]Loading weights:  92%|█████████▏| 267/290 [00:05<00:00, 50.30it/s]Loading weights:  94%|█████████▍| 273/290 [00:05<00:00, 51.70it/s]Loading weights:  98%|█████████▊| 283/290 [00:05<00:00, 57.14it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 49.37it/s]
+[    303s] live=112 round=298.9s steps=112 new_tok=7491 peak=12.2GB oom=0
+[    657s] live=108 round=353.7s steps=220 new_tok=15111 peak=12.2GB oom=0
+[   1018s] live=99 round=360.8s steps=319 new_tok=22854 peak=12.2GB oom=0
+[   1352s] live=83 round=334.2s steps=402 new_tok=29935 peak=12.2GB oom=0
+[   1671s] live=67 round=318.8s steps=469 new_tok=36291 peak=12.2GB oom=0
+[   1987s] live=65 round=316.4s steps=534 new_tok=42198 peak=12.2GB oom=0
+[   2254s] live=57 round=266.8s steps=591 new_tok=47012 peak=12.2GB oom=0
+[   2501s] live=50 round=246.7s steps=641 new_tok=51346 peak=12.2GB oom=0
+[   2721s] live=41 round=219.9s steps=682 new_tok=54768 peak=12.2GB oom=0
+[   2909s] live=35 round=188.0s steps=717 new_tok=57610 peak=12.2GB oom=0
+[   3069s] live=31 round=160.3s steps=748 new_tok=60314 peak=12.2GB oom=0
+[   3225s] live=29 round=155.3s steps=777 new_tok=62919 peak=12.2GB oom=0
+[   3379s] live=25 round=154.3s steps=802 new_tok=65128 peak=12.2GB oom=0
+[   3520s] live=22 round=140.9s steps=824 new_tok=67084 peak=12.2GB oom=0
+[   3642s] live=18 round=122.4s steps=842 new_tok=68809 peak=12.2GB oom=0
+[   3749s] live=15 round=106.6s steps=857 new_tok=70126 peak=12.2GB oom=0
+[   3773s] live=5 round= 24.0s steps=862 new_tok=70395 peak=12.2GB oom=0
+[   3789s] live=3 round= 15.6s steps=865 new_tok=70567 peak=12.2GB oom=0
+[   3800s] live=2 round= 11.6s steps=867 new_tok=70694 peak=12.2GB oom=0
+{
+ "rooms": {
+  "overall": {
+   "episodes": 112,
+   "success_rate": 0.098,
+   "valid_call_rate": 0.993,
+   "trap_rate": 0.0,
+   "mean_steps": 7.74,
+   "sec_per_step": 4.38
+  },
+  "by_room": {
+   "1": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 2.25,
+    "sec_per_step": 3.15
+   },
+   "2": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 5.62,
+    "sec_per_step": 3.91
+   },
+   "3": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 0.969,
+    "trap_rate": 0.0,
+    "mean_steps": 12.0,
+    "sec_per_step": 4.75
+   },
+   "4": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 9.81,
+    "sec_per_step": 4.43
+   },
+   "5": {
+    "episodes": 16,
+    "success_rate": 0.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 3.62,
+    "sec_per_step": 3.45
+   },
+   "6": {
+    "episodes": 16,
+    "success_rate": 0.625,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 7.94,
+    "sec_per_step": 4.13
+   },
+   "7": {
+    "episodes": 16,
+    "success_rate": 0.062,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 12.94,
+    "sec_per_step": 4.82
+   }
+  }
+ }
+}
+[   3836s] live=16 round= 35.5s steps=883 new_tok=71434 peak=12.2GB oom=0
+[   3865s] live=12 round= 29.1s steps=895 new_tok=72110 peak=12.2GB oom=0
+[   3873s] live=4 round=  7.7s steps=899 new_tok=72277 peak=12.2GB oom=0
+[   3879s] live=3 round=  6.9s steps=902 new_tok=72406 peak=12.2GB oom=0
+[   3887s] live=1 round=  7.4s steps=903 new_tok=72476 peak=12.2GB oom=0
+{
+ "full": {
+  "episodes": 16,
+  "valid_call_rate": 1.0,
+  "trap_rate": 0.0,
+  "mean_steps": 2.25,
+  "sec_per_step": 2.41,
+  "escape_rate": 0.0,
+  "mean_rooms_cleared": 0.0,
+  "lock_attribution": {
+   "did_not_reach_lock": 16
+  }
+ }
+}

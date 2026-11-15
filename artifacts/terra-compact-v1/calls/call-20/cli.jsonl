@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd80-61a0-78b0-a931-bfea91dd5931"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"Read the first Tribunal catalog record to investigate the registry and roster before making a fatal commitment.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e7532\",\"offset\":0}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1765,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":43,"reasoning_output_tokens":0}}

@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd88-f9e2-77d3-9050-ade13034e103"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The room’s record catalog lists four files, but their contents have not yet been delivered. Read the first before making any commitments.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"e5522\",\"offset\":0}}"}}
+{"type":"turn.completed","usage":{"input_tokens":2051,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":51,"reasoning_output_tokens":0}}

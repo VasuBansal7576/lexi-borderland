@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1dd90-e209-7550-9f96-9433d4626933"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.)"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"{\"reason\":\"The notebook establishes phase 0 and the pulse is 0, so the route is 0. It does not establish the registry bit needed to calculate the badge; read an observed credential record rather than guess a fatal entry pair.\",\"tool\":\"read_record\",\"args\":{\"record_id\":\"c7008\",\"offset\":0}}"}}
+{"type":"turn.completed","usage":{"input_tokens":1281,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":337,"reasoning_output_tokens":264}}

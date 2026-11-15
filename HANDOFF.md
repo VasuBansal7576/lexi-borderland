@@ -49,3 +49,50 @@ See runtime/secrets/README.md. Network allowlist changes only apply in a NEW con
 - Running: eval_base (v1), sft (v2; v1 failed on Kaggle's torchao 0.10 -> now uninstalled in setup).
 - Next: when sft done -> launch grpo and grpo_control (they pull the SFT adapter from HF). Then compile before/after tables, HF article, abstract, submit.
 - Haiku playtest skipped unless the user saves runtime/secrets/claude_oauth_token.
+
+## Progress log (2026-11-15, 00:30 IST) - moved base+SFT to Hugging Face Jobs (user approved a $2 cap)
+- Kaggle eval_base/sft sat QUEUED 75+ min; superseded with CPU no-op versions (eval-base v3, sft v4) so they cannot overwrite the SFT repo.
+- HF Job 6af8aa2829dd05ff0367a2cc on l4x1 ($0.80/h), timeout 140m => max $1.87. Script: train/hf_job.py (copy at dataset jobs/hf_job.py.txt), launched via api.run_job with a bootstrap (the hf CLI's script upload uses xet, blocked here; also timeouts must be single-unit like "140m").
+- It runs: base eval (rooms+full, vLLM) -> SFT (1 GPU) -> push FatUnc6969/tiny-aya-borderland-sft -> SFT eval. Results -> dataset runs/base_sft/.
+- Monitor: HfApi().inspect_job / fetch_job_logs (venv312). Do NOT launch more paid jobs; GRPO + control go to Kaggle (free) once the SFT repo exists.
+
+## Progress log (2026-11-15, 08:35 IST) - Sunday plan, FREE compute only
+- SFT DONE on HF L4 (paid; total HF spend ~$1.75, user has ~$5 left: spend NOTHING more). Adapter: FatUnc6969/tiny-aya-borderland-sft (loss 2.31 -> 0.07, train token acc 0.60 -> 0.97, 140 steps, 6465 s). HF job timed out during eval, so no eval numbers from it.
+- Bundle on HF (bundle/code.tgz.b64.txt) was STALE until 08:33 IST; rebuilt from current code (grpo --batch, T4 fp16 vLLM dtype, HF token budget 12000). ALWAYS rebuild + re-upload the bundle after code edits (see commands in this log above).
+- Kaggle: max 2 concurrent GPU sessions. eval-both v1 (stale code) may still occupy a slot until it fails; eval-both v2 (current code) running: evaluates sft (GPU0) and base (GPU1), rooms then full, vLLM then HF fallback, uploads to runs/eval_both/.
+- TODO next: push grpo (python -m train.kaggle_launch --phase grpo --hf-user FatUnc6969 --grpo-steps 40) as soon as a slot frees; then grpo_control. Hard stop for new GPU work 14:00 IST.
+- Then: fill writeup/ARTICLE.md from runs/*/eval/*/summary.json, publish HF model + dataset collections, update GitHub, submit at hackathon.lexsi.ai/submission (needs the user's registered email + abstract).
+
+## DECISIONS (2026-11-15 10:05 IST) - Fable 5.2 advisor review adopted; user approved
+- Stale items deleted (Kaggle notebooks, scratch dirs, failed-run logs on HF, scheduled checks).
+- CUT: GRPO training (T4 cannot fit room-4+ prompts; report as designed + CPU-verified + reward validated offline), vLLM, multi-seed.
+- Eval = HF generate, hardened: OOM backoff to batch 1, inference_mode, max_new_tokens ~400, per-episode jsonl append + --resume, latency logged, bundle sha asserted and recorded.
+- Run order: (1) room-4 checkpoint on ALL 64 worlds (twin DSE vs 25% memoryless; label "oracle-written notebook"), (2) rooms 1-7 on 16 worlds, (3) full episodes on 16 worlds with end-to-end failure attribution.
+- Gate: T4 preflight (sha, longest prompts <13 GB, no NaN, SFT reproduces teacher tool >=85% on 30 train states, projected eval <=5 h). If not green by 15:00 IST -> HF L4 fallback, hard cap $2.50 (user approved), tell the user before starting.
+- Stretch: notebook intervention at room 4 (blank vs twin-swapped notebook). Offline reward validation of eval logs.
+- Submit by Mon 12:00 IST.
+
+## 2026-11-15 ~10:40-11:10 IST
+- Preflight v1 RED: projected 26.5 h/model. ROOT CAUSE: torch.cuda.is_bf16_supported() is True on T4 (sm75) but bf16 is emulated (~10-20x slower). Fix: bf16 only on sm80+, else fp16; sdpa; per-sequence stop when the first JSON object closes; token budget 24k. Bundle sha 6a87dface985.
+- Preflight folded into each eval job (check(): finite logits, memory, measured throughput -> projection <= 10 h; refuses to run if RED). Both GREEN: base 4.83 s/step (3.0 h), SFT 3.09 s/step (1.9 h), fp16 finite, peak ~10.4 GB.
+- Diagnostic (not a gate): teacher-tool agreement on 30 training states: base 9/30 (valid JSON 27/30), SFT 22/30 (30/30). The 85% bar I had set is NOT met; reported as a result. 3 SFT mismatches = exit_room instead of notebook_write (watch 'not_retained' in full runs).
+- Terra compact report: artifacts/terra-compact-v1/REPORT.md. Leak check: artifacts/eval/LEAK_CHECK.md (all zero).
+- Kaggle kernels running: vasu7576/lexi-borderland-eval-base, -eval-sft (results -> HF dataset runs/eval_base|eval_sft/, uploaded every 10 min).
+
+## 2026-11-15 ~11:00-11:12 IST: SFT v1 lock failure -> SFT v2
+- SFT v1 room-4 (44/64 early): reason recalls phase+sigma correctly 44/44, entry pair correct 2/44 (route=0 bias). Cause: teacher reasons never showed computations. Training data consistent (70/70).
+- Fable advisor: option B (derivations + oversample + gates). User approved <= $1.50.
+- v2 targets: train/episodes.py derivation() for unlock/choose_door/validate_registry/submit_bid; facts-dump reasons unchanged elsewhere. teacher_prefix/TeacherPolicy pass obs (prefix prompts in rooms mode now carry v2 reasons -> base rooms must be re-run for strict comparability; room4_all/full unaffected).
+- Data: train/sft_v2_select.py -> 1228 rows (unlock 200 balanced 50x4 pairs, door 200, registry 150, bid 150, notebook_write 164, replay 14/bucket); gate asserts 100% derivation==args, operands in prompt. sha 4083d6a5bd40.
+- sft_train --init-adapter (continue v1). Tested on tiny model (weights change, same keys).
+- HF Job 6af9462f29dd05ff0368412f (l4x1, timeout 100m => max $1.33): train 1 epoch (~76 steps), push FatUnc6969/tiny-aya-borderland-sft-v2, 16-episode room-4 gate -> runs/sft_v2/gate/.
+- Code bundle sha 9a9943de7f6e.
+
+## 2026-11-15 ~12:10-12:45 IST: SFT v2 gate + GRPO on Modal
+- SFT v2 (HF job, 77 steps, 3305 s) pushed FatUnc6969/tiny-aya-borderland-sft-v2. Gate: entry pair correct 16/16 (room-4 clears 0: navigation).
+- CORRECTION: v1 final room4_all = 22/64 correct pairs (34%); my earlier "2/44" counted only early finishers (wrong unlocks end at step 1).
+- Base lenient (fences stripped) room4_all: lock 12.5%; base strict: 0 (all fenced).
+- Kaggle running: eval-sft2 (room4_all | rooms,full), int-sft2-baselen-rooms (sft2 blank+swap | base_lenient rooms). Bundle eeeac4 at launch.
+- GRPO fix: max_completion_length/temperature were inside a comment. GRPO states regenerated (625, reward check teacher>perturbed 400/400).
+- Modal (user runs from Mac; VM proxy blocks api.modal.com): train/modal_grpo.py. Smoke (2 steps A100-80GB): 40.3 s/step, $2.8 GPU per 100 steps, frac_reward_zero_std 0. Merged SFT v2 on Volume lexi-grpo + HF FatUnc6969/tiny-aya-borderland-sft-v2-merged.
+- Code sha afe948ebc587 (checkpoints every 50 steps, 6 h timeout). Real runs: --arm grpo/control --steps 250 (~$9 each est.).

@@ -1,0 +1,80 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<11:01,  2.29s/it]Loading weights:  37%|███▋      | 108/290 [00:02<00:02, 62.93it/s]Loading weights:  57%|█████▋    | 166/290 [00:03<00:02, 58.13it/s]Loading weights:  69%|██████▉   | 200/290 [00:04<00:01, 57.26it/s]Loading weights:  77%|███████▋  | 223/290 [00:04<00:01, 58.11it/s]Loading weights:  83%|████████▎ | 240/290 [00:04<00:00, 59.02it/s]Loading weights:  88%|████████▊ | 254/290 [00:05<00:00, 57.61it/s]Loading weights:  91%|█████████▏| 265/290 [00:05<00:00, 60.74it/s]Loading weights:  95%|█████████▍| 275/290 [00:05<00:00, 56.73it/s]Loading weights:  98%|█████████▊| 284/290 [00:05<00:00, 54.80it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 52.01it/s]
+[    202s] live=64 round=199.9s steps=64 new_tok=5256 peak=13.5GB oom=0
+[    259s] live=22 round= 57.1s steps=86 new_tok=7018 peak=13.5GB oom=0
+[    317s] live=22 round= 58.4s steps=108 new_tok=8736 peak=13.5GB oom=0
+[    374s] live=20 round= 56.6s steps=128 new_tok=10338 peak=13.5GB oom=0
+[    434s] live=20 round= 59.9s steps=148 new_tok=11940 peak=13.5GB oom=0
+[    495s] live=20 round= 61.1s steps=168 new_tok=13530 peak=13.5GB oom=0
+[    558s] live=20 round= 63.5s steps=188 new_tok=15102 peak=13.5GB oom=0
+[    623s] live=20 round= 64.6s steps=208 new_tok=16684 peak=13.5GB oom=0
+[    689s] live=20 round= 65.8s steps=228 new_tok=18290 peak=13.5GB oom=0
+[    756s] live=20 round= 67.2s steps=248 new_tok=19888 peak=13.5GB oom=0
+[    824s] live=20 round= 67.6s steps=268 new_tok=21454 peak=13.5GB oom=0
+[    892s] live=20 round= 68.7s steps=288 new_tok=23022 peak=13.5GB oom=0
+[    963s] live=20 round= 70.6s steps=308 new_tok=24592 peak=13.5GB oom=0
+[   1029s] live=18 round= 65.4s steps=326 new_tok=26004 peak=13.5GB oom=0
+[   1095s] live=18 round= 66.6s steps=344 new_tok=27414 peak=13.5GB oom=0
+[   1163s] live=18 round= 68.0s steps=362 new_tok=28820 peak=13.5GB oom=0
+[   1226s] live=16 round= 63.2s steps=378 new_tok=30074 peak=13.5GB oom=0
+[   1290s] live=16 round= 63.5s steps=394 new_tok=31326 peak=13.5GB oom=0
+[   1352s] live=14 round= 61.5s steps=408 new_tok=32424 peak=13.5GB oom=0
+[   1405s] live=13 round= 53.4s steps=421 new_tok=33443 peak=13.5GB oom=0
+[   1447s] live=10 round= 42.4s steps=431 new_tok=34231 peak=13.5GB oom=0
+[   1486s] live=9 round= 38.6s steps=440 new_tok=34933 peak=13.5GB oom=0
+[   1526s] live=9 round= 39.7s steps=449 new_tok=35645 peak=13.5GB oom=0
+[   1563s] live=8 round= 37.6s steps=457 new_tok=36269 peak=13.5GB oom=0
+[   1601s] live=8 round= 37.9s steps=465 new_tok=36897 peak=13.5GB oom=0
+[   1640s] live=8 round= 38.6s steps=473 new_tok=37529 peak=13.5GB oom=0
+[   1678s] live=8 round= 38.0s steps=481 new_tok=38154 peak=13.5GB oom=0
+[   1714s] live=6 round= 36.0s steps=487 new_tok=38621 peak=13.5GB oom=0
+[   1738s] live=5 round= 24.4s steps=492 new_tok=39011 peak=13.5GB oom=0
+[   1763s] live=5 round= 25.0s steps=497 new_tok=39403 peak=13.5GB oom=0
+[   1785s] live=4 round= 21.6s steps=501 new_tok=39719 peak=13.5GB oom=0
+[   1797s] live=2 round= 12.6s steps=503 new_tok=39875 peak=13.5GB oom=0
+[   1810s] live=2 round= 12.8s steps=505 new_tok=40033 peak=13.5GB oom=0
+[   1824s] live=2 round= 13.3s steps=507 new_tok=40191 peak=13.5GB oom=0
+[   1837s] live=2 round= 13.2s steps=509 new_tok=40347 peak=13.5GB oom=0
+[   1850s] live=2 round= 13.3s steps=511 new_tok=40503 peak=13.5GB oom=0
+[   1863s] live=2 round= 13.3s steps=513 new_tok=40659 peak=13.5GB oom=0
+[   1877s] live=2 round= 13.4s steps=515 new_tok=40815 peak=13.5GB oom=0
+[   1890s] live=2 round= 13.5s steps=517 new_tok=40971 peak=13.5GB oom=0
+[   1902s] live=1 round= 11.9s steps=518 new_tok=41049 peak=13.5GB oom=0
+[   1914s] live=1 round= 12.0s steps=519 new_tok=41127 peak=13.5GB oom=0
+[   1926s] live=1 round= 12.1s steps=520 new_tok=41207 peak=13.5GB oom=0
+[   1939s] live=1 round= 12.6s steps=521 new_tok=41285 peak=13.5GB oom=0
+[   1951s] live=1 round= 12.6s steps=522 new_tok=41363 peak=13.5GB oom=0
+[   1964s] live=1 round= 12.7s steps=523 new_tok=41441 peak=13.5GB oom=0
+[   1977s] live=1 round= 12.7s steps=524 new_tok=41519 peak=13.5GB oom=0
+[   1989s] live=1 round= 12.8s steps=525 new_tok=41599 peak=13.5GB oom=0
+[   2000s] live=1 round= 10.5s steps=526 new_tok=41677 peak=13.5GB oom=0
+[   2010s] live=1 round= 10.4s steps=527 new_tok=41755 peak=13.5GB oom=0
+[   2021s] live=1 round= 10.5s steps=528 new_tok=41833 peak=13.5GB oom=0
+[   2031s] live=1 round= 10.5s steps=529 new_tok=41911 peak=13.5GB oom=0
+[   2042s] live=1 round= 10.5s steps=530 new_tok=41989 peak=13.5GB oom=0
+{
+ "room4_all": {
+  "episodes": 64,
+  "valid_call_rate": 1.0,
+  "trap_rate": 0.0,
+  "mean_steps": 8.28,
+  "sec_per_step": 3.85,
+  "lock_success": 0.344,
+  "lock_ci95": [
+   0.281,
+   0.406
+  ],
+  "pairwise_dse": 0.062,
+  "pairwise_dse_ci95": [
+   0.048,
+   0.118
+  ],
+  "room4_clear": 0.0,
+  "families": 16,
+  "references": {
+   "oracle_lock": 1.0,
+   "memoryless_lock_ceiling": 0.25,
+   "memoryless_pairwise_dse": 0.0
+  },
+  "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+ }
+}

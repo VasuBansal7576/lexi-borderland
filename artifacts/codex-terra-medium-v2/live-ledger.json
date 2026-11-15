@@ -1,1 +1,0 @@
-{"model": "gpt-6.1-terra", "mode": "live", "limit": 100, "attempts": [{"number": 1, "status": "failed", "request_sha256": "6a07096fc631d5bae295bc42c558e4f504781d96683b7770c8ebc38456e5b712", "error": "[Errno -3] Temporary failure in name resolution"}], "halt": "[Errno -3] Temporary failure in name resolution"}

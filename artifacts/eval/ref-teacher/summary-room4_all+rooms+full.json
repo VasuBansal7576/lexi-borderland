@@ -1,0 +1,123 @@
+{
+ "label": "ref-teacher",
+ "policy": "teacher",
+ "model": null,
+ "adapter": null,
+ "bundle_sha": "local",
+ "max_new_tokens": 400,
+ "decoding": "greedy",
+ "seconds": {
+  "room4_all": 0.0,
+  "rooms": 0.0,
+  "full": 0.0
+ },
+ "peak_gpu_gb": 0.0,
+ "oom_retries": 0,
+ "scorecard": {
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 18.06,
+   "sec_per_step": 0.0,
+   "lock_success": 1.0,
+   "lock_ci95": [
+    1.0,
+    1.0
+   ],
+   "pairwise_dse": 1.0,
+   "pairwise_dse_ci95": [
+    1.0,
+    1.0
+   ],
+   "room4_clear": 1.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 1.0,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 10.33,
+    "sec_per_step": 0.01
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 10.0,
+     "sec_per_step": 0.01
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 7.88,
+     "sec_per_step": 0.02
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 12.0,
+     "sec_per_step": 0.01
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 18.44,
+     "sec_per_step": 0.01
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 4.0,
+     "sec_per_step": 0.03
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 9.0,
+     "sec_per_step": 0.01
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 1.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 11.0,
+     "sec_per_step": 0.01
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 72.31,
+   "sec_per_step": 0.01,
+   "escape_rate": 1.0,
+   "mean_rooms_cleared": 7.0,
+   "lock_attribution": {
+    "lock_correct": 16
+   }
+  }
+ }
+}

@@ -57,11 +57,46 @@ def facts_text(knowledge):
     return " ".join(out)
 
 
-def target_text(action, knowledge=None):
-    reason = REASONS.get(action["tool"], "Apply the public rules to the evidence gathered so far.")
-    facts = facts_text(knowledge)
-    if facts:
-        reason = (f"Known: {facts}. " + reason)[:600]
+GLYPH_NAMES = ("A", "B", "C", "D")
+
+
+def derivation(action, knowledge, obs):
+    """v2 teacher rationale: for actions whose arguments are computed, show the computation from facts the agent
+    holds (evidence-derived knowledge or the surviving notebook) and public observation fields. None otherwise."""
+    k, o, t, a = knowledge or {}, obs or {}, action["tool"], action["args"]
+    try:
+        if t == "unlock":
+            p, s, pu, c = k["phase"], k["sigma"], o["pulse"], o["challenge"]
+            return (f"Known: phase={p} registry_bit(sigma)={s} pulse={pu} challenge={c}. "
+                    f"route=(phase%2) XOR pulse=({p}%2) XOR {pu}={p % 2} XOR {pu}={(p % 2) ^ pu}. "
+                    f"badge=registry_bit XOR challenge={s} XOR {c}={s ^ c}.")
+        if t == "choose_door":
+            p, b, pu, kk = k["phase"], o["bank"], o["pulse"], k["k"]
+            sec = (p + b + pu) % 4
+            glyph = GLYPH_NAMES[kk.index(sec)]
+            ks = ",".join(f"{g}:{v}" for g, v in zip(GLYPH_NAMES, kk))
+            return (f"Known: phase={p} k={ks} bank={b} pulse={pu}. sector=(phase+bank+pulse)%4=({p}+{b}+{pu})%4={sec}. "
+                    f"Glyph at sector {sec} is {glyph}.")
+        if t == "validate_registry":
+            s, c = k["sigma"], o["challenge"]
+            return (f"Known: registry_bit(sigma)={s} challenge={c}. response=challenge XOR registry_bit={c} XOR {s}="
+                    f"{c ^ s} -> {str(bool(c ^ s)).lower()}.")
+        if t == "submit_bid":
+            r, bids = o["round"], k["bids"]
+            return (f"Known: mode={k['mode']} offsets={','.join(map(str, k['offsets']))} phase={k['phase']} "
+                    f"delta={k['delta']}. Winning plan bids={','.join(map(str, bids))}; round={r} -> bid={bids[r]}.")
+    except (KeyError, ValueError, IndexError, TypeError):
+        return None
+    return None
+
+
+def target_text(action, knowledge=None, obs=None):
+    reason = derivation(action, knowledge, obs) if obs is not None else None
+    if reason is None:
+        reason = REASONS.get(action["tool"], "Apply the public rules to the evidence gathered so far.")
+        facts = facts_text(knowledge)
+        if facts:
+            reason = (f"Known: {facts}. " + reason)[:600]
     return json.dumps({"reason": reason, "tool": action["tool"], "args": action["args"]},
                       separators=(",", ":"), ensure_ascii=True)
 
@@ -78,9 +113,10 @@ def teacher_episode(world):
         messages = history.messages()
         action = solver.act(json.loads(json.dumps(frame)))  # same JSON wire as the certified worker
         knowledge = json.loads(json.dumps(solver.knowledge, default=list))
-        steps.append({"room": env.room, "messages": messages, "action": action, "knowledge": knowledge,
+        obs = json.loads(json.dumps(frame["observation"]))
+        steps.append({"room": env.room, "messages": messages, "action": action, "knowledge": knowledge, "obs": obs,
                       "actions_so_far": [r["action"] for r in env.trace]})
-        output = json.loads(target_text(action, knowledge))
+        output = json.loads(target_text(action, knowledge, obs))
         history.act(output)
         result = env.step(action)
         if result.info["epoch_changed"]:
