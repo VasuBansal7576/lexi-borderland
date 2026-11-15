@@ -1,5 +1,45 @@
 {
  "random": {
+  "steps": {
+   "states": 320,
+   "mean_step_reward": -0.297,
+   "mean_step_reward_ci95": [
+    -0.342,
+    -0.243
+   ],
+   "reward_kinds": {
+    "protocol_error": 123,
+    "wasted": 105,
+    "fatal": 33,
+    "milestone": 9,
+    "progress": 19,
+    "trap": 31
+   },
+   "by_teacher_tool": {
+    "accept_amendment": -0.033,
+    "accuse": -0.4,
+    "activate_relay": -0.033,
+    "allocate_points": -0.2,
+    "certify_roster": -0.467,
+    "choose_door": -0.345,
+    "energize": -0.05,
+    "exit_room": -0.317,
+    "move": -0.2,
+    "notebook_write": -0.257,
+    "probe": -0.117,
+    "question": -0.187,
+    "read_record": -0.388,
+    "revoke": -0.771,
+    "set_switch": -0.253,
+    "settle": -0.467,
+    "submit_bid": -0.492,
+    "survey": -0.196,
+    "team_step": -0.326,
+    "unlock": 0.143,
+    "validate_registry": -0.267
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  },
   "room4_all": {
    "episodes": 64,
    "valid_call_rate": 1.0,
@@ -108,11 +148,49 @@
   "episodes_by_mode": {
    "room4_all": 64,
    "rooms": 112,
-   "full": 16
+   "full": 16,
+   "steps": 320
   },
   "invalid_kinds": {}
  },
  "teacher (oracle)": {
+  "steps": {
+   "states": 320,
+   "mean_step_reward": 0.488,
+   "mean_step_reward_ci95": [
+    0.446,
+    0.53
+   ],
+   "reward_kinds": {
+    "progress": 222,
+    "milestone": 91,
+    "wasted": 7
+   },
+   "by_teacher_tool": {
+    "accept_amendment": 0.3,
+    "accuse": 1.0,
+    "activate_relay": 1.0,
+    "allocate_points": 0.3,
+    "certify_roster": 1.0,
+    "choose_door": 0.745,
+    "energize": 1.0,
+    "exit_room": 1.0,
+    "move": 0.3,
+    "notebook_write": -0.2,
+    "probe": 0.3,
+    "question": 0.3,
+    "read_record": 0.3,
+    "revoke": 1.0,
+    "set_switch": 0.3,
+    "settle": 1.0,
+    "submit_bid": 0.767,
+    "survey": 0.3,
+    "team_step": 0.447,
+    "unlock": 1.0,
+    "validate_registry": 1.0
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  },
   "room4_all": {
    "episodes": 64,
    "valid_call_rate": 1.0,
@@ -221,7 +299,8 @@
   "episodes_by_mode": {
    "room4_all": 64,
    "rooms": 112,
-   "full": 16
+   "full": 16,
+   "steps": 320
   },
   "invalid_kinds": {}
  },
@@ -570,6 +649,75 @@
   "invalid_kinds": {}
  },
  "Tiny Aya + SFT v2": {
+  "chain4": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 3.0,
+   "sec_per_step": 0.38,
+   "lock_success": 0.5,
+   "lock_ci95": [
+    0.5,
+    0.5
+   ],
+   "pairwise_dse": 0.167,
+   "pairwise_dse_ci95": [
+    0.178,
+    0.204
+   ],
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "model writes its own notebook in room 3, is wiped, then must open the room-4 lock from it",
+   "wrote_notebook": 1.0,
+   "reached_room4": 1.0,
+   "lock_attribution": {
+    "lock_correct": 32,
+    "not_retained": 32
+   }
+  },
+  "steps": {
+   "states": 320,
+   "mean_step_reward": 0.187,
+   "mean_step_reward_ci95": [
+    0.087,
+    0.277
+   ],
+   "reward_kinds": {
+    "progress": 126,
+    "milestone": 82,
+    "protocol_error": 57,
+    "fatal": 47,
+    "wasted": 8
+   },
+   "by_teacher_tool": {
+    "accept_amendment": 0.3,
+    "accuse": 1.0,
+    "activate_relay": 1.0,
+    "allocate_points": 0.05,
+    "certify_roster": -0.2,
+    "choose_door": -0.7,
+    "energize": 0.4,
+    "exit_room": 0.6,
+    "move": 0.034,
+    "notebook_write": 0.143,
+    "probe": 0.3,
+    "question": 0.467,
+    "read_record": -0.042,
+    "revoke": 0.714,
+    "set_switch": 0.029,
+    "settle": 1.0,
+    "submit_bid": 0.3,
+    "survey": 0.177,
+    "team_step": 0.211,
+    "unlock": 1.0,
+    "validate_registry": 0.0
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  },
   "room4_blank": {
    "episodes": 64,
    "valid_call_rate": 1.0,
@@ -735,10 +883,480 @@
    "rooms": 112,
    "full": 16,
    "room4_blank": 64,
-   "room4_swap": 64
+   "room4_swap": 64,
+   "steps": 320,
+   "chain4": 64
   },
   "invalid_kinds": {
    "other": 6
   }
+ },
+ "Tiny Aya + SFT v2 + GRPO": {
+  "steps": {
+   "states": 320,
+   "mean_step_reward": 0.2,
+   "mean_step_reward_ci95": [
+    0.112,
+    0.285
+   ],
+   "reward_kinds": {
+    "progress": 132,
+    "milestone": 81,
+    "protocol_error": 57,
+    "fatal": 44,
+    "wasted": 6
+   },
+   "by_teacher_tool": {
+    "accept_amendment": 0.3,
+    "accuse": 1.0,
+    "activate_relay": 1.0,
+    "allocate_points": 0.175,
+    "certify_roster": -0.2,
+    "choose_door": -0.882,
+    "energize": 0.4,
+    "exit_room": 0.6,
+    "move": 0.034,
+    "notebook_write": 0.486,
+    "probe": 0.3,
+    "question": 0.333,
+    "read_record": 0.041,
+    "revoke": 0.714,
+    "set_switch": -0.029,
+    "settle": 1.0,
+    "submit_bid": 0.3,
+    "survey": 0.196,
+    "team_step": 0.192,
+    "unlock": 1.0,
+    "validate_registry": 0.0
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  },
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 15.84,
+   "sec_per_step": 0.55,
+   "lock_success": 1.0,
+   "lock_ci95": [
+    1.0,
+    1.0
+   ],
+   "pairwise_dse": 1.0,
+   "pairwise_dse_ci95": [
+    1.0,
+    1.0
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.089,
+    "valid_call_rate": 0.998,
+    "trap_rate": 0.0,
+    "mean_steps": 8.73,
+    "sec_per_step": 0.91
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.19,
+     "sec_per_step": 0.58
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 5.19,
+     "sec_per_step": 0.65
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.99,
+     "trap_rate": 0.0,
+     "mean_steps": 12.75,
+     "sec_per_step": 0.88
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 16.44,
+     "sec_per_step": 1.24
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.62,
+     "sec_per_step": 0.61
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.562,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 7.5,
+     "sec_per_step": 0.73
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 12.44,
+     "sec_per_step": 0.89
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 3.81,
+   "sec_per_step": 0.72,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "room4_all": 64,
+   "rooms": 112,
+   "full": 16,
+   "steps": 320
+  },
+  "invalid_kinds": {
+   "other": 2
+  }
+ },
+ "Tiny Aya + SFT v2 + GRPO random-reward control": {
+  "steps": {
+   "states": 320,
+   "mean_step_reward": 0.202,
+   "mean_step_reward_ci95": [
+    0.105,
+    0.293
+   ],
+   "reward_kinds": {
+    "progress": 128,
+    "milestone": 86,
+    "protocol_error": 49,
+    "fatal": 47,
+    "wasted": 9,
+    "invalid": 1
+   },
+   "by_teacher_tool": {
+    "accept_amendment": 0.3,
+    "accuse": 1.0,
+    "activate_relay": 1.0,
+    "allocate_points": 0.05,
+    "certify_roster": -0.467,
+    "choose_door": -0.7,
+    "energize": 1.0,
+    "exit_room": 0.6,
+    "move": 0.049,
+    "notebook_write": -0.2,
+    "probe": 0.3,
+    "question": 0.467,
+    "read_record": 0.017,
+    "revoke": 1.0,
+    "set_switch": -0.188,
+    "settle": 1.0,
+    "submit_bid": 0.3,
+    "survey": 0.177,
+    "team_step": 0.211,
+    "unlock": 1.0,
+    "validate_registry": 0.0
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.107,
+    "valid_call_rate": 0.996,
+    "trap_rate": 0.0,
+    "mean_steps": 7.96,
+    "sec_per_step": 0.64
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 2.38,
+     "sec_per_step": 0.42
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 4.62,
+     "sec_per_step": 0.47
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 0.979,
+     "trap_rate": 0.0,
+     "mean_steps": 12.12,
+     "sec_per_step": 0.73
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 11.88,
+     "sec_per_step": 0.74
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.62,
+     "sec_per_step": 0.45
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.625,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 9.0,
+     "sec_per_step": 0.57
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.125,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 12.12,
+     "sec_per_step": 0.68
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 2.25,
+   "sec_per_step": 0.67,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "rooms": 112,
+   "full": 16,
+   "steps": 320
+  },
+  "invalid_kinds": {
+   "other": 5
+  }
+ },
+ "Tiny Aya + SFT v3": {
+  "chain4": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 3.0,
+   "sec_per_step": 0.64,
+   "lock_success": 1.0,
+   "lock_ci95": [
+    1.0,
+    1.0
+   ],
+   "pairwise_dse": 1.0,
+   "pairwise_dse_ci95": [
+    1.0,
+    1.0
+   ],
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "model writes its own notebook in room 3, is wiped, then must open the room-4 lock from it",
+   "wrote_notebook": 1.0,
+   "reached_room4": 1.0,
+   "lock_attribution": {
+    "lock_correct": 64
+   }
+  },
+  "steps": {
+   "states": 320,
+   "mean_step_reward": 0.267,
+   "mean_step_reward_ci95": [
+    0.221,
+    0.319
+   ],
+   "reward_kinds": {
+    "progress": 163,
+    "protocol_error": 65,
+    "milestone": 68,
+    "fatal": 17,
+    "wasted": 7
+   },
+   "by_teacher_tool": {
+    "accept_amendment": 0.3,
+    "accuse": 1.0,
+    "activate_relay": 1.0,
+    "allocate_points": -0.2,
+    "certify_roster": -0.333,
+    "choose_door": -0.155,
+    "energize": 0.463,
+    "exit_room": 0.6,
+    "move": -0.083,
+    "notebook_write": 0.486,
+    "probe": 0.3,
+    "question": 0.36,
+    "read_record": 0.327,
+    "revoke": 0.143,
+    "set_switch": 0.118,
+    "settle": 1.0,
+    "submit_bid": 0.3,
+    "survey": 0.008,
+    "team_step": 0.105,
+    "unlock": 1.0,
+    "validate_registry": 1.0
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  },
+  "room4_all": {
+   "episodes": 64,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 8.59,
+   "sec_per_step": 0.33,
+   "lock_success": 1.0,
+   "lock_ci95": [
+    1.0,
+    1.0
+   ],
+   "pairwise_dse": 1.0,
+   "pairwise_dse_ci95": [
+    1.0,
+    1.0
+   ],
+   "room4_clear": 0.0,
+   "families": 16,
+   "references": {
+    "oracle_lock": 1.0,
+    "memoryless_lock_ceiling": 0.25,
+    "memoryless_pairwise_dse": 0.0
+   },
+   "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
+  },
+  "rooms": {
+   "overall": {
+    "episodes": 112,
+    "success_rate": 0.089,
+    "valid_call_rate": 1.0,
+    "trap_rate": 0.0,
+    "mean_steps": 7.38,
+    "sec_per_step": 0.64
+   },
+   "by_room": {
+    "1": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 7.88,
+     "sec_per_step": 0.41
+    },
+    "2": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 8.19,
+     "sec_per_step": 1.35
+    },
+    "3": {
+     "episodes": 16,
+     "success_rate": 0.062,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 9.38,
+     "sec_per_step": 0.49
+    },
+    "4": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 9.88,
+     "sec_per_step": 0.8
+    },
+    "5": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 3.62,
+     "sec_per_step": 0.37
+    },
+    "6": {
+     "episodes": 16,
+     "success_rate": 0.562,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 6.75,
+     "sec_per_step": 0.4
+    },
+    "7": {
+     "episodes": 16,
+     "success_rate": 0.0,
+     "valid_call_rate": 1.0,
+     "trap_rate": 0.0,
+     "mean_steps": 6.0,
+     "sec_per_step": 0.39
+    }
+   }
+  },
+  "full": {
+   "episodes": 16,
+   "valid_call_rate": 1.0,
+   "trap_rate": 0.0,
+   "mean_steps": 8.0,
+   "sec_per_step": 0.4,
+   "escape_rate": 0.0,
+   "mean_rooms_cleared": 0.0,
+   "lock_attribution": {
+    "did_not_reach_lock": 16
+   }
+  },
+  "episodes_by_mode": {
+   "room4_all": 64,
+   "rooms": 112,
+   "full": 16,
+   "steps": 320,
+   "chain4": 64
+  },
+  "invalid_kinds": {}
  }
 }

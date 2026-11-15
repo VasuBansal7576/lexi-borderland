@@ -53,12 +53,15 @@ def setup(expected_sha):
         raise SystemExit(f"STALE CODE {sha[:12]} != {expected_sha[:12]}")
     os.makedirs("/code", exist_ok=True); os.makedirs("/data", exist_ok=True)
     open("/data/code.tgz", "wb").write(raw)
-    with open("/data/grpo-states-v2.jsonl", "w") as out:
-        for part in sorted(glob.glob(f"{d}/grpo-states-v2.part*.txt")):
-            out.write(open(part).read())
     want = {l.split()[2]: l.split()[1] for l in open(f"{d}/MANIFEST.sha256.txt") if l.startswith("orig ")}
-    got = hashlib.sha256(open("/data/grpo-states-v2.jsonl", "rb").read()).hexdigest()
-    assert got == want["grpo-states-v2.jsonl"], "grpo states checksum mismatch"
+    for name, h in want.items():
+        if name == "code.tgz":
+            continue
+        stem = name.rsplit(".", 1)[0]
+        with open(f"/data/{name}", "w") as out:
+            for part in sorted(glob.glob(f"{d}/{stem}.part*.txt")):
+                out.write(open(part).read())
+        assert hashlib.sha256(open(f"/data/{name}", "rb").read()).hexdigest() == h, f"checksum mismatch {name}"
     sh("tar xzf /data/code.tgz -C /code")
     os.environ["PYTHONPATH"] = "/code"
     print("code + data verified", sha[:12], flush=True)
@@ -102,6 +105,7 @@ def train(arm: str, steps: int, expected_sha: str, generations: int = 8, lr: flo
     api.upload_file(path_or_fileobj=f"/vol/{arm}-{steps}.log", path_in_repo=f"runs/modal_{arm}_{steps}/train.log",
                     repo_id=DATA_REPO, repo_type="dataset")
     if OUT_REPO.get(arm):
+        clean_readme(out, MERGED_REPO, f"GRPO ({arm}) LoRA on top of {MERGED_REPO}.")
         api.create_repo(OUT_REPO[arm], exist_ok=True, private=False)
         api.upload_folder(folder_path=out, repo_id=OUT_REPO[arm], commit_message=f"GRPO {arm} {steps} steps from SFT v2",
                           ignore_patterns=["checkpoint-*/*"])
@@ -110,6 +114,44 @@ def train(arm: str, steps: int, expected_sha: str, generations: int = 8, lr: flo
     print(json.dumps(summary, indent=1), flush=True)
     return summary
 
+
+
+def clean_readme(folder, base, note):
+    import glob as g
+    for f in g.glob(f"{folder}/README.md"):
+        os.remove(f)
+    open(f"{folder}/README.md", "w").write(f"---\nbase_model: {base}\nlibrary_name: peft\ntags: [borderland, lexsi-hackathon, agenttune]\n---\n\n"
+                                         f"# {os.path.basename(folder)}\n\n{note}\n\nSee https://github.com/VasuBansal7576/lexi-borderland\n")
+
+
+@app.function(volumes={"/vol": vol}, secrets=[HF_SECRET], timeout=1800)
+def publish(src: str, repo: str, base: str, note: str):
+    from huggingface_hub import HfApi
+    vol.reload()
+    clean_readme(src, base, note)
+    api = HfApi(); api.create_repo(repo, exist_ok=True, private=False)
+    api.upload_folder(folder_path=src, repo_id=repo, ignore_patterns=["checkpoint-*/*"], commit_message=f"publish {src}")
+    return {"published": repo}
+
+
+@app.function(gpu="A100-80GB", volumes={"/vol": vol}, secrets=[HF_SECRET], timeout=3 * 3600)
+def sft(name: str, data: str, init_repo: str, expected_sha: str, epochs: float = 1.0, lr: float = 1e-4):
+    """AgentTune distillation (train.sft_train) continuing an existing LoRA; pushes FatUnc6969/tiny-aya-borderland-<name>."""
+    import json, sys, time
+    from huggingface_hub import HfApi, snapshot_download
+    t0 = time.time(); setup(expected_sha)
+    init = snapshot_download(init_repo)
+    out = f"/vol/{name}"
+    sh(f"cd /code && {sys.executable} -m train.sft_train --model {BASE} --data /data/{data} --output {out} --init-adapter {init} "
+       f"--per-bucket 100000 --epochs {epochs} --lr {lr} --batch 1 --accum 16 --max-length 6144 2>&1 | tee /vol/{name}.log")
+    vol.commit()
+    repo = f"FatUnc6969/tiny-aya-borderland-{name}"
+    clean_readme(out, BASE, f"LoRA for Tiny Aya Global, continued from {init_repo} on {data} (Borderland, AgentTune distillation).")
+    api = HfApi(); api.create_repo(repo, exist_ok=True, private=False)
+    api.upload_folder(folder_path=out, repo_id=repo, commit_message=f"{name} from {init_repo}")
+    api.upload_file(path_or_fileobj=f"/vol/{name}.log", path_in_repo=f"runs/modal_{name}/train.log", repo_id=DATA_REPO, repo_type="dataset")
+    api.upload_file(path_or_fileobj=f"{out}/train_log.json", path_in_repo=f"runs/modal_{name}/train_log.json", repo_id=DATA_REPO, repo_type="dataset")
+    return {"name": name, "seconds": round(time.time() - t0)}
 
 
 @app.function(gpu="A100-80GB", volumes={"/vol": vol}, secrets=[HF_SECRET], timeout=4 * 3600)
@@ -148,7 +190,10 @@ def evaluate(label: str, modes: str, expected_sha: str, model: str = "/vol/sft2-
 COST_PER_HOUR = 3.2      # A100 80GB + CPU/RAM, conservative
 CAP_USD = 27.0           # hard cap on everything launched through the queue (incl. runs launched by hand)
 PRIOR_USD = 8.0          # smoke + the hand-launched GRPO run
+LEDGER_V2_USD = 16.0     # v2 accounting (2026-11-15 16:45 IST): everything finished so far, measured, rounded up
 FUNCS = {"train": {"arm": str, "steps": int, "expected_sha": str, "generations": int, "lr": float},
+         "sft": {"name": str, "data": str, "init_repo": str, "expected_sha": str, "epochs": float, "lr": float},
+         "publish": {"src": str, "repo": str, "base": str, "note": str},
          "evaluate": {"label": str, "modes": str, "expected_sha": str, "model": str, "adapter": str, "lenient": bool,
                       "token_budget": int}}
 
@@ -164,6 +209,9 @@ def ops_tick():
         print("no queue", e); return
     state = OPS.get("state", {"spent": PRIOR_USD, "ops": {}})
     changed = False
+    if state.get("ledger") != 2:  # re-base on measured cost; running ops keep their reservation
+        state["spent"] = LEDGER_V2_USD + sum(r.get("committed_usd", 0) for r in state["ops"].values() if r.get("state") == "running")
+        state["ledger"] = 2; changed = True
     for line in q.splitlines():
         if not line.strip():
             continue
@@ -181,7 +229,7 @@ def ops_tick():
         elif state["spent"] + cost > CAP_USD:
             state["ops"][oid] = {"state": "rejected", "why": f"cap: committed {state['spent']:.2f} + {cost:.2f} > {CAP_USD}"}
         else:
-            call = (train if fn == "train" else evaluate).spawn(**kw)
+            call = {"train": train, "evaluate": evaluate, "sft": sft, "publish": publish}[fn].spawn(**kw)
             state["spent"] += cost
             state["ops"][oid] = {"state": "running", "call_id": call.object_id, "fn": fn, "kwargs": kw,
                                  "committed_usd": cost, "started": time.time()}
@@ -190,6 +238,10 @@ def ops_tick():
         if rec.get("state") == "running":
             try:
                 rec["result"] = modal.FunctionCall.from_id(rec["call_id"]).get(timeout=0); rec["state"] = "done"; changed = True
+                rec["finished"] = time.time()
+                if state.get("ledger") == 2 and rec.get("started", 0) > 1794738000:  # ops launched under ledger v2
+                    actual = (rec["finished"] - rec["started"]) / 3600 * COST_PER_HOUR
+                    state["spent"] += actual - rec.get("committed_usd", 0); rec["actual_usd_est"] = round(actual, 2)
             except TimeoutError:
                 pass
             except Exception as e:

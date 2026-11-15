@@ -1,137 +1,0 @@
-Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<12:05,  2.51s/it]Loading weights:  40%|███▉      | 115/290 [00:02<00:02, 59.15it/s]Loading weights:  53%|█████▎    | 153/290 [00:03<00:02, 61.69it/s]Loading weights:  61%|██████    | 177/290 [00:03<00:01, 58.31it/s]Loading weights:  67%|██████▋   | 193/290 [00:04<00:01, 55.11it/s]Loading weights:  71%|███████   | 205/290 [00:04<00:01, 51.08it/s]Loading weights:  74%|███████▍  | 215/290 [00:04<00:01, 51.28it/s]Loading weights:  77%|███████▋  | 223/290 [00:04<00:01, 49.71it/s]Loading weights:  79%|███████▉  | 230/290 [00:04<00:01, 48.46it/s]Loading weights:  81%|████████▏ | 236/290 [00:05<00:01, 47.40it/s]Loading weights:  84%|████████▍ | 243/290 [00:05<00:00, 49.26it/s]Loading weights:  87%|████████▋ | 251/290 [00:05<00:00, 48.90it/s]Loading weights:  89%|████████▉ | 259/290 [00:05<00:00, 53.38it/s]Loading weights:  92%|█████████▏| 268/290 [00:05<00:00, 57.23it/s]Loading weights:  98%|█████████▊| 283/290 [00:05<00:00, 69.43it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 49.94it/s]
-[    339s] live=112 round=334.9s steps=112 new_tok=7864 peak=12.2GB oom=0
-[    739s] live=104 round=400.4s steps=216 new_tok=15486 peak=14.1GB oom=1
-[   1132s] live=104 round=392.7s steps=320 new_tok=23685 peak=14.1GB oom=1
-[   1503s] live=89 round=370.7s steps=409 new_tok=30736 peak=14.1GB oom=1
-[   1845s] live=73 round=342.1s steps=482 new_tok=36903 peak=14.1GB oom=1
-[   2196s] live=72 round=350.4s steps=554 new_tok=42921 peak=14.1GB oom=1
-[   2535s] live=59 round=338.8s steps=613 new_tok=48352 peak=14.2GB oom=2
-[   2842s] live=52 round=307.1s steps=665 new_tok=53748 peak=14.2GB oom=2
-[   3054s] live=30 round=211.9s steps=695 new_tok=57287 peak=14.2GB oom=2
-[   3230s] live=24 round=175.7s steps=719 new_tok=60000 peak=14.2GB oom=2
-[   3414s] live=23 round=184.2s steps=742 new_tok=62797 peak=14.2GB oom=2
-[   3571s] live=22 round=156.8s steps=764 new_tok=65279 peak=14.2GB oom=2
-[   3713s] live=20 round=142.6s steps=784 new_tok=67481 peak=14.2GB oom=2
-[   3841s] live=18 round=128.1s steps=802 new_tok=69462 peak=14.2GB oom=2
-[   3941s] live=15 round= 99.4s steps=817 new_tok=70883 peak=14.2GB oom=2
-[   3982s] live=7 round= 40.9s steps=824 new_tok=71488 peak=14.2GB oom=2
-[   4007s] live=6 round= 24.6s steps=830 new_tok=71956 peak=14.2GB oom=2
-[   4031s] live=6 round= 24.9s steps=836 new_tok=72426 peak=14.2GB oom=2
-[   4058s] live=6 round= 26.8s steps=842 new_tok=72895 peak=14.2GB oom=2
-[   4081s] live=5 round= 22.6s steps=847 new_tok=73287 peak=14.2GB oom=2
-[   4103s] live=5 round= 22.6s steps=852 new_tok=73679 peak=14.2GB oom=2
-[   4122s] live=4 round= 18.9s steps=856 new_tok=73991 peak=14.2GB oom=2
-[   4142s] live=4 round= 19.3s steps=860 new_tok=74307 peak=14.2GB oom=2
-[   4161s] live=4 round= 19.2s steps=864 new_tok=74619 peak=14.2GB oom=2
-[   4180s] live=4 round= 19.2s steps=868 new_tok=74931 peak=14.2GB oom=2
-[   4200s] live=4 round= 19.7s steps=872 new_tok=75245 peak=14.2GB oom=2
-[   4220s] live=4 round= 20.0s steps=876 new_tok=75561 peak=14.2GB oom=2
-[   4236s] live=3 round= 15.7s steps=879 new_tok=75794 peak=14.2GB oom=2
-[   4252s] live=3 round= 16.0s steps=882 new_tok=76028 peak=14.2GB oom=2
-[   4263s] live=2 round= 11.5s steps=884 new_tok=76186 peak=14.2GB oom=2
-[   4275s] live=2 round= 11.9s steps=886 new_tok=76346 peak=14.2GB oom=2
-[   4287s] live=1 round= 11.5s steps=887 new_tok=76424 peak=14.2GB oom=2
-[   4298s] live=1 round= 11.6s steps=888 new_tok=76502 peak=14.2GB oom=2
-[   4310s] live=1 round= 11.6s steps=889 new_tok=76580 peak=14.2GB oom=2
-[   4321s] live=1 round= 11.6s steps=890 new_tok=76658 peak=14.2GB oom=2
-[   4333s] live=1 round= 11.7s steps=891 new_tok=76736 peak=14.2GB oom=2
-[   4345s] live=1 round= 11.7s steps=892 new_tok=76814 peak=14.2GB oom=2
-[   4357s] live=1 round= 11.9s steps=893 new_tok=76892 peak=14.2GB oom=2
-[   4369s] live=1 round= 12.1s steps=894 new_tok=76970 peak=14.2GB oom=2
-{
- "rooms": {
-  "overall": {
-   "episodes": 112,
-   "success_rate": 0.134,
-   "valid_call_rate": 1.0,
-   "trap_rate": 0.0,
-   "mean_steps": 7.98,
-   "sec_per_step": 4.88
-  },
-  "by_room": {
-   "1": {
-    "episodes": 16,
-    "success_rate": 0.062,
-    "valid_call_rate": 1.0,
-    "trap_rate": 0.0,
-    "mean_steps": 6.88,
-    "sec_per_step": 4.29
-   },
-   "2": {
-    "episodes": 16,
-    "success_rate": 0.062,
-    "valid_call_rate": 1.0,
-    "trap_rate": 0.0,
-    "mean_steps": 4.56,
-    "sec_per_step": 3.92
-   },
-   "3": {
-    "episodes": 16,
-    "success_rate": 0.062,
-    "valid_call_rate": 1.0,
-    "trap_rate": 0.0,
-    "mean_steps": 8.56,
-    "sec_per_step": 4.69
-   },
-   "4": {
-    "episodes": 16,
-    "success_rate": 0.0,
-    "valid_call_rate": 1.0,
-    "trap_rate": 0.0,
-    "mean_steps": 11.88,
-    "sec_per_step": 5.51
-   },
-   "5": {
-    "episodes": 16,
-    "success_rate": 0.125,
-    "valid_call_rate": 1.0,
-    "trap_rate": 0.0,
-    "mean_steps": 3.12,
-    "sec_per_step": 3.56
-   },
-   "6": {
-    "episodes": 16,
-    "success_rate": 0.625,
-    "valid_call_rate": 1.0,
-    "trap_rate": 0.0,
-    "mean_steps": 7.12,
-    "sec_per_step": 4.34
-   },
-   "7": {
-    "episodes": 16,
-    "success_rate": 0.0,
-    "valid_call_rate": 1.0,
-    "trap_rate": 0.0,
-    "mean_steps": 13.75,
-    "sec_per_step": 5.65
-   }
-  }
- }
-}
-[   4399s] live=16 round= 30.0s steps=910 new_tok=77434 peak=14.2GB oom=2
-[   4422s] live=16 round= 23.0s steps=926 new_tok=77898 peak=14.2GB oom=2
-[   4447s] live=16 round= 25.4s steps=942 new_tok=78362 peak=14.2GB oom=2
-[   4474s] live=16 round= 27.2s steps=958 new_tok=78826 peak=14.2GB oom=2
-[   4503s] live=16 round= 28.8s steps=974 new_tok=79290 peak=14.2GB oom=2
-[   4538s] live=16 round= 34.8s steps=990 new_tok=79894 peak=14.2GB oom=2
-[   4556s] live=8 round= 18.3s steps=998 new_tok=80238 peak=14.2GB oom=2
-[   4568s] live=5 round= 12.1s steps=1003 new_tok=80453 peak=14.2GB oom=2
-[   4574s] live=1 round=  5.6s steps=1004 new_tok=80493 peak=14.2GB oom=2
-[   4579s] live=1 round=  5.2s steps=1005 new_tok=80537 peak=14.2GB oom=2
-[   4585s] live=1 round=  5.8s steps=1006 new_tok=80582 peak=14.2GB oom=2
-[   4593s] live=1 round=  8.3s steps=1007 new_tok=80653 peak=14.2GB oom=2
-[   4602s] live=1 round=  8.2s steps=1008 new_tok=80722 peak=14.2GB oom=2
-{
- "full": {
-  "episodes": 16,
-  "valid_call_rate": 1.0,
-  "trap_rate": 0.0,
-  "mean_steps": 7.12,
-  "sec_per_step": 2.04,
-  "escape_rate": 0.0,
-  "mean_rooms_cleared": 0.06,
-  "lock_attribution": {
-   "did_not_reach_lock": 16
-  }
- }
-}

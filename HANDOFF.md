@@ -96,3 +96,11 @@ See runtime/secrets/README.md. Network allowlist changes only apply in a NEW con
 - GRPO fix: max_completion_length/temperature were inside a comment. GRPO states regenerated (625, reward check teacher>perturbed 400/400).
 - Modal (user runs from Mac; VM proxy blocks api.modal.com): train/modal_grpo.py. Smoke (2 steps A100-80GB): 40.3 s/step, $2.8 GPU per 100 steps, frac_reward_zero_std 0. Merged SFT v2 on Volume lexi-grpo + HF FatUnc6969/tiny-aya-borderland-sft-v2-merged.
 - Code sha afe948ebc587 (checkpoints every 50 steps, 6 h timeout). Real runs: --arm grpo/control --steps 250 (~$9 each est.).
+
+## 2026-11-15 13:00-17:15 IST: GRPO null, own-notebook chain, SFT v3
+- Modal ops channel: train/modal_grpo.py deployed app "lexi-borderland"; queue = HF dataset ops/queue.jsonl (runtime/ops/add_ops.py), status = ops/status.json (runtime/ops/status.py). Whitelisted fns train/evaluate/sft/publish; hard cap $27 committed (ledger v2 re-based at $16 measured).
+- GRPO 250 steps vs random-reward control (both from SFT v2 merged): held-out step reward 0.200 vs 0.202 (SFT v2 0.187); rooms 8.9% vs 10.7%. NULL.
+- Own-notebook chain (chain4, SFT v2): wrote notebook 64/64, lock 50%: phase right 64/64, registry bit always 0 (not_retained exactly on sigma=1 twins).
+- Fable review (GO conditional): add explicit evidence gate to rooms 1-3 reasons, balance registry bit in notebook rows, keep room-4 replay. Pre-check passed: room-1 gold = read at 0-5 records, choose only at full evidence.
+- SFT v3 data: 1,650 rows (rooms 1/2/3/4 = 390/390/500/220), 870 derivations re-checked, notebook bits 60/60. Code sha ef91939297a5. Modal op sft-v3 running (continues sft-v2, 1 epoch) -> FatUnc6969/tiny-aya-borderland-sft-v3.
+- Control adapter published (README metadata fixed).

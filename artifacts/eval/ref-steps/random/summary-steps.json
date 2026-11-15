@@ -1,0 +1,59 @@
+{
+ "label": "random",
+ "policy": "random",
+ "model": null,
+ "adapter": null,
+ "bundle_sha": "local",
+ "max_new_tokens": 400,
+ "decoding": "greedy",
+ "lenient_json": false,
+ "seconds": {
+  "steps": 34.2
+ },
+ "peak_gpu_gb": 0.0,
+ "oom_retries": 0,
+ "dtype": null,
+ "new_tokens": 0,
+ "scorecard": {
+  "steps": {
+   "states": 320,
+   "mean_step_reward": -0.297,
+   "mean_step_reward_ci95": [
+    -0.342,
+    -0.243
+   ],
+   "reward_kinds": {
+    "protocol_error": 123,
+    "wasted": 105,
+    "fatal": 33,
+    "milestone": 9,
+    "progress": 19,
+    "trap": 31
+   },
+   "by_teacher_tool": {
+    "accept_amendment": -0.033,
+    "accuse": -0.4,
+    "activate_relay": -0.033,
+    "allocate_points": -0.2,
+    "certify_roster": -0.467,
+    "choose_door": -0.345,
+    "energize": -0.05,
+    "exit_room": -0.317,
+    "move": -0.2,
+    "notebook_write": -0.257,
+    "probe": -0.117,
+    "question": -0.187,
+    "read_record": -0.388,
+    "revoke": -0.771,
+    "set_switch": -0.253,
+    "settle": -0.467,
+    "submit_bid": -0.492,
+    "survey": -0.196,
+    "team_step": -0.326,
+    "unlock": 0.143,
+    "validate_registry": -0.267
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  }
+ }
+}

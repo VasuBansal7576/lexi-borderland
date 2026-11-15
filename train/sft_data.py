@@ -27,7 +27,7 @@ def main():
             ok += 1
             for i, s in enumerate(steps):
                 row = {"world": str(path.relative_to(ROOT)), "step": i, "room": s["room"],
-                       "messages": s["messages"] + [{"role": "assistant", "content": target_text(s["action"], s["knowledge"], s.get("obs"))}]}
+                       "messages": s["messages"] + [{"role": "assistant", "content": s.get("target") or target_text(s["action"], s["knowledge"], s.get("obs"))}]}
                 f.write(json.dumps(row, separators=(",", ":")) + "\n")
                 rooms[s["room"]] += 1; tools[s["action"]["tool"]] += 1
                 chars.append(sum(len(m["content"]) for m in row["messages"]))

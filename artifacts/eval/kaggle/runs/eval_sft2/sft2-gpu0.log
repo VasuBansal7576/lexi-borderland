@@ -1,48 +1,0 @@
-Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<10:30,  2.18s/it]Loading weights:  40%|███▉      | 115/290 [00:02<00:02, 65.48it/s]Loading weights:  50%|█████     | 145/290 [00:02<00:02, 65.57it/s]Loading weights:  57%|█████▋    | 165/290 [00:03<00:02, 59.33it/s]Loading weights:  62%|██████▏   | 179/290 [00:03<00:01, 55.89it/s]Loading weights:  66%|██████▌   | 190/290 [00:03<00:01, 53.27it/s]Loading weights:  70%|███████   | 203/290 [00:04<00:01, 55.66it/s]Loading weights:  73%|███████▎  | 212/290 [00:04<00:01, 56.99it/s]Loading weights:  76%|███████▌  | 220/290 [00:04<00:01, 54.35it/s]Loading weights:  78%|███████▊  | 227/290 [00:04<00:01, 48.31it/s]Loading weights:  82%|████████▏ | 237/290 [00:04<00:01, 47.68it/s]Loading weights:  87%|████████▋ | 251/290 [00:05<00:00, 54.90it/s]Loading weights:  90%|████████▉ | 260/290 [00:05<00:00, 53.70it/s]Loading weights:  92%|█████████▏| 268/290 [00:05<00:00, 54.78it/s]Loading weights:  95%|█████████▍| 275/290 [00:05<00:00, 53.70it/s]Loading weights:  98%|█████████▊| 283/290 [00:05<00:00, 56.05it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 51.25it/s]
-[    182s] live=64 round=180.1s steps=64 new_tok=4800 peak=13.5GB oom=0
-[    379s] live=64 round=197.0s steps=128 new_tok=9928 peak=13.5GB oom=0
-[    558s] live=64 round=178.7s steps=192 new_tok=14928 peak=13.9GB oom=1
-[    717s] live=60 round=159.2s steps=252 new_tok=19856 peak=13.9GB oom=1
-[    877s] live=60 round=159.5s steps=312 new_tok=24544 peak=13.9GB oom=1
-[   1006s] live=53 round=128.9s steps=365 new_tok=28686 peak=13.9GB oom=1
-[   1132s] live=51 round=126.6s steps=416 new_tok=32674 peak=13.9GB oom=1
-[   1211s] live=30 round= 78.2s steps=446 new_tok=35024 peak=13.9GB oom=1
-[   1287s] live=26 round= 75.9s steps=472 new_tok=37060 peak=13.9GB oom=1
-[   1353s] live=25 round= 66.8s steps=497 new_tok=39018 peak=13.9GB oom=1
-[   1398s] live=16 round= 44.9s steps=513 new_tok=40274 peak=13.9GB oom=1
-[   1441s] live=15 round= 43.0s steps=528 new_tok=41450 peak=13.9GB oom=1
-[   1474s] live=11 round= 33.0s steps=539 new_tok=42311 peak=13.9GB oom=1
-[   1504s] live=8 round= 29.5s steps=547 new_tok=42936 peak=13.9GB oom=1
-[   1525s] live=6 round= 20.7s steps=553 new_tok=43405 peak=13.9GB oom=1
-[   1539s] live=4 round= 14.8s steps=557 new_tok=43718 peak=13.9GB oom=1
-[   1556s] live=3 round= 16.4s steps=560 new_tok=43953 peak=13.9GB oom=1
-[   1572s] live=3 round= 16.6s steps=563 new_tok=44188 peak=13.9GB oom=1
-[   1589s] live=3 round= 16.9s steps=566 new_tok=44423 peak=13.9GB oom=1
-[   1598s] live=1 round=  9.2s steps=567 new_tok=44502 peak=13.9GB oom=1
-{
- "room4_all": {
-  "episodes": 64,
-  "valid_call_rate": 1.0,
-  "trap_rate": 0.0,
-  "mean_steps": 8.86,
-  "sec_per_step": 2.81,
-  "lock_success": 1.0,
-  "lock_ci95": [
-   1.0,
-   1.0
-  ],
-  "pairwise_dse": 1.0,
-  "pairwise_dse_ci95": [
-   1.0,
-   1.0
-  ],
-  "room4_clear": 0.0,
-  "families": 16,
-  "references": {
-   "oracle_lock": 1.0,
-   "memoryless_lock_ceiling": 0.25,
-   "memoryless_pairwise_dse": 0.0
-  },
-  "note": "checkpoint episodes start at room 4 with the teacher-written (oracle) notebook"
- }
-}

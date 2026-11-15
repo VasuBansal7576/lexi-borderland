@@ -23,9 +23,72 @@ def worlds(kind):
 
 
 INTERVENTIONS = ("room4_blank", "room4_swap")
+STEP_TOOLS = {"choose_door", "set_switch", "energize", "probe", "validate_registry", "certify_roster", "notebook_write",
+              "unlock", "activate_relay", "submit_bid", "accuse", "revoke", "accept_amendment", "allocate_points",
+              "team_step", "settle", "exit_room", "question", "read_record", "move", "survey"}
+_STATES = None
+
+
+def heldout_states(per_world=5):
+    """Held-out single-decision states for the dense-reward metric (what GRPO optimises): teacher prefix, then one
+    model action scored by train.reward.score_action. Deterministic: same states for every arm."""
+    global _STATES
+    if _STATES is None:
+        import random
+        from .episodes import teacher_episode
+        _STATES = []
+        for i, w in enumerate(worlds("all")):
+            _, steps = teacher_episode(load_world(w))
+            idx = [j for j, st in enumerate(steps) if st["action"]["tool"] in STEP_TOOLS]
+            random.Random(1000 + i).shuffle(idx)
+            _STATES += [(w, j) for j in sorted(idx[:per_world])]
+    return _STATES
+
+
+def teacher_prefix_steps(world, k):
+    """Teacher plays exactly k decisions (history resets at the wipe, like every other prefix)."""
+    from borderland.env import BorderlandEnv
+    from baseline.interface_compact import CompactHistory
+    env = BorderlandEnv(world=world)
+    solver, history = EvidenceSolver(), CompactHistory()
+    frame = {"ok": True, "result": {}, "observation": env.observe()}
+    actions = []
+    for _ in range(k):
+        history.add(frame)
+        action = solver.act(json.loads(json.dumps(frame)))
+        history.act(json.loads(target_text(action, json.loads(json.dumps(solver.knowledge, default=list)), frame["observation"], solver)))
+        actions.append(action)
+        result = env.step(action)
+        if result.info["epoch_changed"]:
+            solver, history = EvidenceSolver(), CompactHistory()
+            frame = {"ok": True, "result": {}, "observation": env.observe()}
+        else:
+            frame = result.observation
+    return env, history, frame, solver, actions
+
+
+class ChainEpisode(Episode):
+    """Own-notebook chain: starts in room 3 right before the teacher would write the notebook. The MODEL writes the
+    notebook, exits, is wiped, and must open the room-4 lock from what it wrote. Ends once the lock is resolved."""
+    def _check_end(self):
+        super()._check_end()
+        if not self.done and self.env.room == 4 and any((x.get("action") or {}).get("tool") == "unlock" for x in self.log):
+            self.done, self.stop = True, "lock_resolved"
+        if not self.done and self.env.room >= 5:
+            self.done, self.stop = True, "lock_resolved"
+
+
+def chain_start(world):
+    from .episodes import teacher_episode
+    _, steps = teacher_episode(world)
+    return next(j for j, st in enumerate(steps) if st["room"] == 3 and st["action"]["tool"] == "notebook_write")
 
 
 def plan(mode):
+    if mode in ("chain4", "chain4_blankwrite"):
+        return [(w, None) for w in worlds("all")]
+    if mode == "steps":
+        return heldout_states()
     if mode == "room4_all" or mode in INTERVENTIONS:
         return [(w, 4) for w in worlds("all")]
     if mode == "rooms":
@@ -36,6 +99,25 @@ def plan(mode):
 def make_episode(path, room, mode):
     world = load_world(path); rel = str(path.relative_to(ROOT))
     meta = {"world": rel, "mode": mode, "key": f"{mode}|{rel}|{room}"}
+    if mode in ("chain4", "chain4_blankwrite"):
+        k = chain_start(world)
+        env, hist, frame, solver, actions = teacher_prefix_steps(world, k)
+        assert env.room == 3 and env.epoch == 0
+        if mode == "chain4_blankwrite":  # control: the notebook write is forced empty (memoryless after the wipe)
+            env.step({"tool": "notebook_write", "args": {"lines": [""] * 8}})
+            frame = {"ok": True, "result": {}, "observation": env.observe()}
+        e = ChainEpisode(world, prefix=(env, hist, frame), step_cap=30, meta=meta)
+        e.teacher_solver, e.seen_wipes = solver, 0
+        return e
+    if mode == "steps":  # here `room` is the number of teacher decisions before the scored one
+        env, hist, frame, solver, actions = teacher_prefix_steps(world, room)
+        meta["prefix"] = json.dumps(actions, separators=(",", ":"))
+        meta["state_room"] = env.room
+        import copy
+        meta["teacher_tool"] = copy.deepcopy(solver).act(json.loads(json.dumps(frame)))["tool"]
+        e = Episode(world, start_room=max(2, env.room), prefix=(env, hist, frame), step_cap=1, meta=meta)
+        e.teacher_solver, e.seen_wipes = solver, 0
+        return e
     if room in (None, 1):
         e = Episode(world, meta=meta)
         if room == 1:
@@ -81,7 +163,7 @@ class TeacherPolicy:
             if e.wipes != e.seen_wipes:
                 e.teacher_solver, e.seen_wipes = EvidenceSolver(), e.wipes
             a = e.teacher_solver.act(json.loads(json.dumps(e.frame)))
-            outs.append(target_text(a, json.loads(json.dumps(e.teacher_solver.knowledge, default=list)), e.frame["observation"]))
+            outs.append(target_text(a, json.loads(json.dumps(e.teacher_solver.knowledge, default=list)), e.frame["observation"], e.teacher_solver))
         return outs
 
 
@@ -147,8 +229,13 @@ def main():
         t0 = time.time()
         eps = [make_episode(w, r, mode) for w, r in todo]
         def save(e):
+            row = e.result()
+            if mode == "steps":
+                from .reward import score_action
+                raw = e.log[0]["raw"] if e.log else ""
+                row["step_reward"], row["reward_kind"] = score_action(row["world"], row["prefix"], raw)
             with f.open("a") as fh:
-                fh.write(json.dumps(e.result()) + "\n")
+                fh.write(json.dumps(row) + "\n")
         if eps:
             run_batch(eps, policy, on_done=save)
         rows_by_mode[mode] = [json.loads(l) for l in open(f)] if f.exists() else []

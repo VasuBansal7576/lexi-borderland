@@ -96,8 +96,40 @@ def intervention_card(rows):
     return card
 
 
+def steps_card(rows):
+    n = len(rows); by = defaultdict(list)
+    for r in rows: by[r.get("teacher_tool")].append(r["step_reward"])
+    kinds = defaultdict(int)
+    for r in rows: kinds[r["reward_kind"]] += 1
+    groups = defaultdict(list)
+    for r in rows: groups[family(r["world"])].append(r)
+    mean = lambda rs: sum(x["step_reward"] for x in rs) / len(rs)
+    return {"states": n, "mean_step_reward": round(mean(rows), 3),
+            "mean_step_reward_ci95": boot_ci(dict(groups), mean),
+            "reward_kinds": dict(kinds), "by_teacher_tool": {k: round(sum(v) / len(v), 3) for k, v in sorted(by.items())},
+            "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"}
+
+
+def chain_card(rows):
+    card = room4_scorecard(rows)
+    card.pop("room4_clear", None)
+    card["note"] = "model writes its own notebook in room 3, is wiped, then must open the room-4 lock from it"
+    card["wrote_notebook"] = round(sum(any((x.get("action") or {}).get("tool") == "notebook_write" for x in r["log"])
+                                       for r in rows) / len(rows), 3)
+    card["reached_room4"] = round(sum(r["wipes"] >= 1 for r in rows) / len(rows), 3)
+    att = defaultdict(int)
+    for r in rows: att[attribution(r)] += 1
+    card["lock_attribution"] = dict(att)
+    return card
+
+
 def scorecard(rows_by_mode):
     out = {}
+    for m in ("chain4", "chain4_blankwrite"):
+        if rows_by_mode.get(m):
+            out[m] = chain_card(rows_by_mode[m])
+    if rows_by_mode.get("steps"):
+        out["steps"] = steps_card(rows_by_mode["steps"])
     for m in ("room4_blank", "room4_swap"):
         if rows_by_mode.get(m):
             out[m] = intervention_card(rows_by_mode[m])

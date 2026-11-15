@@ -1,75 +1,0 @@
-Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<10:55,  2.27s/it]Loading weights:  37%|███▋      | 107/290 [00:02<00:02, 62.09it/s]Loading weights:  53%|█████▎    | 155/290 [00:03<00:02, 55.82it/s]Loading weights:  63%|██████▎   | 184/290 [00:03<00:01, 55.71it/s]Loading weights:  70%|███████   | 204/290 [00:04<00:01, 59.41it/s]Loading weights:  76%|███████▌  | 220/290 [00:04<00:01, 63.37it/s]Loading weights:  81%|████████  | 234/290 [00:04<00:00, 68.02it/s]Loading weights:  85%|████████▌ | 247/290 [00:04<00:00, 68.63it/s]Loading weights:  89%|████████▉ | 259/290 [00:04<00:00, 71.47it/s]Loading weights:  93%|█████████▎| 269/290 [00:04<00:00, 73.83it/s]Loading weights:  98%|█████████▊| 283/290 [00:05<00:00, 80.46it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 57.24it/s]
-[    207s] live=64 round=205.0s steps=64 new_tok=4800 peak=12.8GB oom=0
-[    260s] live=16 round= 53.3s steps=80 new_tok=5952 peak=12.8GB oom=0
-[    319s] live=16 round= 58.4s steps=96 new_tok=7111 peak=12.8GB oom=0
-[    361s] live=16 round= 42.5s steps=112 new_tok=8387 peak=12.8GB oom=0
-[    402s] live=15 round= 41.1s steps=127 new_tok=9616 peak=12.8GB oom=0
-[    443s] live=15 round= 40.7s steps=142 new_tok=10799 peak=12.8GB oom=0
-[    485s] live=15 round= 41.5s steps=157 new_tok=11997 peak=12.8GB oom=0
-[    527s] live=15 round= 42.7s steps=172 new_tok=13151 peak=12.8GB oom=0
-[    565s] live=13 round= 38.2s steps=185 new_tok=14162 peak=12.8GB oom=0
-[    603s] live=12 round= 37.6s steps=197 new_tok=15165 peak=12.8GB oom=0
-[    639s] live=11 round= 36.3s steps=208 new_tok=16079 peak=12.8GB oom=0
-[    673s] live=9 round= 33.7s steps=217 new_tok=16822 peak=12.8GB oom=0
-[    688s] live=4 round= 14.5s steps=221 new_tok=17142 peak=12.8GB oom=0
-[    697s] live=1 round=  9.2s steps=222 new_tok=17218 peak=12.8GB oom=0
-{
- "room4_blank": {
-  "episodes": 64,
-  "valid_call_rate": 1.0,
-  "trap_rate": 0.0,
-  "mean_steps": 3.47,
-  "sec_per_step": 3.13,
-  "lock_success": 0.25,
-  "lock_ci95": [
-   0.25,
-   0.25
-  ],
-  "pairwise_dse": 0.0,
-  "pairwise_dse_ci95": [
-   0.008,
-   0.028
-  ],
-  "room4_clear": 0.0,
-  "families": 16,
-  "references": {
-   "oracle_lock": 1.0,
-   "memoryless_lock_ceiling": 0.25,
-   "memoryless_pairwise_dse": 0.0
-  },
-  "note": "room-4 checkpoint after the wipe with the surviving notebook replaced: blank (memoryless) or the anti-twin's teacher notebook (both entry bits differ)",
-  "unlock_attempt_rate": 1.0,
-  "matches_true_pair": 0.25
- }
-}
-[    903s] live=64 round=202.3s steps=286 new_tok=22018 peak=13.5GB oom=0
-{
- "room4_swap": {
-  "episodes": 64,
-  "valid_call_rate": 1.0,
-  "trap_rate": 0.0,
-  "mean_steps": 1.0,
-  "sec_per_step": 3.16,
-  "lock_success": 0.0,
-  "lock_ci95": [
-   0.0,
-   0.0
-  ],
-  "pairwise_dse": 0.0,
-  "pairwise_dse_ci95": [
-   0.0,
-   0.0
-  ],
-  "room4_clear": 0.0,
-  "families": 16,
-  "references": {
-   "oracle_lock": 1.0,
-   "memoryless_lock_ceiling": 0.25,
-   "memoryless_pairwise_dse": 0.0
-  },
-  "note": "room-4 checkpoint after the wipe with the surviving notebook replaced: blank (memoryless) or the anti-twin's teacher notebook (both entry bits differ)",
-  "unlock_attempt_rate": 1.0,
-  "matches_true_pair": 0.0,
-  "follows_notebook_pair": 1.0
- }
-}

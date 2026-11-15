@@ -8,13 +8,13 @@ from .metrics import scorecard
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts/eval"
 REPO = "FatUnc6969/lexi-borderland-data"
-MODES = ("room4_all", "rooms", "full", "room4_blank", "room4_swap")
+MODES = ("room4_all", "rooms", "full", "room4_blank", "room4_swap", "steps", "chain4")
 
 
 def pull():
     from huggingface_hub import HfApi, hf_hub_download
     for f in HfApi().list_repo_files(REPO, repo_type="dataset"):
-        if f.startswith(("runs/eval_", "runs/int_", "runs/baselen")):
+        if f.startswith(("runs/eval_", "runs/int_", "runs/baselen", "runs/modal_eval")):
             hf_hub_download(REPO, f, repo_type="dataset", force_download=True, local_dir=OUT / "kaggle")
 
 
@@ -48,12 +48,16 @@ def main():
     a = argparse.ArgumentParser(); a.add_argument("--no-pull", action="store_true"); a = a.parse_args()
     if not a.no_pull:
         pull()
-    arms = {"random": [OUT / "ref-random"], "teacher (oracle)": [OUT / "ref-teacher"],
+    arms = {"random": [OUT / "ref-random", OUT / "ref-steps/random"], "teacher (oracle)": [OUT / "ref-teacher", OUT / "ref-steps/teacher"],
             "Tiny Aya base (strict JSON)": [OUT / "kaggle/runs/eval_base/eval/base"],
             "Tiny Aya base (lenient JSON, fences stripped)": [OUT / "kaggle/runs/int_sft2_baselen_rooms/eval/base_lenient",
                                                               OUT / "kaggle/runs/baselen_rest/eval/base_lenient"],
             "Tiny Aya + SFT v1": [OUT / "kaggle/runs/eval_sft/eval/sft"],
-            "Tiny Aya + SFT v2": [OUT / "kaggle/runs/eval_sft2/eval/sft2", OUT / "kaggle/runs/int_sft2_baselen_rooms/eval/sft2"]}
+            "Tiny Aya + SFT v2": [OUT / "kaggle/runs/eval_sft2/eval/sft2", OUT / "kaggle/runs/int_sft2_baselen_rooms/eval/sft2",
+                                  OUT / "kaggle/runs/modal_eval/sft2"],
+            "Tiny Aya + SFT v2 + GRPO": [OUT / "kaggle/runs/modal_eval/grpo"],
+            "Tiny Aya + SFT v2 + GRPO random-reward control": [OUT / "kaggle/runs/modal_eval/control"],
+            "Tiny Aya + SFT v3": [OUT / "kaggle/runs/modal_eval/sft3"]}
     res = {}
     for arm, dirs in arms.items():
         rows = load(dirs)
@@ -85,6 +89,14 @@ def main():
                 x = c[m]
                 L.append(f"**{arm} {m}:** lock {x['lock_success']}, unlock attempted {x['unlock_attempt_rate']}, "
                          f"matches true pair {x['matches_true_pair']}, follows notebook pair {x.get('follows_notebook_pair', '-')}")
+        if c.get("chain4"):
+            x = c["chain4"]
+            L.append(f"**{arm} own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock {x['lock_success']} "
+                     f"{x['lock_ci95']}, DSE {x['pairwise_dse']}, wrote notebook {x['wrote_notebook']}, "
+                     f"attribution {x['lock_attribution']}")
+        if c.get("steps"):
+            L.append(f"**{arm} held-out step reward (320 decisions):** {c['steps']['mean_step_reward']} "
+                     f"{c['steps']['mean_step_reward_ci95']} kinds {c['steps']['reward_kinds']}")
         if c.get("invalid_kinds"):
             L.append(f"**{arm} invalid outputs by kind:** {c['invalid_kinds']}")
     (OUT / "RESULTS.md").write_text("\n".join(L) + "\n")

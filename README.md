@@ -1,4 +1,26 @@
-# Borderland: seven-room causal environment
+# Borderland: can a 3B model carry facts across a memory wipe?
+
+**Hackathon results (Lexsi AI Safety & Alignment Hackathon, Track 3):** see [writeup/ARTICLE.md](writeup/ARTICLE.md) and [writeup/ABSTRACT.md](writeup/ABSTRACT.md).
+All numbers are rebuilt from raw per-episode logs with `python -m train.report` -> [artifacts/eval/RESULTS.md](artifacts/eval/RESULTS.md).
+
+| Held-out (64 worlds = 16 families x 4 twins) | Base | SFT v1 | SFT v2 | SFT v3 | Memoryless |
+|---|---|---|---|---|---|
+| Room-4 lock, teacher notebook | 12.5% (fences stripped) | 34% | 100% | 100% | <=25% |
+| Own-notebook loop (model writes notebook, wiped, unlocks) | - | - | 50% | 64/64, DSE 1.0 | <=25%, DSE 0 |
+| Room success (16x7) / full escape | 0% / 0 | 13.4% / 0 | 9.8% / 0 | 8.9% / 0 | |
+
+GRPO (AgentTune, 250 steps) matched an identical random-reward control (held-out step reward 0.200 vs 0.202).
+Models: https://huggingface.co/FatUnc6969 · Data, traces, logs: https://huggingface.co/datasets/FatUnc6969/lexi-borderland-data
+
+## Reproduce the training/eval pipeline
+- Environment + certification: below. Teacher data: `python -m train.sft_data`, `python -m train.sft_v3_select ...`.
+- SFT / GRPO / eval on Modal: `train/modal_grpo.py` (functions `sft`, `train`, `evaluate`); on Kaggle T4: `train/kaggle_job.py`.
+- Evaluation: `python -m train.eval_model --policy hf --model CohereLabs/tiny-aya-global --adapter <adapter> --modes room4_all,rooms,full,chain4,steps --label x`.
+- Report: `python -m train.report`.
+
+---
+
+## The environment: seven-room causal world
 
 Implemented in Python's standard library. The reference solver acquires evidence through game tools, writes eight notebook lines, loses its process after Tribunal, and solves Distance through Osmosis in a new process. No model, API key or package installation is needed. Tested with Python 3.9.
 

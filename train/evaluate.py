@@ -28,7 +28,7 @@ class TeacherPolicy:
     def adopt(self, solver): self.solver = solver
     def __call__(self, messages, frame):
         action = self.solver.act(json.loads(json.dumps(frame)))
-        return target_text(action, json.loads(json.dumps(self.solver.knowledge, default=list)), frame["observation"])
+        return target_text(action, json.loads(json.dumps(self.solver.knowledge, default=list)), frame["observation"], self.solver)
 
 
 class RandomPolicy:
@@ -64,7 +64,7 @@ def teacher_prefix(world, start_room):
     while env.room != start_room:
         history.add(frame)
         action = solver.act(json.loads(json.dumps(frame)))
-        history.act(json.loads(target_text(action, json.loads(json.dumps(solver.knowledge, default=list)), frame["observation"])))
+        history.act(json.loads(target_text(action, json.loads(json.dumps(solver.knowledge, default=list)), frame["observation"], solver)))
         result = env.step(action)
         if result.info["epoch_changed"]:
             solver, history = EvidenceSolver(), CompactHistory()

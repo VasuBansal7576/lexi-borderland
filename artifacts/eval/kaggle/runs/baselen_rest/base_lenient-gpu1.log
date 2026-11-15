@@ -1,26 +1,0 @@
-Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<11:24,  2.37s/it]Loading weights:  40%|███▉      | 115/290 [00:02<00:02, 63.62it/s]Loading weights:  56%|█████▌    | 162/290 [00:03<00:02, 62.10it/s]Loading weights:  66%|██████▌   | 191/290 [00:03<00:01, 55.98it/s]Loading weights:  72%|███████▏  | 210/290 [00:04<00:01, 56.09it/s]Loading weights:  77%|███████▋  | 224/290 [00:04<00:01, 53.61it/s]Loading weights:  81%|████████  | 235/290 [00:04<00:01, 53.77it/s]Loading weights:  84%|████████▍ | 244/290 [00:05<00:00, 49.74it/s]Loading weights:  87%|████████▋ | 253/290 [00:05<00:00, 53.41it/s]Loading weights:  90%|█████████ | 261/290 [00:05<00:00, 50.46it/s]Loading weights:  92%|█████████▏| 268/290 [00:05<00:00, 49.16it/s]Loading weights:  95%|█████████▍| 275/290 [00:05<00:00, 47.28it/s]Loading weights:  98%|█████████▊| 283/290 [00:05<00:00, 49.23it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 49.25it/s]
-[     47s] live=16 round= 46.8s steps=16 new_tok=1744 peak=12.0GB oom=0
-[     85s] live=16 round= 37.9s steps=32 new_tok=2872 peak=12.6GB oom=0
-[    206s] live=16 round=121.0s steps=48 new_tok=4681 peak=12.6GB oom=0
-[    236s] live=16 round= 30.7s steps=64 new_tok=5833 peak=12.6GB oom=0
-[    268s] live=16 round= 31.9s steps=80 new_tok=6985 peak=12.6GB oom=0
-[    302s] live=16 round= 33.3s steps=96 new_tok=8213 peak=12.6GB oom=0
-[    323s] live=8 round= 21.3s steps=104 new_tok=8888 peak=12.6GB oom=0
-[    336s] live=5 round= 13.1s steps=109 new_tok=9363 peak=12.6GB oom=0
-[    348s] live=4 round= 11.6s steps=113 new_tok=9738 peak=12.6GB oom=0
-[    360s] live=4 round= 11.9s steps=117 new_tok=10090 peak=12.6GB oom=0
-[    364s] live=1 round=  4.8s steps=118 new_tok=10145 peak=12.6GB oom=0
-{
- "full": {
-  "episodes": 16,
-  "valid_call_rate": 0.958,
-  "trap_rate": 0.0,
-  "mean_steps": 7.38,
-  "sec_per_step": 3.09,
-  "escape_rate": 0.0,
-  "mean_rooms_cleared": 0.0,
-  "lock_attribution": {
-   "did_not_reach_lock": 16
-  }
- }
-}

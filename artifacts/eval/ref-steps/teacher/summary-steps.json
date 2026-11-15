@@ -1,0 +1,56 @@
+{
+ "label": "teacher",
+ "policy": "teacher",
+ "model": null,
+ "adapter": null,
+ "bundle_sha": "local",
+ "max_new_tokens": 400,
+ "decoding": "greedy",
+ "lenient_json": false,
+ "seconds": {
+  "steps": 36.2
+ },
+ "peak_gpu_gb": 0.0,
+ "oom_retries": 0,
+ "dtype": null,
+ "new_tokens": 0,
+ "scorecard": {
+  "steps": {
+   "states": 320,
+   "mean_step_reward": 0.488,
+   "mean_step_reward_ci95": [
+    0.446,
+    0.53
+   ],
+   "reward_kinds": {
+    "progress": 222,
+    "milestone": 91,
+    "wasted": 7
+   },
+   "by_teacher_tool": {
+    "accept_amendment": 0.3,
+    "accuse": 1.0,
+    "activate_relay": 1.0,
+    "allocate_points": 0.3,
+    "certify_roster": 1.0,
+    "choose_door": 0.745,
+    "energize": 1.0,
+    "exit_room": 1.0,
+    "move": 0.3,
+    "notebook_write": -0.2,
+    "probe": 0.3,
+    "question": 0.3,
+    "read_record": 0.3,
+    "revoke": 1.0,
+    "set_switch": 0.3,
+    "settle": 1.0,
+    "submit_bid": 0.767,
+    "survey": 0.3,
+    "team_step": 0.447,
+    "unlock": 1.0,
+    "validate_registry": 1.0
+   },
+   "note": "held-out single decisions after a teacher prefix, scored with the GRPO step reward"
+  }
+ }
+}
