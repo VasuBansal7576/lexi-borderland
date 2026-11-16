@@ -135,6 +135,56 @@
    ],
    "n": 200
   },
+  "v5|wipe-train-own": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.073
+   ],
+   "n": 96
+  },
+  "v5|wipe-train-blank": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.073
+   ],
+   "n": 96
+  },
+  "v5|wipe-train-swap": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.073
+   ],
+   "n": 96,
+   "follows_twin": 0.0
+  },
+  "v5|wipe-held-own": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.094
+   ],
+   "n": 32
+  },
+  "v5|wipe-held-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 32
+  },
+  "v5|wipe-held-swap": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.094
+   ],
+   "n": 32,
+   "follows_twin": 0.0
+  },
   "v5|wipecode-train-own": {
    "acc": 0.0,
    "ci": [
