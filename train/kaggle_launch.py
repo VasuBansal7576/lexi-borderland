@@ -39,7 +39,7 @@ def kernel(phase, hf_user, grpo_steps):
     meta = {"id": f"{user()}/{slug}", "title": slug, "code_file": "job.py", "language": "python", "kernel_type": "script",
             "is_private": True, "enable_gpu": True, "enable_internet": True, "enable_tpu": False,
             "dataset_sources": [], "competition_sources": [],
-            "kernel_sources": [], "model_sources": [], "machine_shape": "NvidiaTeslaT4"}
+            "kernel_sources": [], "model_sources": [], "machine_shape": __import__("os").environ.get("KAGGLE_MACHINE", "NvidiaTeslaT4")}
     (d / "kernel-metadata.json").write_text(json.dumps(meta, indent=1))
     sh(f"kaggle kernels push -p {d}")
 

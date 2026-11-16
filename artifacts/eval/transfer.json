@@ -1,0 +1,488 @@
+{
+ "results": {
+  "base|bfcl": {
+   "acc": 0.445,
+   "ci": [
+    0.393,
+    0.492
+   ],
+   "n": 400,
+   "by_cat": {
+    "simple": 0.333,
+    "multiple": 0.31,
+    "parallel": 0.338,
+    "irrelevance": 0.8
+   }
+  },
+  "base|gsm8k": {
+   "acc": 0.748,
+   "ci": [
+    0.708,
+    0.784
+   ],
+   "n": 500
+  },
+  "base|mmlu": {
+   "acc": 0.505,
+   "ci": [
+    0.435,
+    0.575
+   ],
+   "n": 200
+  },
+  "base|wipe-train-own": {
+   "acc": 0.021,
+   "ci": [
+    0.0,
+    0.052
+   ],
+   "n": 96
+  },
+  "base|wipe-train-blank": {
+   "acc": 0.042,
+   "ci": [
+    0.01,
+    0.083
+   ],
+   "n": 96
+  },
+  "base|wipe-train-swap": {
+   "acc": 0.042,
+   "ci": [
+    0.01,
+    0.083
+   ],
+   "n": 96,
+   "follows_twin": 0.01
+  },
+  "base|wipe-held-own": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.094
+   ],
+   "n": 32
+  },
+  "base|wipe-held-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 32
+  },
+  "base|wipe-held-swap": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.094
+   ],
+   "n": 32,
+   "follows_twin": 0.0
+  },
+  "base|wipecode-train-own": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48
+  },
+  "base|wipecode-train-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48
+  },
+  "base|wipecode-train-swap": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48,
+   "follows_twin": 0.0
+  },
+  "v5|bfcl": {
+   "acc": 0.265,
+   "ci": [
+    0.223,
+    0.307
+   ],
+   "n": 400,
+   "by_cat": {
+    "simple": 0.042,
+    "multiple": 0.11,
+    "parallel": 0.037,
+    "irrelevance": 0.87
+   }
+  },
+  "v5|gsm8k": {
+   "acc": 0.724,
+   "ci": [
+    0.682,
+    0.76
+   ],
+   "n": 500
+  },
+  "v5|mmlu": {
+   "acc": 0.525,
+   "ci": [
+    0.45,
+    0.595
+   ],
+   "n": 200
+  },
+  "v5|wipecode-train-own": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48
+  },
+  "v5|wipecode-train-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48
+  },
+  "v5|wipecode-train-swap": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48,
+   "follows_twin": 0.0
+  },
+  "genA|bfcl": {
+   "acc": 0.545,
+   "ci": [
+    0.495,
+    0.593
+   ],
+   "n": 400,
+   "by_cat": {
+    "simple": 0.792,
+    "multiple": 0.68,
+    "parallel": 0.425,
+    "irrelevance": 0.21
+   }
+  },
+  "genA|gsm8k": {
+   "acc": 0.576,
+   "ci": [
+    0.53,
+    0.62
+   ],
+   "n": 500
+  },
+  "genA|mmlu": {
+   "acc": 0.545,
+   "ci": [
+    0.475,
+    0.61
+   ],
+   "n": 200
+  },
+  "genA|wipe-train-own": {
+   "acc": 0.625,
+   "ci": [
+    0.531,
+    0.719
+   ],
+   "n": 96
+  },
+  "genA|wipe-train-blank": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.073
+   ],
+   "n": 96
+  },
+  "genA|wipe-train-swap": {
+   "acc": 0.135,
+   "ci": [
+    0.073,
+    0.208
+   ],
+   "n": 96,
+   "follows_twin": 0.531
+  },
+  "genA|wipe-held-own": {
+   "acc": 0.062,
+   "ci": [
+    0.0,
+    0.156
+   ],
+   "n": 32
+  },
+  "genA|wipe-held-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 32
+  },
+  "genA|wipe-held-swap": {
+   "acc": 0.062,
+   "ci": [
+    0.0,
+    0.156
+   ],
+   "n": 32,
+   "follows_twin": 0.0
+  },
+  "genA|wipecode-train-own": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48
+  },
+  "genA|wipecode-train-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48
+  },
+  "genA|wipecode-train-swap": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48,
+   "follows_twin": 0.021
+  },
+  "genB|bfcl": {
+   "acc": 0.67,
+   "ci": [
+    0.623,
+    0.715
+   ],
+   "n": 400,
+   "by_cat": {
+    "simple": 0.858,
+    "multiple": 0.77,
+    "parallel": 0.588,
+    "irrelevance": 0.41
+   }
+  },
+  "genB|gsm8k": {
+   "acc": 0.6,
+   "ci": [
+    0.556,
+    0.64
+   ],
+   "n": 500
+  },
+  "genB|mmlu": {
+   "acc": 0.51,
+   "ci": [
+    0.44,
+    0.575
+   ],
+   "n": 200
+  },
+  "genB|wipe-train-own": {
+   "acc": 0.521,
+   "ci": [
+    0.427,
+    0.625
+   ],
+   "n": 96
+  },
+  "genB|wipe-train-blank": {
+   "acc": 0.031,
+   "ci": [
+    0.0,
+    0.073
+   ],
+   "n": 96
+  },
+  "genB|wipe-train-swap": {
+   "acc": 0.125,
+   "ci": [
+    0.062,
+    0.198
+   ],
+   "n": 96,
+   "follows_twin": 0.458
+  },
+  "genB|wipe-held-own": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 32
+  },
+  "genB|wipe-held-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 32
+  },
+  "genB|wipe-held-swap": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 32,
+   "follows_twin": 0.0
+  },
+  "genB|wipecode-train-own": {
+   "acc": 0.021,
+   "ci": [
+    0.0,
+    0.062
+   ],
+   "n": 48
+  },
+  "genB|wipecode-train-blank": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48
+  },
+  "genB|wipecode-train-swap": {
+   "acc": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "n": 48,
+   "follows_twin": 0.0
+  },
+  "genA-s50|bfcl": {
+   "acc": 0.525,
+   "ci": [
+    0.475,
+    0.575
+   ],
+   "n": 400,
+   "by_cat": {
+    "simple": 0.8,
+    "multiple": 0.78,
+    "parallel": 0.225,
+    "irrelevance": 0.18
+   }
+  },
+  "genA-s75|bfcl": {
+   "acc": 0.515,
+   "ci": [
+    0.468,
+    0.565
+   ],
+   "n": 400,
+   "by_cat": {
+    "simple": 0.85,
+    "multiple": 0.79,
+    "parallel": 0.138,
+    "irrelevance": 0.14
+   }
+  }
+ },
+ "paired": {
+  "genA-genB:bfcl": [
+   -0.125,
+   [
+    -0.168,
+    -0.08
+   ]
+  ],
+  "genA-base:bfcl": [
+   0.1,
+   [
+    0.028,
+    0.172
+   ]
+  ],
+  "genB-base:bfcl": [
+   0.225,
+   [
+    0.16,
+    0.29
+   ]
+  ],
+  "genA-genB:gsm8k": [
+   -0.024,
+   [
+    -0.056,
+    0.008
+   ]
+  ],
+  "genA-base:gsm8k": [
+   -0.172,
+   [
+    -0.22,
+    -0.122
+   ]
+  ],
+  "genB-base:gsm8k": [
+   -0.148,
+   [
+    -0.196,
+    -0.1
+   ]
+  ],
+  "genA-genB:mmlu": [
+   0.035,
+   [
+    -0.01,
+    0.08
+   ]
+  ],
+  "genA-base:mmlu": [
+   0.04,
+   [
+    0.0,
+    0.08
+   ]
+  ],
+  "genB-base:mmlu": [
+   0.005,
+   [
+    -0.04,
+    0.05
+   ]
+  ],
+  "genA-genB:wipe-train-own": [
+   0.104,
+   [
+    0.031,
+    0.188
+   ]
+  ],
+  "genA-base:wipe-train-own": [
+   0.604,
+   [
+    0.51,
+    0.698
+   ]
+  ],
+  "genB-base:wipe-train-own": [
+   0.5,
+   [
+    0.396,
+    0.604
+   ]
+  ]
+ }
+}

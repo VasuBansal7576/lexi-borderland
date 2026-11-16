@@ -135,18 +135,27 @@ def publish(src: str, repo: str, base: str, note: str):
 
 
 @app.function(gpu="A100-80GB", volumes={"/vol": vol}, secrets=[HF_SECRET], timeout=3 * 3600)
-def sft(name: str, data: str, init_repo: str, expected_sha: str, epochs: float = 1.0, lr: float = 1e-4):
+def sft(name: str, data: str, init_repo: str, expected_sha: str, epochs: float = 1.0, lr: float = 1e-4, max_steps: int = -1):
     """AgentTune distillation (train.sft_train) continuing an existing LoRA; pushes FatUnc6969/tiny-aya-borderland-<name>."""
     import json, sys, time
     from huggingface_hub import HfApi, snapshot_download
     t0 = time.time(); setup(expected_sha)
-    init = snapshot_download(init_repo)
+    init = snapshot_download(init_repo) if init_repo else ""
     out = f"/vol/{name}"
-    sh(f"cd /code && {sys.executable} -m train.sft_train --model {BASE} --data /data/{data} --output {out} --init-adapter {init} "
-       f"--per-bucket 100000 --epochs {epochs} --lr {lr} --batch 1 --accum 16 --max-length 6144 2>&1 | tee /vol/{name}.log")
-    vol.commit()
+    import threading
+    stop = threading.Event()
+    def committer():                      # persist intermediate checkpoints even if the container dies
+        while not stop.wait(600):
+            try: vol.commit()
+            except Exception as e: print("commit failed", e, flush=True)
+    threading.Thread(target=committer, daemon=True).start()
+    sh(f"cd /code && {sys.executable} -m train.sft_train --model {BASE} --data /data/{data} --output {out}"
+       f"{' --init-adapter ' + init if init else ''} "
+       f"--per-bucket 100000 --epochs {epochs} --lr {lr} --batch 1 --accum 16 --max-length 6144 --max-steps {max_steps} "
+       f"--save-steps 100 2>&1 | tee /vol/{name}.log")
+    stop.set(); vol.commit()
     repo = f"FatUnc6969/tiny-aya-borderland-{name}"
-    clean_readme(out, BASE, f"LoRA for Tiny Aya Global, continued from {init_repo} on {data} (Borderland, AgentTune distillation).")
+    clean_readme(out, BASE, f"LoRA for Tiny Aya Global, {'continued from ' + init_repo if init_repo else 'trained from the base model'} on {data} (Borderland generalisation mixture, AgentTune distillation).")
     api = HfApi(); api.create_repo(repo, exist_ok=True, private=False)
     api.upload_folder(folder_path=out, repo_id=repo, commit_message=f"{name} from {init_repo}")
     api.upload_file(path_or_fileobj=f"/vol/{name}.log", path_in_repo=f"runs/modal_{name}/train.log", repo_id=DATA_REPO, repo_type="dataset")
@@ -188,11 +197,11 @@ def evaluate(label: str, modes: str, expected_sha: str, model: str = "/vol/sft2-
 
 
 COST_PER_HOUR = 3.2      # A100 80GB + CPU/RAM, conservative
-CAP_USD = 27.0           # hard cap on everything launched through the queue (incl. runs launched by hand)
+CAP_USD = 33.0           # ledger counts $3.2/h vs ~$2.75/h real (A100 + CPU/RAM): 33 ledger ~= $28.4 real of the $30 credit
 PRIOR_USD = 8.0          # smoke + the hand-launched GRPO run
 LEDGER_V2_USD = 16.0     # v2 accounting (2026-11-15 16:45 IST): everything finished so far, measured, rounded up
 FUNCS = {"train": {"arm": str, "steps": int, "expected_sha": str, "generations": int, "lr": float},
-         "sft": {"name": str, "data": str, "init_repo": str, "expected_sha": str, "epochs": float, "lr": float},
+         "sft": {"name": str, "data": str, "init_repo": str, "expected_sha": str, "epochs": float, "lr": float, "max_steps": int},
          "publish": {"src": str, "repo": str, "base": str, "note": str},
          "evaluate": {"label": str, "modes": str, "expected_sha": str, "model": str, "adapter": str, "lenient": bool,
                       "token_budget": int}}
@@ -247,6 +256,8 @@ def ops_tick():
             except Exception as e:
                 rec["state"] = "failed"; rec["error"] = repr(e)[:500]; changed = True
     OPS["state"] = state
+    if state.get("cap") != CAP_USD:
+        state["cap"] = CAP_USD; state["app_version"] = "gen-v1"; changed = True
     if changed or int(time.time()) % 1800 < 120:
         state["tick"] = time.time()
         api.upload_file(path_or_fileobj=json.dumps(state, indent=1, default=str).encode(), path_in_repo="ops/status.json",

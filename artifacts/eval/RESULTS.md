@@ -11,6 +11,11 @@
 | Tiny Aya + SFT v2 + GRPO | 1.0 [1.0, 1.0] | 1.0 | 0.089 | 0.0 | 0.0 | 0.998 | 0.0 |
 | Tiny Aya + SFT v2 + GRPO random-reward control | -  | - | 0.107 | 0.0 | 0.0 | 0.996 | 0.0 |
 | Tiny Aya + SFT v3 | 1.0 [1.0, 1.0] | 1.0 | 0.089 | 0.0 | 0.0 | 1.0 | 0.0 |
+| Tiny Aya + SFT v4 | 1.0 [1.0, 1.0] | 1.0 | 0.214 | 0.0 | 0.0 | 0.999 | 0.0 |
+| Tiny Aya + SFT v5 | -  | - | 0.33 | 0.0 | 1.0 | 1.0 | 0.0 |
+| Tiny Aya + SFT v6 | -  | - | 0.509 | 0.0 | 2.12 | 0.995 | 0.0 |
+| Tiny Aya + A (from base: verified derivations, general mix) | -  | - | 0.384 | 0.0 | 2.12 | 0.986 | 0.0 |
+| Tiny Aya + B (from base: same rows, plain traces) | -  | - | 0.062 | 0.0 | 0.0 | 0.998 | 0.0 |
 
 Memoryless reference at room 4: lock <= 0.25, pairwise DSE = 0.
 
@@ -47,3 +52,26 @@ Memoryless reference at room 4: lock <= 0.25, pairwise DSE = 0.
 **Tiny Aya + SFT v3 full-run lock attribution:** {'did_not_reach_lock': 16}
 **Tiny Aya + SFT v3 own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock 1.0 [1.0, 1.0], DSE 1.0, wrote notebook 1.0, attribution {'lock_correct': 64}
 **Tiny Aya + SFT v3 held-out step reward (320 decisions):** 0.267 [0.221, 0.319] kinds {'progress': 163, 'protocol_error': 65, 'milestone': 68, 'fatal': 17, 'wasted': 7}
+**Tiny Aya + SFT v4 by room:** R1: 0.0, R2: 0.0, R3: 0.812, R4: 0.0, R5: 0.0, R6: 0.688, R7: 0.0
+**Tiny Aya + SFT v4 full-run lock attribution:** {'did_not_reach_lock': 16}
+**Tiny Aya + SFT v4 own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock 1.0 [1.0, 1.0], DSE 1.0, wrote notebook 1.0, attribution {'lock_correct': 64}
+**Tiny Aya + SFT v4 held-out step reward (320 decisions):** 0.334 [0.297, 0.375] kinds {'progress': 182, 'protocol_error': 55, 'milestone': 70, 'fatal': 5, 'wasted': 8}
+**Tiny Aya + SFT v4 invalid outputs by kind:** {'other': 1}
+**Tiny Aya + SFT v5 by room:** R1: 1.0, R2: 0.0, R3: 0.875, R4: 0.0, R5: 0.312, R6: 0.125, R7: 0.0
+**Tiny Aya + SFT v5 full-run lock attribution:** {'did_not_reach_lock': 16}
+**Tiny Aya + SFT v5 own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock 1.0 [1.0, 1.0], DSE 1.0, wrote notebook 1.0, attribution {'lock_correct': 64}
+**Tiny Aya + SFT v6 by room:** R1: 1.0, R2: 0.625, R3: 0.875, R4: 0.0, R5: 0.25, R6: 0.812, R7: 0.0
+**Tiny Aya + SFT v6 full-run lock attribution:** {'did_not_reach_lock': 8, 'lock_correct': 8}
+**Tiny Aya + SFT v6 invalid outputs by kind:** {'other': 6}
+**Tiny Aya + A (from base: verified derivations, general mix) by room:** R1: 0.875, R2: 0.938, R3: 0.438, R4: 0.0, R5: 0.125, R6: 0.312, R7: 0.0
+**Tiny Aya + A (from base: verified derivations, general mix) full-run lock attribution:** {'did_not_reach_lock': 11, 'lock_correct': 5}
+**Tiny Aya + A (from base: verified derivations, general mix) room4_blank:** lock 0.25, unlock attempted 1.0, matches true pair 0.25, follows notebook pair -
+**Tiny Aya + A (from base: verified derivations, general mix) room4_swap:** lock 0.0, unlock attempted 1.0, matches true pair 0.0, follows notebook pair 1.0
+**Tiny Aya + A (from base: verified derivations, general mix) own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock 0.906 [0.766, 1.0], DSE 0.875, wrote notebook 1.0, attribution {'lock_correct': 58, 'did_not_reach_lock': 6}
+**Tiny Aya + A (from base: verified derivations, general mix) invalid outputs by kind:** {'other': 118}
+**Tiny Aya + B (from base: same rows, plain traces) by room:** R1: 0.0, R2: 0.0, R3: 0.062, R4: 0.0, R5: 0.188, R6: 0.188, R7: 0.0
+**Tiny Aya + B (from base: same rows, plain traces) full-run lock attribution:** {'did_not_reach_lock': 16}
+**Tiny Aya + B (from base: same rows, plain traces) room4_blank:** lock 0.25, unlock attempted 1.0, matches true pair 0.25, follows notebook pair -
+**Tiny Aya + B (from base: same rows, plain traces) room4_swap:** lock 0.078, unlock attempted 1.0, matches true pair 0.078, follows notebook pair 0.484
+**Tiny Aya + B (from base: same rows, plain traces) own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock 0.219 [0.141, 0.281], DSE 0.021, wrote notebook 1.0, attribution {'not_retained': 50, 'lock_correct': 14}
+**Tiny Aya + B (from base: same rows, plain traces) invalid outputs by kind:** {'other': 2}

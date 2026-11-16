@@ -6,12 +6,13 @@ import json, random, re, sys
 from collections import Counter, defaultdict
 
 SRCS, OUT = sys.argv[1:-1], sys.argv[-1]
-QUOTA = {(1, "read_record"): 200, (1, "choose_door"): 160, (1, "exit_room"): 30,
-         (2, "read_record"): 40, (2, "probe"): 100, (2, "set_switch"): 130, (2, "energize"): 90, (2, "exit_room"): 30,
+QUOTA = {(1, "read_record"): 200, (1, "choose_door"): 160, (1, "exit_room"): 70,
+         (2, "read_record"): 40, (2, "probe"): 100, (2, "set_switch"): 130, (2, "energize"): 90, (2, "exit_room"): 50,
          (3, "read_record"): 60, (3, "question"): 60, (3, "validate_registry"): 100, (3, "certify_roster"): 130,
          (3, "notebook_write"): 120, (3, "exit_room"): 30, (4, "unlock"): 120, (5, "submit_bid"): 40}
 OTHER = 10
 ROOM4_OTHER = 20
+LATE_OTHER = 25   # rooms 5-7 replay (v5 regressed room 6)
 rng = random.Random(11)
 buckets = defaultdict(list)
 for src in SRCS:
@@ -30,15 +31,19 @@ def check(r):
     if tool == "probe":
         m = re.search(r"so probe ([A-D])\.$", why); assert m and m[1] == a["channel_id"], why
     if tool == "set_switch":
-        m = re.search(r"Set channel \d \(([A-D])\) to (true|false)", why); assert m and m[1] == a["channel_id"] and (m[2] == "true") == a["value"], why
+        m = re.search(r"Flip channel (\d) \(([A-D])\) to (true|false) -> switches", why); assert m and m[2] == a["channel_id"] and (m[3] == "true") == a["value"], why
+        d = re.search(r"differs at channel\(s\) ([\d,]*)\.", why); assert d and (m[1] in d[1].split(",") or "forbidden, so" in why), why
+        pairs = re.findall(r"ch(\d) (\d)(=|!=)(\d)", why); assert len(pairs) == 3 and all((a_ == b_) == (op == "=") for _, a_, op, b_ in pairs), why
+        assert sorted(j for j, a_, op, b_ in pairs if op == "!=") == sorted(d[1].split(",")) if d[1] else True, why
     if tool == "energize":
-        assert why.endswith(f"energize {a['bus_id']}."), why
+        assert why.endswith(f"-> energize {a['bus_id']}."), why
+        e = re.search(r"Compare now (\(\d,\d,\d\)) with target x=(\(\d,\d,\d\)): .* -> all equal", why); assert e and e[1] == e[2], why
     if tool == "validate_registry":
         m = re.search(r"-> (true|false)\.$", why); assert m and (m[1] == "true") == a["response"], why
     if tool == "certify_roster":
-        got = dict(re.findall(r"(ash|birch|cedar|dusk): seal \d+ wall \d+ -> \([^)]*\)%4=\d=([INVS])\.", why))
+        got = dict(re.findall(r"(ash|birch|cedar|dusk): seal \d+ wall \d+ -> \([^)]*\)%4=(?:[-+\d]+=)?\d=([INVS])\.", why))
         assert got == a["mapping"], (got, a["mapping"])
-        assert re.search(re.escape(a["forged_credential_id"]) + r" \([INVS]\) tag \d != .* -> forged\.", why), why
+        assert f"Forged {a['forged_credential_id']}." in why and why.count("FORGED") == 1, why
     if tool == "read_record" and r["room"] in (1, 2, 3):
         assert f"-> read {a['record_id']} before committing." in why and why.startswith("Evidence check: unread"), why
     if tool == "question":
@@ -58,7 +63,7 @@ def check(r):
 picked = []
 for key, items in buckets.items():
     rng.shuffle(items)
-    n = QUOTA.get(key, ROOM4_OTHER if key[0] == 4 else OTHER)
+    n = QUOTA.get(key, ROOM4_OTHER if key[0] == 4 else (LATE_OTHER if key[0] >= 5 else OTHER))
     if key == (3, "notebook_write"):  # balance the registry bit the v2 chain always wrote as 0
         by = defaultdict(list)
         for r in items: by[check(r)].append(r)

@@ -1,3 +1,4 @@
+import os
 """Batched generation backends for chat messages: vLLM (GPU, LoRA) or transformers (CPU tests / fallback)."""
 
 
@@ -41,7 +42,7 @@ class HFGenerator:
     chunk is halved and retried down to batch 1 (OOM becomes a slowdown, not a failure).
     T4 (sm75) has no native bf16 -- torch emulates it ~10x slower -- so bf16 is used only on sm80+, else fp16.
     Each sequence stops as soon as its first JSON object closes (the action parser reads only that object)."""
-    def __init__(self, model, adapter=None, max_tokens=400, temperature=0.0, device=None, token_budget=24000):
+    def __init__(self, model, adapter=None, max_tokens=400, temperature=0.0, device=None, token_budget=24000, stop_json=True):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
         self.torch = torch
@@ -59,8 +60,15 @@ class HFGenerator:
         if adapter:
             from peft import PeftModel
             self.model = PeftModel.from_pretrained(self.model, adapter)
+            scale = float(os.environ.get("LORA_SCALE", "1"))
+            if scale != 1.0:   # adapter strength: multiply every LoRA delta by `scale`
+                for mod in self.model.modules():
+                    if hasattr(mod, "scaling") and isinstance(mod.scaling, dict):
+                        mod.scaling = {k: v * scale for k, v in mod.scaling.items()}
+                print("LORA_SCALE", scale, flush=True)
         self.model.eval()
         self.max_tokens, self.temperature, self.token_budget = max_tokens, temperature, token_budget
+        self.stop_json = stop_json
         self.oom_retries = 0
         self.peak_gb = 0.0
         self.calls, self.gen_seconds, self.new_tokens = 0, 0.0, 0
@@ -82,7 +90,7 @@ class HFGenerator:
         with self.torch.inference_mode():
             out = self.model.generate(**enc, max_new_tokens=self.max_tokens, do_sample=self.temperature > 0,
                                       temperature=self.temperature or None, pad_token_id=self.tok.pad_token_id,
-                                      stopping_criteria=self._stopper(n, len(texts)))
+                                      stopping_criteria=self._stopper(n, len(texts)) if self.stop_json else None)
         self.gen_seconds += time.time() - t; self.calls += 1
         res = []
         for o in out:

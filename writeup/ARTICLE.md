@@ -1,98 +1,62 @@
-# Borderland: can a 3B model carry facts across a memory wipe?
+# Teach the working, not the transcript: a 3B model that survives its own memory wipe
 
-*Lexsi AI Safety & Alignment Hackathon · Track 3 (Agentic Fine-tuning) · Problem statements 1 (reliable tool calling), 3 (agentic distillation), 9 (reward design / reward-hacking defences). Model: CohereLabs Tiny Aya Global (3.35B) + LoRA. Training: Lexsi AgentTune (`create_distill_trainer`, `create_agentic_trainer("grpo")`).*
+*Lexsi AI Safety & Alignment Hackathon · Track 3 (Agentic Fine-tuning). Model: CohereLabs Tiny Aya Global (3.35B) + one LoRA. Training: Lexsi AgentTune (`create_distill_trainer`; `create_agentic_trainer("grpo")` for the GRPO ablation).*
 
-> Every number here is rebuilt from raw per-episode logs by `python -m train.report` (artifacts/eval/RESULTS.md, results.json). Held-out = 64 certified worlds (16 families × 4 twins), disjoint from the 236 training worlds.
+> Every number below is rebuilt from raw per-item logs (`python -m train.report`, `python -m train.xfer_report` → artifacts/eval/RESULTS.md, TRANSFER.md). Greedy decoding, single seed, 95% bootstrap CIs; A−B differences are paired over identical items.
 
 ## TL;DR
-| Held-out | Base (fences stripped) | SFT v1 | SFT v2 | **SFT v3** | Memoryless |
-|---|---|---|---|---|---|
-| Room-4 lock from the teacher's notebook | 12.5% | 34% | 100% | **100%** | ≤25% |
-| **Own-notebook loop**: model writes notebook in room 3 → wiped → room-4 lock | – | – | 50% | **100% (64/64), DSE 1.0** | ≤25%, DSE 0 |
-| Valid tool calls (strict JSON) | 0% strict / 87.6% | 100% | 99.3% | **100%** | – |
-| Held-out step reward (GRPO's own reward, 320 decisions) | – | – | 0.187 [0.09, 0.28] | **0.267 [0.22, 0.32]** | teacher 0.488, random −0.297 |
-| Fatal moves among those 320 decisions | – | – | 47 | **17** | – |
+Coding agents run out of context all the time: the context is compacted and the agent must continue from its own summary. Fine-tuning on raw agent traces almost never teaches *that* moment. We built an environment that forces it, then ran a clean ablation: **two LoRAs trained from base Tiny Aya on the identical 4,003 rows, identical hyper-parameters; the only difference is whether each target carries a machine-verified derivation (A) or just the action (B, = ordinary trace fine-tuning).**
 
-- **Headline.** Teacher-forced up to the room-3 notebook write (rooms 1–2 and all room-3 evidence steps played by the teacher, whose reasons in the prompt state both lock facts), **SFT v3 writes the notebook itself, loses its entire context at the seal, and opens room 4 in 64/64 held-out worlds (16 families × 4 twins), discriminating every twin (DSE 1.0)**; greedy, single seed. SFT v2 got 50% on the same test: it copied phase correctly but wrote registry bit 0 every time. This shows the write → wipe → read loop working in a 3B model; it measures *carrying* two facts across a wipe, not *deriving* them.
-- **Causal check (SFT v2, teacher-written notebooks at room 4):** blank notebook → lock **25%** (the memoryless rate); notebook swapped with its anti-twin's → **0%**, following the swapped notebook 100% of the time. The model acts on what the notebook says. (Not re-run on v3's own notebooks.)
-- **It cannot yet play rooms 1–3 itself.** Room success: v1 13.4%, v2 9.8%, v3 8.9%; full escapes 0/16 for every model. v3 now reads all evidence before committing and makes fewer fatal moves (47 → 17 of 320 held-out decisions), but its step-reward gain over v2 (0.267 vs 0.187) is within overlapping CIs, i.e. not significant.
-- **GRPO matched the random-reward control.** 250 AgentTune GRPO steps from merged SFT v2: held-out step reward 0.200 vs 0.202 for the identical random-reward arm.
-- **Caveat on held-out use:** v3's data changes were chosen after seeing v2's aggregate failure on the held-out set (registry bit always 0). No world-specific tuning; all training rows come from the 236 training worlds.
+| Held-out | Base | v5 (Borderland-only SFT) | **A: verified derivations** | B: plain traces |
+|---|---|---|---|---|
+| **Own notebook → memory wipe → open the lock** (64 worlds, chance 25%) | – | 100%* | **90.6%** [77, 100], twin discrimination 0.88 | 21.9% [14, 28] (below chance) |
+| …with the notebook swapped for its twin's: follows the notebook | – | – | **100%** | 48% |
+| Borderland room success (16 worlds × 7 rooms) | 0% | 33% | **38.4%** | 6.2% |
+| Full games: rooms cleared from scratch (mean) | 0 | 1.0 | **2.1** (5/16 reach and open the lock) | 0 |
+| Memory-wipe tasks, 6 trained task types, unseen instances (own notes) | 2.1% [0, 5] | | **62.5%** [53, 72] | 52.1% [43, 62] |
+| ↳ same, notes blanked | 4.2% | | 3.1% | 3.1% |
+| Tool calling, BFCL v3 AST (400) | 44.5% [39, 49] | 26.5% | 54.5% [50, 59] | **67.0%** [62, 72] |
+| Maths, GSM8K test (500) | **74.8%** [71, 78] | 72.4% | 57.6% | 60.0% |
+| Multilingual knowledge, Global-MMLU-Lite 8 languages (200) | 50.5% | 52.5% | **54.5%** | 51.0% |
 
-## 1. The environment
-Seven connected rooms after *Alice in Borderland*: Dead or Alive → Switchboard → Tribunal → **memory wipe** → Distance → Balance → Witch Hunt → Osmosis. One hidden world per episode; early evidence (clock phase, glyph sectors, registry bit, rival policy, authority, credentials) decides later moves. After room 3 the agent's process is destroyed; only an 8-line, 96-byte-per-line notebook survives. Two maintenance tools work but zero the episode's reward (trap tools).
-- Deterministic, exactly replayable, standard-library Python. Dense, verifiable rewards (no LLM judge).
-- **Certified:** an evidence-only reference solver escapes all 64 held-out worlds; an independent transcript audit re-checks citations, notebook transfer and reward arithmetic without importing the simulator.
-- **Counterfactual twins:** each family has 4 worlds that differ only in phase parity and registry bit, the two facts the room-4 lock needs. A memoryless agent is capped at 25% and cannot discriminate twins (pairwise DSE 0).
-- **Leak check:** train vs held-out share 0 seeds, manifests, fingerprints or latent structures.
+![A vs B vs base](fig_ab.svg)
 
-## 2. Is the game fair? Frontier playtests
-GPT-6.1 Terra (Codex CLI) played it. An early run exposed a real bug (a citation rule the public rules never stated); we published the rule and re-certified all 64 worlds. On the compact 8K interface used for Tiny Aya, Terra cleared 6/7 rooms with 0 invalid calls (artifacts/terra-compact-v1/REPORT.md); its twin-lock failures traced partly to our private notebook label `sigma` (the rules say `registry_bit`), reported as a limitation.
+\*v5 is a Borderland specialist continued over six SFT rounds; its chain number comes from a teacher-played prefix of rooms 1–2.
 
-## 3. Method: what actually moved the numbers
-All SFT runs are AgentTune distillation from the evidence-only solver, loss on the action only, each continuing the previous adapter for one epoch.
-1. **SFT v1** (2,240 decisions; reasons = list of known facts). Learned format and recall; room-4 lock 34%. Diagnosis: it recalled phase and registry bit correctly but never saw how the entry pair is computed.
-2. **SFT v2** (1,228 rows): reasons **write out the computation** (`route=(phase%2) XOR pulse=(1%2) XOR 0=1. badge=registry_bit XOR challenge=0 XOR 1=1.`), unlock pairs balanced, every derivation re-executed by script before any GPU time. Lock 34% → 100%. Own-notebook loop 50%: it wrote phase correctly 64/64 but registry bit 0 every time.
-3. **SFT v3** (1,650 rows): after an external review (Fable) flagged "teaches *how* to compute but not *when* to stop gathering", every room 1–3 reason starts with an explicit **evidence gate** (`Evidence check: unread e2718,e7237 -> read e2718`) and decisions appear only once everything is read; room 1–3 inference written out (clock → phase, glyph anchor/differences → sectors, probe → matrix → switch targets, registry example → bit, testimony seals → identities, tag rule → forged credential); registry bit balanced 60/60 in notebook rows. 870 derivations re-checked by script. Own-notebook loop 50% → 100%; room 1 now reads all six records before committing (2.3 → 7.9 steps); fatal moves 47 → 17.
-4. **GRPO** (AgentTune `create_agentic_trainer("grpo")`, 250 steps × 8 generations from merged SFT v2, A100) with the verifiable step reward computed by replaying the exact environment state (invalid/trap/fatal −1, milestone +1, new evidence +0.3, wasted −0.2, notebook = share of evidence-derived facts preserved), and an **identical random-reward control**. No measurable effect (0.200 vs 0.202).
+**What this shows**
+1. **Verified derivations are what make memory work.** Same rows, same steps: A writes a notebook it can act on after the wipe in 91% of held-out worlds; B, trained on the bare actions, writes notebooks too (100% of the time) but cannot use them (22%, i.e. no better than guessing; 50/64 failures are "fact not retained"). A is causally dependent on its notebook: blank it → chance (25%); swap in the twin world's notebook → it follows the swapped notebook 100% of the time. On the procedural note-taking tasks (base 2.1%) A reaches 62.5% and beats B by **+10.4 pts [+3.1, +18.8]** (paired).
+2. **Mixing general data fixes the "specialist collapse" of trace fine-tuning.** Our Borderland-only model (v5) lost 18 pts of tool calling vs base; both mixed models beat base on BFCL (A +10.0 [+2.8, +17.2], B +22.5 [+16.0, +29.0]) and keep multilingual knowledge (A +4.0).
+3. **A derivation must be real computation to help.** Where our "reason" was a fixed provenance template rather than working (tool calls: `Request matches f: city <- "Paris" (user text)`), A learned to always claim a match and to copy raw text into arguments: BFCL irrelevance 21% vs B 41% vs base 80%, and A − B = −12.5 pts on BFCL. Where the reason is real working (Borderland arithmetic, note-taking), A wins decisively.
+4. **Cost we did not avoid:** GSM8K fell ~15–17 pts for both A and B. Cause found in the outputs: the 500 GSM8K training solutions are short dataset-style chains, so the model now answers in 2–3 lines instead of base's careful step-by-step (mean answer 239 vs 573 characters). LoRA-strength sweep: PENDING_SCALE.
+5. **Not yet general:** on two *never-trained* note-taking task types and a held-out coding bug-fix wipe task (stack trace + stale config → patch after the wipe), all models are near 0% (A 6.2%, B 0%; coding A 0%, B 2%). The skill is learned per task type; it does not yet transfer to new ones.
 
-## 4. Full results (held-out)
-| Arm | Room-4 lock (64 held-out) [95% CI] | Pairwise DSE | Room success (16x7) | Full escape (16) | Mean rooms cleared | Valid-call rate (rooms) | Trap rate (rooms) |
-|---|---|---|---|---|---|---|---|
-| random | 0.141 [0.062, 0.219] | 0.01 | 0.0 | 0.0 | 0.0 | 1.0 | 0.348 |
-| teacher (oracle) | 1.0 [1.0, 1.0] | 1.0 | 1.0 | 1.0 | 7.0 | 1.0 | 0.0 |
-| Tiny Aya base (strict JSON) | 0.0 [0.0, 0.0] | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| Tiny Aya base (lenient JSON, fences stripped) | 0.125 [0.062, 0.188] | 0.0 | 0.0 | 0.0 | 0.0 | 0.876 | 0.0 |
-| Tiny Aya + SFT v1 | 0.344 [0.281, 0.406] | 0.062 | 0.134 | 0.0 | 0.06 | 1.0 | 0.0 |
-| Tiny Aya + SFT v2 | 1.0 [1.0, 1.0] | 1.0 | 0.098 | 0.0 | 0.0 | 0.993 | 0.0 |
-| Tiny Aya + SFT v2 + GRPO | 1.0 [1.0, 1.0] | 1.0 | 0.089 | 0.0 | 0.0 | 0.998 | 0.0 |
-| Tiny Aya + SFT v2 + GRPO random-reward control | -  | - | 0.107 | 0.0 | 0.0 | 0.996 | 0.0 |
-| Tiny Aya + SFT v3 | 1.0 [1.0, 1.0] | 1.0 | 0.089 | 0.0 | 0.0 | 1.0 | 0.0 |
+## 1. Why this matters for coding agents
+An agent that works for hours will lose its context: compaction, a crash, a hand-off. What survives is whatever it wrote down. Two things must go right: it has to **record the facts that matter later** before it knows exactly how they will be used, and **act on its notes, not on a guess**, after the reset. Day-to-day coding-agent traces contain this moment rarely and never verify it. Borderland makes it the bottleneck and makes it measurable with counterfactual twins.
 
-Memoryless reference at room 4: lock <= 0.25, pairwise DSE = 0.
+## 2. Environments
+**Borderland** (7 rooms after *Alice in Borderland*): Dead or Alive → Switchboard → Tribunal → **memory wipe** → Distance → Balance → Witch Hunt → Osmosis. Early evidence (clock phase, glyph sectors, registry bit, …) decides later moves; after room 3 the agent is destroyed and only an 8-line notebook survives. Trap tools zero the reward. Deterministic, standard-library Python, dense verifiable rewards (no LLM judge). An evidence-only reference solver escapes all 64 held-out worlds; an independent audit re-checks every transcript. **Counterfactual twins:** each of 16 held-out families has 4 worlds differing only in the two facts the room-4 lock needs, so a memoryless agent is capped at 25% and cannot discriminate twins. 236 training worlds, 0 overlap (seeds, fingerprints, latent structure).
 
-**random by room:** R1: 0.0, R2: 0.0, R3: 0.0, R4: 0.0, R5: 0.0, R6: 0.0, R7: 0.0
-**random full-run lock attribution:** {'did_not_reach_lock': 16}
-**random held-out step reward (320 decisions):** -0.297 [-0.342, -0.243] kinds {'protocol_error': 123, 'wasted': 105, 'fatal': 33, 'milestone': 9, 'progress': 19, 'trap': 31}
-**teacher (oracle) by room:** R1: 1.0, R2: 1.0, R3: 1.0, R4: 1.0, R5: 1.0, R6: 1.0, R7: 1.0
-**teacher (oracle) full-run lock attribution:** {'lock_correct': 16}
-**teacher (oracle) held-out step reward (320 decisions):** 0.488 [0.446, 0.53] kinds {'progress': 222, 'milestone': 91, 'wasted': 7}
-**Tiny Aya base (strict JSON) by room:** R1: 0.0, R2: 0.0, R3: 0.0, R4: 0.0, R5: 0.0, R6: 0.0, R7: 0.0
-**Tiny Aya base (strict JSON) full-run lock attribution:** {'did_not_reach_lock': 16}
-**Tiny Aya base (strict JSON) invalid outputs by kind:** {'markdown_fenced_json': 576}
-**Tiny Aya base (lenient JSON, fences stripped) by room:** R1: 0.0, R2: 0.0, R3: 0.0, R4: 0.0, R5: 0.0, R6: 0.0, R7: 0.0
-**Tiny Aya base (lenient JSON, fences stripped) full-run lock attribution:** {'did_not_reach_lock': 16}
-**Tiny Aya base (lenient JSON, fences stripped) invalid outputs by kind:** {'other': 188, 'markdown_fenced_json': 37}
-**Tiny Aya + SFT v1 by room:** R1: 0.062, R2: 0.062, R3: 0.062, R4: 0.0, R5: 0.125, R6: 0.625, R7: 0.0
-**Tiny Aya + SFT v1 full-run lock attribution:** {'did_not_reach_lock': 16}
-**Tiny Aya + SFT v2 by room:** R1: 0.0, R2: 0.0, R3: 0.0, R4: 0.0, R5: 0.0, R6: 0.625, R7: 0.062
-**Tiny Aya + SFT v2 full-run lock attribution:** {'did_not_reach_lock': 16}
-**Tiny Aya + SFT v2 room4_blank:** lock 0.25, unlock attempted 1.0, matches true pair 0.25, follows notebook pair -
-**Tiny Aya + SFT v2 room4_swap:** lock 0.0, unlock attempted 1.0, matches true pair 0.0, follows notebook pair 1.0
-**Tiny Aya + SFT v2 own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock 0.5 [0.5, 0.5], DSE 0.167, wrote notebook 1.0, attribution {'lock_correct': 32, 'not_retained': 32}
-**Tiny Aya + SFT v2 held-out step reward (320 decisions):** 0.187 [0.087, 0.277] kinds {'progress': 126, 'milestone': 82, 'protocol_error': 57, 'fatal': 47, 'wasted': 8}
-**Tiny Aya + SFT v2 invalid outputs by kind:** {'other': 6}
-**Tiny Aya + SFT v2 + GRPO by room:** R1: 0.0, R2: 0.0, R3: 0.0, R4: 0.062, R5: 0.0, R6: 0.562, R7: 0.0
-**Tiny Aya + SFT v2 + GRPO full-run lock attribution:** {'did_not_reach_lock': 16}
-**Tiny Aya + SFT v2 + GRPO held-out step reward (320 decisions):** 0.2 [0.112, 0.285] kinds {'progress': 132, 'milestone': 81, 'protocol_error': 57, 'fatal': 44, 'wasted': 6}
-**Tiny Aya + SFT v2 + GRPO invalid outputs by kind:** {'other': 2}
-**Tiny Aya + SFT v2 + GRPO random-reward control by room:** R1: 0.0, R2: 0.0, R3: 0.0, R4: 0.0, R5: 0.0, R6: 0.625, R7: 0.125
-**Tiny Aya + SFT v2 + GRPO random-reward control full-run lock attribution:** {'did_not_reach_lock': 16}
-**Tiny Aya + SFT v2 + GRPO random-reward control held-out step reward (320 decisions):** 0.202 [0.105, 0.293] kinds {'progress': 128, 'milestone': 86, 'protocol_error': 49, 'fatal': 47, 'wasted': 9, 'invalid': 1}
-**Tiny Aya + SFT v2 + GRPO random-reward control invalid outputs by kind:** {'other': 5}
-**Tiny Aya + SFT v3 by room:** R1: 0.0, R2: 0.0, R3: 0.062, R4: 0.0, R5: 0.0, R6: 0.562, R7: 0.0
-**Tiny Aya + SFT v3 full-run lock attribution:** {'did_not_reach_lock': 16}
-**Tiny Aya + SFT v3 own-notebook chain (writes notebook in room 3, wiped, room-4 lock):** lock 1.0 [1.0, 1.0], DSE 1.0, wrote notebook 1.0, attribution {'lock_correct': 64}
-**Tiny Aya + SFT v3 held-out step reward (320 decisions):** 0.267 [0.221, 0.319] kinds {'progress': 163, 'protocol_error': 65, 'milestone': 68, 'fatal': 17, 'wasted': 7}
+**Procedural wipe tasks** (train/wipefam.py): read documents (with retired/outdated distractors) → save ≤4 notes of ≤96 chars → context wiped → make the final call from notes only. Six trained task types (ledger, schedule, lookup, logs, config, budget), two never-trained types (inventory, access) and an eval-only coding type (failing CI test + stack trace + active vs deprecated config + runbook rounding rule → `patch_config`). Tool names, output keys and document ids are randomised per episode; evaluation uses only twins whose correct answer differs.
 
-## 5. Failure attribution (what still breaks)
-- **Base:** 576/576 strict-mode outputs are markdown-fenced JSON; with fences stripped it clears no room.
-- **v2 own-notebook loop:** "discovered but not recorded": registry bit written as 0 on every twin, so it failed exactly on the 32 twins with bit 1. Fixed in v3.
-- **v3 room 1:** reads all evidence and gets the phase right, but writes the glyph sectors with the short `Known: k=...` form instead of deriving them, and the sectors are wrong → `unsafe_door` 16/16. Rooms 2 (`bus_overload` 12/16) and 3 (`invalid_certification` 14/16) fail on the same kind of multi-step inference. Full runs therefore never reach the wipe on their own.
-- **GRPO:** reward rose for ~50 steps then drifted; about 37% of groups had zero reward variance, so little gradient signal at this scale.
+## 3. Method
+- **Data (4,003 rows, identical for A and B):** Borderland 900 (half with all 25 tool names and output keys renamed), 121 DAgger rows (v5 rolled out on training worlds; the evidence-only teacher labels every state where v5 deviated, kept only if the teacher action is legal and non-fatal from that exact state), procedural wipe tasks 1,272, tool calling 1,060 (Hermes function-calling + Glaive, incl. 160 no-call / ask-for-missing), GSM8K train 500 (identical worked solutions in A and B), Aya multilingual 150 (identical).
+- **A vs B:** B's targets are A's with the reason emptied. A script asserts identical ids, order, prompts, actions and non-reason content for every row; all 2,817 "(user text)" provenance claims are true substrings of the request; 512 arithmetic steps in A's reasons are re-executed (0 errors).
+- **Derivations (Borderland):** every computation written out and checked: clock → phase with explicit mod, glyph anchor/differences → sectors, probe → matrix → bitwise switch solve with element-wise comparison, registry bit from the example, forged credential by tag rule, explicit evidence gate (`Evidence check: unread e2718 -> read e2718`), explicit exit conditions, and the lock pair `route=(phase%2) XOR pulse`, `badge=registry_bit XOR challenge`.
+- **Training:** AgentTune distillation (completion-only loss), LoRA r32/α64 on attention+MLP, lr 1e-4 cosine, effective batch 16, 2 epochs, max 6,144 tokens (0 rows dropped), from base, A100 ~63 min each.
+- **Evaluation:** identical prompts and budgets for every model; BFCL scorer validated on gold (400/400) and on deliberately wrong calls (wrong function / extra arg / wrong value / duplicated calls rejected 300/300; missing arg 299/300); GSM8K last-number extraction for all; base gets one format example; strict and lenient (fence-stripped) JSON both reported.
+- **Process:** one implementation review by Fable 5.2 and Astra 6 (high) before any compute spend; all blocking fixes applied (paired length filtering, fair GSM8K control, per-element provenance, negative scorer tests, model-written notes in the swap test, multilingual retention check).
+
+## 4. How we got here (Borderland specialist, v1 → v6)
+Each round fixed one diagnosed failure: v1 (facts only) lock 34% → v2 (write the lock computation) 100% → v3 (evidence gate; registry bit balanced) own-notebook loop 50% → 100% → v4 (derive at every bank, explicit mod) → v5 (explicit exit conditions; room 1 100%) → v6 (element-wise switch comparison; room 2 0% → 62.5%, rooms 51%, 8/16 full games reach and open the lock). GRPO (250 steps × 8 generations, verifiable step reward) vs an identical random-reward control: no measurable difference (0.200 vs 0.202 step reward), reported as a null result.
+
+## 5. Failure analysis
+- **A, tool calls:** template reasons → over-calling (irrelevance 21%), raw-text arguments (`"C# major"` for `C sharp`; `"C, F, G"` as a string, not a list), duplicated parallel calls. Lesson: provenance templates are not derivations.
+- **A and B, GSM8K:** brevity inherited from short training solutions (see TL;DR 4).
+- **B, Borderland:** valid calls 99.8%, notebook always written, but the facts are not the right ones or not used: 50/64 chain failures are `not_retained`; room 1 and 2 success 0%.
+- **Everyone:** rooms 4 and 7 (Distance, Osmosis) at 0% in single-room mode; no full escape yet.
 
 ## 6. Limitations
-Single seed, greedy decoding. Terra n is one world. Haiku playtest not run (no API token). Room-4 checkpoint and own-notebook evaluations start from a teacher prefix (rooms 1–2 and the room-3 evidence gathering); the model alone does not yet clear rooms 1–3. GRPO budget was small (250 prompts).
+Single seed and greedy decoding; one training run per arm (no seed variance); the A/B difference is measured on our environments plus BFCL/GSM8K/MMLU, not on SWE-style coding benchmarks; the coding wipe task is synthetic and eval-only; GSM8K regression unresolved at full strength; Terra/frontier playtest is a single world.
 
 ## 7. Reproduce
-Code: https://github.com/VasuBansal7576/lexi-borderland · Data, traces, eval logs: https://huggingface.co/datasets/FatUnc6969/lexi-borderland-data · Models: https://huggingface.co/FatUnc6969 (tiny-aya-borderland-{sft, sft-v2, sft-v3, sft-v2-merged, grpo, grpo-randreward-control}). `python -m train.report` rebuilds every table from the logs.
+Code: https://github.com/VasuBansal7576/lexi-borderland · Data, traces, all per-item eval logs: https://huggingface.co/datasets/FatUnc6969/lexi-borderland-data · Models: https://huggingface.co/FatUnc6969/tiny-aya-borderland-genA (A), …-genB (B), …-sft-v6 (specialist). `python -m train.gen_general` rebuilds the data, `python -m train.check_pair` re-verifies it, `python -m train.transfer_eval` and `python -m train.eval_model` rerun every evaluation.

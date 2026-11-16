@@ -85,6 +85,12 @@ def chain_start(world):
 
 
 def plan(mode):
+    if mode.startswith("dagger"):   # dagger<shard>of<n>: v5 rollouts on TRAINING worlds, every room start
+        import os, random
+        shard, n = (int(x) for x in mode[len("dagger"):].split("of")) if "of" in mode else (0, 1)
+        ws = manifests("train"); random.Random(17).shuffle(ws)
+        ws = ws[:int(os.environ.get("DAGGER_WORLDS", "48"))]
+        return [(w, r) for i, w in enumerate(ws) for r in range(1, 8) if i % n == shard]
     if mode in ("chain4", "chain4_blankwrite"):
         return [(w, None) for w in worlds("all")]
     if mode == "steps":
@@ -99,6 +105,9 @@ def plan(mode):
 def make_episode(path, room, mode):
     world = load_world(path); rel = str(path.relative_to(ROOT))
     meta = {"world": rel, "mode": mode, "key": f"{mode}|{rel}|{room}"}
+    if mode.startswith("dagger"):
+        mode = "rooms"
+        meta["mode"] = "rooms"
     if mode in ("chain4", "chain4_blankwrite"):
         k = chain_start(world)
         env, hist, frame, solver, actions = teacher_prefix_steps(world, k)
@@ -189,6 +198,44 @@ def lenient_extract(raw):
         return raw
 
 
+class DaggerPolicy:
+    """Wraps the model policy: at every state the evidence-only teacher (which has ingested exactly the same public
+    observations) labels the state; states where the model's action differs are written as training rows. A label is
+    kept only if the teacher's action is legal and non-fatal from that exact state (checked on a deep copy)."""
+    def __init__(self, inner, out_path):
+        self.inner, self.out = inner, open(out_path, "a")
+        self.stats = {"states": 0, "deviations": 0, "kept": 0, "teacher_error": 0, "unsafe_label": 0}
+    def __call__(self, eps):
+        import copy
+        outs = self.inner(eps)
+        for e, raw in zip(eps, outs):
+            if getattr(e, "dagger_dead", False):
+                continue
+            self.stats["states"] += 1
+            try:
+                if e.wipes != e.seen_wipes:
+                    e.teacher_solver, e.seen_wipes = EvidenceSolver(), e.wipes
+                act = e.teacher_solver.act(json.loads(json.dumps(e.frame)))
+                tgt = target_text(act, json.loads(json.dumps(e.teacher_solver.knowledge, default=list)), e.frame["observation"], e.teacher_solver)
+            except Exception:
+                self.stats["teacher_error"] += 1; e.dagger_dead = True; continue
+            try:
+                got = json.loads(raw); same = got.get("tool") == act["tool"] and got.get("args") == act["args"]
+            except Exception:
+                same = False
+            if same:
+                continue
+            self.stats["deviations"] += 1
+            env2 = copy.deepcopy(e.env); res = env2.step(act)
+            if (env2.terminated and not env2.success) or not res.observation.get("ok", True) or not env2.integrity:
+                self.stats["unsafe_label"] += 1; continue
+            row = {"world": e.meta["world"], "room": e.env.room, "source": "dagger",
+                   "messages": e.pending_messages + [{"role": "assistant", "content": tgt}]}
+            self.out.write(json.dumps(row, separators=(",", ":")) + "\n"); self.out.flush(); self.stats["kept"] += 1
+        print("DAGGER", self.stats, flush=True)
+        return outs
+
+
 class ModelPolicy:
     def __init__(self, gen, lenient=False): self.gen = gen; self.t0 = time.time(); self.steps = 0; self.lenient = lenient
     def __call__(self, eps):
@@ -219,6 +266,8 @@ def main():
         from .generate import HFGenerator
         gen = HFGenerator(a.model, adapter=a.adapter, max_tokens=a.max_tokens, token_budget=a.token_budget)
         policy = ModelPolicy(gen, lenient=a.lenient_json)
+        if any(m.startswith("dagger") for m in a.modes.split(",")):
+            policy = DaggerPolicy(policy, out / "dagger_rows.jsonl")
     else:
         policy = TeacherPolicy() if a.policy == "teacher" else RandPolicy()
     rows_by_mode, timing = {}, {}

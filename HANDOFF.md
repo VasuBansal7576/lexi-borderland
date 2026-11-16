@@ -104,3 +104,9 @@ See runtime/secrets/README.md. Network allowlist changes only apply in a NEW con
 - Fable review (GO conditional): add explicit evidence gate to rooms 1-3 reasons, balance registry bit in notebook rows, keep room-4 replay. Pre-check passed: room-1 gold = read at 0-5 records, choose only at full evidence.
 - SFT v3 data: 1,650 rows (rooms 1/2/3/4 = 390/390/500/220), 870 derivations re-checked, notebook bits 60/60. Code sha ef91939297a5. Modal op sft-v3 running (continues sft-v2, 1 epoch) -> FatUnc6969/tiny-aya-borderland-sft-v3.
 - Control adapter published (README metadata fixed).
+
+## 2026-11-15 ~18:00 IST: SFT v3 results + submission ready
+- SFT v3 (Modal A100, 103 steps, 973 s): own-notebook loop 64/64 (DSE 1.0) vs v2 50%; room-4 100%; step reward 0.267 [0.22,0.32] vs v2 0.187 (CIs overlap); fatal 47->17; room 1 now reads all 6 records (2.3->7.9 steps) but writes k via the short "Known:" form -> wrong sectors -> unsafe_door 16/16. Rooms 8.9%, full 0/16.
+- Fable claim review applied (narrowed headline: teacher-forced to the room-3 write; carrying not deriving; interventions were v2; held-out caveat).
+- Published: HF collections (+sft-v3, +control), dataset README = article, results/; GitHub 548a0a1. Form fields: writeup/SUBMISSION.md; abstract writeup/ABSTRACT.md (430 words).
+- Modal committed ledger 18.78 (conservative); est. actual ~$15-16 of $30.

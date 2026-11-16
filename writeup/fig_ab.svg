@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" font-family="Helvetica,Arial,sans-serif"><rect width="100%" height="100%" fill="white"/>
+<text x="600.0" y="26" text-anchor="middle" font-size="16">Same 4,003 rows, same steps — only difference: verified derivation in the target (A) or not (B)</text>
+<text x="320.0" y="58" text-anchor="middle" font-size="14" font-weight="bold">Memory across a wipe (held-out)</text>
+<line x1="60" y1="390" x2="580" y2="390" stroke="#333"/>
+<text x="54" y="394.0" text-anchor="end" font-size="10" fill="#666">0</text><line x1="60" y1="390.0" x2="580" y2="390.0" stroke="#eee"/>
+<text x="54" y="314.0" text-anchor="end" font-size="10" fill="#666">25</text><line x1="60" y1="310.0" x2="580" y2="310.0" stroke="#eee"/>
+<text x="54" y="234.0" text-anchor="end" font-size="10" fill="#666">50</text><line x1="60" y1="230.0" x2="580" y2="230.0" stroke="#eee"/>
+<text x="54" y="154.0" text-anchor="end" font-size="10" fill="#666">75</text><line x1="60" y1="150.0" x2="580" y2="150.0" stroke="#eee"/>
+<text x="54" y="74.0" text-anchor="end" font-size="10" fill="#666">100</text><line x1="60" y1="70.0" x2="580" y2="70.0" stroke="#eee"/>
+<rect x="124.13333333333335" y="100.07999999999998" width="42.06666666666667" height="289.92" fill="#1F6FEB"/><text x="145.16666666666669" y="96.07999999999998" text-anchor="middle" font-size="11">91</text>
+<rect x="169.20000000000002" y="319.92" width="42.06666666666667" height="70.08" fill="#E8710A"/><text x="190.23333333333335" y="315.92" text-anchor="middle" font-size="11">22</text>
+<text x="146.66666666666669" y="408" text-anchor="middle" font-size="12">Own notebook → wipe → lock</text>
+<rect x="252.39999999999998" y="390.0" width="42.06666666666667" height="1" fill="#9AA0A6"/><text x="273.43333333333334" y="386.0" text-anchor="middle" font-size="11">0</text>
+<rect x="297.46666666666664" y="267.12" width="42.06666666666667" height="122.88" fill="#1F6FEB"/><text x="318.5" y="263.12" text-anchor="middle" font-size="11">38</text>
+<rect x="342.53333333333336" y="370.16" width="42.06666666666667" height="19.84" fill="#E8710A"/><text x="363.5666666666667" y="366.16" text-anchor="middle" font-size="11">6</text>
+<text x="320.0" y="408" text-anchor="middle" font-size="12">Borderland room success</text>
+<rect x="470.8" y="190.0" width="42.06666666666667" height="200.0" fill="#1F6FEB"/><text x="491.83333333333337" y="186.0" text-anchor="middle" font-size="11">62</text>
+<rect x="515.8666666666667" y="223.28" width="42.06666666666667" height="166.72" fill="#E8710A"/><text x="536.9" y="219.28" text-anchor="middle" font-size="11">52</text>
+<text x="493.33333333333337" y="408" text-anchor="middle" font-size="12">Note-taking tasks (own notes)</text>
+<line x1="60" y1="310.0" x2="580" y2="310.0" stroke="black" stroke-dasharray="5,4"/><text x="64" y="306.0" font-size="10">chance for the lock (25%)</text>
+<text x="910.0" y="58" text-anchor="middle" font-size="14" font-weight="bold">General ability (held-out benchmarks)</text>
+<line x1="650" y1="390" x2="1170" y2="390" stroke="#333"/>
+<text x="644" y="394.0" text-anchor="end" font-size="10" fill="#666">0</text><line x1="650" y1="390.0" x2="1170" y2="390.0" stroke="#eee"/>
+<text x="644" y="314.0" text-anchor="end" font-size="10" fill="#666">25</text><line x1="650" y1="310.0" x2="1170" y2="310.0" stroke="#eee"/>
+<text x="644" y="234.0" text-anchor="end" font-size="10" fill="#666">50</text><line x1="650" y1="230.0" x2="1170" y2="230.0" stroke="#eee"/>
+<text x="644" y="154.0" text-anchor="end" font-size="10" fill="#666">75</text><line x1="650" y1="150.0" x2="1170" y2="150.0" stroke="#eee"/>
+<text x="644" y="74.0" text-anchor="end" font-size="10" fill="#666">100</text><line x1="650" y1="70.0" x2="1170" y2="70.0" stroke="#eee"/>
+<rect x="669.0666666666666" y="247.6" width="42.06666666666667" height="142.4" fill="#9AA0A6"/><text x="690.0999999999999" y="243.6" text-anchor="middle" font-size="11">44</text>
+<rect x="714.1333333333333" y="215.6" width="42.06666666666667" height="174.4" fill="#1F6FEB"/><text x="735.1666666666666" y="211.6" text-anchor="middle" font-size="11">54</text>
+<rect x="759.1999999999999" y="175.6" width="42.06666666666667" height="214.4" fill="#E8710A"/><text x="780.2333333333332" y="171.6" text-anchor="middle" font-size="11">67</text>
+<text x="736.6666666666666" y="408" text-anchor="middle" font-size="12">BFCL tool calling</text>
+<rect x="842.4" y="150.64" width="42.06666666666667" height="239.36" fill="#9AA0A6"/><text x="863.4333333333333" y="146.64" text-anchor="middle" font-size="11">75</text>
+<rect x="887.4666666666667" y="205.68" width="42.06666666666667" height="184.32" fill="#1F6FEB"/><text x="908.5" y="201.68" text-anchor="middle" font-size="11">58</text>
+<rect x="932.5333333333333" y="198.0" width="42.06666666666667" height="192.0" fill="#E8710A"/><text x="953.5666666666666" y="194.0" text-anchor="middle" font-size="11">60</text>
+<text x="910.0" y="408" text-anchor="middle" font-size="12">GSM8K maths</text>
+<rect x="1015.7333333333335" y="228.4" width="42.06666666666667" height="161.6" fill="#9AA0A6"/><text x="1036.7666666666669" y="224.4" text-anchor="middle" font-size="11">50</text>
+<rect x="1060.8000000000002" y="215.6" width="42.06666666666667" height="174.4" fill="#1F6FEB"/><text x="1081.8333333333335" y="211.6" text-anchor="middle" font-size="11">54</text>
+<rect x="1105.8666666666668" y="226.8" width="42.06666666666667" height="163.2" fill="#E8710A"/><text x="1126.9" y="222.8" text-anchor="middle" font-size="11">51</text>
+<text x="1083.3333333333335" y="408" text-anchor="middle" font-size="12">Global-MMLU-Lite (8 lang)</text>
+<rect x="360" y="438" width="14" height="14" fill="#9AA0A6"/><text x="380" y="450" font-size="13">Base</text>
+<rect x="560" y="438" width="14" height="14" fill="#1F6FEB"/><text x="580" y="450" font-size="13">A: verified derivations</text>
+<rect x="760" y="438" width="14" height="14" fill="#E8710A"/><text x="780" y="450" font-size="13">B: plain traces</text>
+<rect x="425.73333333333335" y="383.28" width="42.06666666666667" height="6.72" fill="#9AA0A6"/><text x="446.7666666666667" y="379.28" text-anchor="middle" font-size="11">2</text>
+</svg>

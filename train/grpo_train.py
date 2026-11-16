@@ -46,6 +46,7 @@ def main():
             break
     data = Dataset.from_list(kept)
     cuda = torch.cuda.is_available()
+    bf16 = cuda and torch.cuda.get_device_capability()[0] >= 8   # T4 (sm75): real fp16, never emulated bf16
     peft = LoraConfig(r=16, lora_alpha=32, lora_dropout=0.0, task_type="CAUSAL_LM",
                       target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])
     want = dict(output_dir=a.output, max_steps=a.steps, learning_rate=a.lr, beta=a.beta,
@@ -54,8 +55,10 @@ def main():
                 generation_batch_size=a.generations,  # generate one group at a time
                 max_completion_length=a.completion_len, temperature=a.temperature,
                 warmup_steps=max(1, a.steps // 20) if a.steps >= 20 else 0, logging_steps=1, save_steps=a.save_steps,
-                bf16=cuda and torch.cuda.is_bf16_supported(), fp16=cuda and not torch.cuda.is_bf16_supported(),
+                bf16=bf16, fp16=cuda and not bf16,
                 gradient_checkpointing=cuda, seed=a.seed, report_to=[], log_completions=False)
+    if cuda:
+        want["model_init_kwargs"] = {"dtype": "bfloat16" if bf16 else "float16"}
     trainer = create_agentic_trainer("grpo", backend="trl", model=a.model, processing_class=tok,
                                      reward_funcs=[random_control_reward if a.control else borderland_step_reward],
                                      train_dataset=data, peft_config=peft, **want)
@@ -63,7 +66,7 @@ def main():
     trainer.setup_trainer()
     args = trainer.trainer.args
     missing = {k: (v, getattr(args, k, "ABSENT")) for k, v in want.items()
-               if k not in ("report_to",) and getattr(args, k, "ABSENT") != v}
+               if k not in ("report_to", "model_init_kwargs") and getattr(args, k, "ABSENT") != v}
     if missing:
         raise RuntimeError(f"settings did not reach GRPOConfig: {missing}")
     print(json.dumps({"states": len(kept), "control": a.control, "config_verified": True}), flush=True)

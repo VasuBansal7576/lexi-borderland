@@ -32,6 +32,10 @@ def sh(cmd, check=True, env=None):
 def setup():
     sh("pip -q uninstall -y torchao 2>&1 | tail -1", check=False)  # Kaggle's torchao breaks current PEFT imports
     sh('pip -q install "transformers>=5.15,<6" "peft>=0.13" huggingface_hub accelerate 2>&1 | tail -2')
+    if PHASE.startswith("grpo"):
+        sh('pip -q install "trl==1.7.1" datasets rich jinja2 pyyaml pydantic 2>&1 | tail -2')
+        sh("pip -q install --no-deps 'git+https://github.com/Lexsi-Labs/AgentTune@1dfd054ce59e1c1bdd566cb7e5826f836b1c8c2e' 2>&1 | tail -2")
+        sh('python -c "import trl, agenttune; print(trl.__version__)"')
     from huggingface_hub import snapshot_download
     d = snapshot_download(DATA_REPO, repo_type="dataset", allow_patterns=["bundle/*"], token=os.environ["HF_TOKEN"]) + "/bundle"
     os.makedirs(BUNDLE, exist_ok=True); os.makedirs(CODE, exist_ok=True)
@@ -40,9 +44,15 @@ def setup():
     if sha != EXPECTED_SHA:
         raise SystemExit(f"STALE CODE: bundle sha {sha[:12]} != expected {EXPECTED_SHA[:12]}")
     open(f"{BUNDLE}/code.tgz", "wb").write(raw)
-    with open(f"{BUNDLE}/sft-subset.jsonl", "w") as out:
-        for part in sorted(glob.glob(f"{d}/sft-subset.part*.txt")):
-            out.write(open(part).read())
+    want = {l.split()[2]: l.split()[1] for l in open(f"{d}/MANIFEST.sha256.txt") if l.startswith("orig ")}
+    for name, h in want.items():
+        if name == "code.tgz":
+            continue
+        stem = name.rsplit(".", 1)[0]
+        with open(f"{BUNDLE}/{name}", "w") as out:
+            for part in sorted(glob.glob(f"{d}/{stem}.part*.txt")):
+                out.write(open(part).read())
+        assert hashlib.sha256(open(f"{BUNDLE}/{name}", "rb").read()).hexdigest() == h, f"checksum {name}"
     sh(f"tar xzf {BUNDLE}/code.tgz -C {CODE}")
     os.environ["PYTHONPATH"] = CODE
     log("code sha verified", sha[:12])
@@ -109,10 +119,10 @@ def preflight():
     check("base", None); check("sft", snapshot_download(SFT_REPO, token=os.environ["HF_TOKEN"]))
 
 
-def run_specs(specs, lenient=()):
+def run_specs(specs, lenient=(), do_check=True):
     """specs: [(gpu, label, adapter, modes)]; labels in `lenient` get --lenient-json. Each model is checked once (in-job gate) before any eval starts."""
     checked = {}
-    for _, label, adapter, _ in specs:
+    for _, label, adapter, _ in (specs if do_check else []):
         if label not in checked:
             checked[label] = check(label, adapter)
             if not checked[label]["GREEN"]:
@@ -134,6 +144,73 @@ def run_specs(specs, lenient=()):
     stop.set()
     log("eval rc", rc)
     sh(f"tail -c 1500 {W}/*-gpu*.log", check=False)
+
+
+def grpo_pair(sft_repo, steps):
+    """GRPO (GPU0) and the matched random-reward control (GPU1) from the same merged SFT checkpoint, fp16 on T4."""
+    merged = "/kaggle/tmp/sft-merged"
+    sh(f"cd {CODE} && {sys.executable} -m train.merge --base {BASE} --adapter {repo(sft_repo)} --output {merged}")
+    stop = threading.Event()
+    def pump():
+        while not stop.wait(600):
+            upload("progress")
+    threading.Thread(target=pump, daemon=True).start()
+    procs = []
+    for gpu, arm in ((0, "grpo4"), (1, "control4")):
+        flag = " --control" if arm == "control4" else ""
+        cmd = (f"cd {CODE} && {sys.executable} -m train.grpo_train --model {merged} --states {BUNDLE}/grpo-states-v4.jsonl "
+               f"--output {W}/{arm} --steps {steps} --generations 8 --batch 4 --lr 1e-5 --completion-len 400 "
+               f"--temperature 1.0 --max-prompt-tokens 5000 --save-steps 25{flag} > {W}/{arm}.log 2>&1")
+        procs.append(subprocess.Popen(cmd, shell=True, env={**os.environ, "CUDA_VISIBLE_DEVICES": str(gpu),
+                                                             "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"}))
+    rc = [p.wait() for p in procs]
+    stop.set(); log("grpo rc", rc)
+    from huggingface_hub import HfApi
+    api = HfApi(token=os.environ["HF_TOKEN"])
+    for arm, rid in (("grpo4", "FatUnc6969/tiny-aya-borderland-grpo-sft5"), ("control4", "FatUnc6969/tiny-aya-borderland-grpo-sft5-randreward-control")):
+        if os.path.exists(f"{W}/{arm}/adapter_model.safetensors"):
+            open(f"{W}/{arm}/README.md", "w").write(f"---\nbase_model: {sft_repo}\nlibrary_name: peft\n---\n# {arm}\nGRPO arm ({arm}) on top of {sft_repo} merged into Tiny Aya Global.\n")
+            api.create_repo(rid, exist_ok=True, private=False)
+            api.upload_folder(folder_path=f"{W}/{arm}", repo_id=rid, ignore_patterns=["checkpoint-*/*"])
+    sh(f"tail -c 1500 {W}/grpo4.log {W}/control4.log", check=False)
+
+
+def run_transfer(specs):
+    """specs: [(gpu, label, adapter_or_None, tasks)] -> train.transfer_eval on each GPU in parallel."""
+    stop = threading.Event()
+    def pump():
+        while not stop.wait(600):
+            upload("progress")
+    threading.Thread(target=pump, daemon=True).start()
+    procs = []
+    for gpu, label, adapter, tasks in specs:
+        ad = f" --adapter {adapter}" if adapter else ""
+        cmd = (f"cd {CODE} && {sys.executable} -m train.transfer_eval --model {BASE}{ad} --tasks {tasks} --label {label} "
+               f"--outdir {W}/transfer > {W}/{label}-gpu{gpu}.log 2>&1")
+        procs.append(subprocess.Popen(cmd, shell=True, env={**os.environ, "CUDA_VISIBLE_DEVICES": str(gpu)}))
+    rc = [p.wait() for p in procs]
+    stop.set(); log("transfer rc", rc)
+    sh(f"tail -c 2500 {W}/*-gpu*.log", check=False)
+
+
+def run_full(specs, bl_modes="rooms,full,chain4,room4_blank,room4_swap"):
+    """specs: [(gpu, label, adapter)] -> per GPU, sequentially: transfer suite, then Borderland held-out suite."""
+    stop = threading.Event()
+    def pump():
+        while not stop.wait(600):
+            upload("progress")
+    threading.Thread(target=pump, daemon=True).start()
+    procs = []
+    for gpu, label, adapter in specs:
+        ad = f" --adapter {adapter}" if adapter else ""
+        cmd = (f"cd {CODE} && {sys.executable} -m train.transfer_eval --model {BASE}{ad} --tasks bfcl,gsm8k,mmlu,wipe,wipecode "
+               f"--label {label} --outdir {W}/transfer > {W}/{label}-xfer-gpu{gpu}.log 2>&1; "
+               f"{sys.executable} -m train.eval_model --policy hf --model {BASE}{ad} --outdir {W}/eval --label {label} "
+               f"--max-tokens 400 --bundle-sha {EXPECTED_SHA[:12]} --modes {bl_modes} > {W}/{label}-bl-gpu{gpu}.log 2>&1")
+        procs.append(subprocess.Popen(cmd, shell=True, env={**os.environ, "CUDA_VISIBLE_DEVICES": str(gpu)}))
+    rc = [p.wait() for p in procs]
+    stop.set(); log("full rc", rc)
+    sh(f"tail -c 2000 {W}/*-gpu*.log", check=False)
 
 
 def evaluate(label, adapter, gpu0="room4_all", gpu1="rooms,full"):
@@ -160,6 +237,44 @@ try:
     elif PHASE == "int_sft":
         from huggingface_hub import snapshot_download
         evaluate("sft", snapshot_download(SFT_REPO, token=os.environ["HF_TOKEN"]), gpu0="room4_blank", gpu1="room4_swap")
+    elif PHASE == "xfer_base_v5":
+        run_transfer([(0, "base", None, "bfcl,gsm8k,mmlu,wipe"), (1, "v5", repo("FatUnc6969/tiny-aya-borderland-sft-v5"), "bfcl,gsm8k,mmlu,wipe")])
+    elif PHASE == "wipe_base_v5":
+        run_transfer([(0, "base", None, "wipe"), (1, "v5", repo("FatUnc6969/tiny-aya-borderland-sft-v5"), "wipe")])
+    elif PHASE == "wipecode_all":
+        run_transfer([(0, "base", None, "wipecode"), (1, "genA", repo("FatUnc6969/tiny-aya-borderland-genA"), "wipecode")])
+        run_transfer([(0, "genB", repo("FatUnc6969/tiny-aya-borderland-genB"), "wipecode"), (1, "v5", repo("FatUnc6969/tiny-aya-borderland-sft-v5"), "wipecode")])
+    elif PHASE == "scale_A":
+        a = repo("FatUnc6969/tiny-aya-borderland-genA")
+        def one(gpu, sc):
+            lab = f"genA-s{int(sc*100)}"
+            return (f"cd {CODE} && LORA_SCALE={sc} {sys.executable} -m train.transfer_eval --model {BASE} --adapter {a} --tasks gsm8k,bfcl,mmlu "
+                    f"--label {lab} --outdir {W}/transfer > {W}/{lab}-xfer-gpu{gpu}.log 2>&1; LORA_SCALE={sc} {sys.executable} -m train.eval_model "
+                    f"--policy hf --model {BASE} --adapter {a} --outdir {W}/eval --label {lab} --max-tokens 400 --bundle-sha {EXPECTED_SHA[:12]} "
+                    f"--modes chain4 > {W}/{lab}-bl-gpu{gpu}.log 2>&1")
+        stop = threading.Event()
+        threading.Thread(target=lambda: [upload("progress") for _ in iter(lambda: stop.wait(600), True)], daemon=True).start()
+        ps = [subprocess.Popen(one(g, sc), shell=True, env={**os.environ, "CUDA_VISIBLE_DEVICES": str(g)}) for g, sc in ((0, 0.5), (1, 0.75))]
+        log("scale rc", [p.wait() for p in ps]); stop.set()
+    elif PHASE == "eval_A1":
+        run_full([(0, "genA", repo("FatUnc6969/tiny-aya-borderland-genA"))])
+    elif PHASE == "eval_B1":
+        run_full([(0, "genB", repo("FatUnc6969/tiny-aya-borderland-genB"))])
+    elif PHASE == "wipe_base_v5b":
+        run_transfer([(0, "base", None, "wipe,wipecode"), (1, "v5", repo("FatUnc6969/tiny-aya-borderland-sft-v5"), "wipe,wipecode")])
+    elif PHASE == "eval_AB":
+        run_full([(0, "genA", repo("FatUnc6969/tiny-aya-borderland-genA")), (1, "genB", repo("FatUnc6969/tiny-aya-borderland-genB"))])
+    elif PHASE == "dagger5":
+        os.environ["DAGGER_WORLDS"] = "48"
+        v5 = repo("FatUnc6969/tiny-aya-borderland-sft-v5")
+        run_specs([(0, "dag5a", v5, "dagger0of2"), (1, "dag5b", v5, "dagger1of2")], do_check=False)
+    elif PHASE == "grpo5":
+        grpo_pair("FatUnc6969/tiny-aya-borderland-sft-v5", steps=120)
+    elif PHASE == "grpo4":
+        grpo_pair("FatUnc6969/tiny-aya-borderland-sft-v4", steps=150)
+    elif PHASE == "eval_sft4":
+        run_specs([(0, "sft4", repo("FatUnc6969/tiny-aya-borderland-sft-v4"), "room4_all"),
+                   (1, "sft4", repo("FatUnc6969/tiny-aya-borderland-sft-v4"), "steps")])
     elif PHASE == "eval_sft2":
         evaluate("sft2", repo(SFT2_REPO))
     elif PHASE == "int_sft2_baselen_rooms":

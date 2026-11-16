@@ -67,19 +67,20 @@ def room1_inference(solver, kk, phase):
     cons_id, cons = next((rid, r) for rid, r in solver.records_of("glyph_constraints") if r["epoch"] == "current")
     smp = clocks["samples"][0]
     ph = (smp["district_mod4"] - smp["wall"]) % 4
+    raw = smp["district_mod4"] - smp["wall"]
     parts = [f"Current clock {clock_id}: wall {smp['wall']} district {smp['district_mod4']}, "
-             f"phase=({smp['district_mod4']}-{smp['wall']})%4={ph}."]
+             f"phase=({smp['district_mod4']}-{smp['wall']})%4={m4(raw)}."]
     g, o = cons["phase_anchor"]
     known = {g: (ph + o) % 4}
-    parts.append(f"Current glyphs {cons_id}: anchor {g},{o} -> K[{g}]=({ph}+{o})%4={known[g]}.")
+    parts.append(f"Current glyphs {cons_id}: anchor {g},{o} -> K[{g}]=({ph}+{o})%4={m4(ph + o)}.")
     changed = True
     while changed:
         changed = False
         for a, b, d in cons["differences"]:
             if a in known and b not in known:
-                known[b] = (known[a] - d) % 4; parts.append(f"{a}-{b}={d} -> K[{b}]=({known[a]}-{d})%4={known[b]}."); changed = True
+                known[b] = (known[a] - d) % 4; parts.append(f"{a}-{b}={d} -> K[{b}]=({known[a]}-{d})%4={m4(known[a] - d)}."); changed = True
             elif b in known and a not in known:
-                known[a] = (known[b] + d) % 4; parts.append(f"{a}-{b}={d} -> K[{a}]=({known[b]}+{d})%4={known[a]}."); changed = True
+                known[a] = (known[b] + d) % 4; parts.append(f"{a}-{b}={d} -> K[{a}]=({known[b]}+{d})%4={m4(known[b] + d)}."); changed = True
     missing = [x for x in GLYPH_NAMES if x not in known]
     if len(missing) == 1:
         rest = ({0, 1, 2, 3} - set(known.values())).pop(); known[missing[0]] = rest
@@ -90,6 +91,15 @@ def room1_inference(solver, kk, phase):
 
 
 PEOPLE_IDX = ("I", "N", "V", "S")
+
+
+def m4(raw):
+    """Explicit mod-4 step a small model can copy: -11 -> '-11+12=1', 7 -> '7-4=3', 2 -> '2'."""
+    if raw < 0:
+        return f"{raw}+{-4 * (raw // 4)}={raw % 4}"
+    if raw >= 4:
+        return f"{raw}-{4 * (raw // 4)}={raw % 4}"
+    return f"{raw}"
 
 
 def _bias(p):
@@ -123,24 +133,43 @@ def room2_reason(action, k, o, solver):
     if "matrix" not in k or "probe" not in k:
         return None
     mi = [tuple(map(tuple, m)) for m in M].index(tuple(map(tuple, k["matrix"]))) + 1
-    pr = k["probe"]
-    sol = lambda tgt: next(x for x in product(range(2), repeat=3) if list(_circ(k["matrix"], x, p)) == list(tgt))
-    xa, xm, xh = sol(sch["aux_target"]), sol(sch["main_target"]), sol(sch["forbidden_live_output"])
+    pr = k["probe"]; bias = _bias(p); i_pr = k.get("probe_channel")
+    def solve(tgt):
+        y = tuple(int(t) ^ b for t, b in zip(tgt, bias))
+        if mi == 1:   # rows: x0+x1=y0, x1+x2=y1, x2=y2
+            x2 = y[2]; x1 = y[1] ^ x2; x0 = y[0] ^ x1
+            txt = f"y={_vec(tgt)}^bias={_vec(y)}; x2=y2={x2}; x1=y1^x2={y[1]}^{x2}={x1}; x0=y0^x1={y[0]}^{x1}={x0}"
+        else:         # rows: x0+x2=y0, x1=y1, x1+x2=y2
+            x1 = y[1]; x2 = y[2] ^ x1; x0 = y[0] ^ x2
+            txt = f"y={_vec(tgt)}^bias={_vec(y)}; x1=y1={x1}; x2=y2^x1={y[2]}^{x1}={x2}; x0=y0^x2={y[0]}^{x2}={x0}"
+        return (x0, x1, x2), txt
+    (xa, ta), (xm, tm) = solve(sch["aux_target"]), solve(sch["main_target"])
+    (xh, th) = solve(sch["forbidden_live_output"])
     if (tuple(xa), tuple(xm), tuple(xh)) != (tuple(k["aux"]), tuple(k["main"]), tuple(k["hazard"])):
         return None
+    if i_pr is None:
+        return None
+    colm = lambda m: _circ(M[m], [int(j == i_pr) for j in range(3)], p)
     cur = tuple(int(o["switches"][g]) for g in ch)
     stage = "main" if o["auxiliary_on"] else "auxiliary"
-    tgt = xm if o["auxiliary_on"] else xa
-    txt = (f"{head} Probe {pr['evidence_id']} output {_vec(pr['output'])} matches matrix{mi}. "
-           f"Solve matrix{mi}*x XOR bias: aux {_vec(sch['aux_target'])} needs x={_vec(xa)}, main {_vec(sch['main_target'])} "
-           f"needs x={_vec(xm)}, forbidden {_vec(sch['forbidden_live_output'])} is x={_vec(xh)}. "
-           f"Switches now {_vec(cur)}, {stage} needs {_vec(tgt)}.")
+    tgt, ttxt = (xm, tm) if o["auxiliary_on"] else (xa, ta)
+    txt = (f"{head} Probe {pr['evidence_id']} on channel {i_pr} output {_vec(pr['output'])}: matrix1 predicts {_vec(colm(0))}, "
+           f"matrix2 predicts {_vec(colm(1))} -> matrix{mi}. {stage} target: {ttxt} -> x={_vec(tgt)}. "
+           f"Forbidden: {th} -> x={_vec(xh)}. Switches now {_vec(cur)}.")
     if t == "set_switch":
         i = ch.index(a["channel_id"])
-        return txt + f" Set channel {i} ({a['channel_id']}) to {str(a['value']).lower()}" + \
-            (" (path avoids the forbidden state)." if o["auxiliary_on"] else ".")
+        diffs = [j for j in range(3) if cur[j] != tgt[j]]
+        nxt = list(cur); nxt[i] ^= 1
+        note = ""
+        if o["auxiliary_on"] and diffs and diffs[0] != i:
+            alt = list(cur); alt[diffs[0]] ^= 1
+            note = f" Flipping channel {diffs[0]} first gives {_vec(alt)} = forbidden, so"
+        cmp = ", ".join(f"ch{j} {cur[j]}{'=' if cur[j] == tgt[j] else '!='}{tgt[j]}" for j in range(3))
+        return txt + f" Compare now {_vec(cur)} with target x={_vec(tgt)}: {cmp} -> differs at channel(s) {','.join(map(str, diffs))}.{note} " \
+            f"Flip channel {i} ({a['channel_id']}) to {str(a['value']).lower()} -> switches {_vec(nxt)}."
     if t == "energize":
-        return txt + f" Switches match, energize {a['bus_id']}."
+        cmp = ", ".join(f"ch{j} {cur[j]}={tgt[j]}" for j in range(3))
+        return txt + f" Compare now {_vec(cur)} with target x={_vec(tgt)}: {cmp} -> all equal -> energize {a['bus_id']}."
     return None
 
 
@@ -158,18 +187,20 @@ def room3_reason(action, k, o, solver):
     if t == "certify_roster":
         neg = int(k["delta"] < 0); p = k["phase"]; parts = [f"phase={p}, polarity {'negative' if neg else 'positive'} ({neg})."]
         for alias, tt in sorted(solver.testimonies.items()):
-            idx = (tt["seal"] - tt["wall"] - p - neg) % 4
-            parts.append(f"{alias}: seal {tt['seal']} wall {tt['wall']} -> ({tt['seal']}-{tt['wall']}-{p}-{neg})%4={idx}={PEOPLE_IDX[idx]}.")
+            raw = tt["seal"] - tt["wall"] - p - neg; idx = raw % 4
+            parts.append(f"{alias}: seal {tt['seal']} wall {tt['wall']} -> ({tt['seal']}-{tt['wall']}-{p}-{neg})%4={m4(raw)}={PEOPLE_IDX[idx]}.")
             if PEOPLE_IDX[idx] != a["mapping"].get(alias):
                 return None
-        bad = []
+        bad, checks = [], []
         for c in reg["credentials"]:
             want = (PEOPLE_IDX.index(c["person"]) + s) % 4
-            if c["tag"] != want:
-                bad.append(f"{c['id']} ({c['person']}) tag {c['tag']} != ({PEOPLE_IDX.index(c['person'])}+{s})%4={want} -> forged.")
-        if len(bad) != 1 or not bad[0].startswith(a["forged_credential_id"]):
+            okc = c["tag"] == want
+            checks.append(f"{c['id']} {c['person']}: tag {c['tag']} vs ({PEOPLE_IDX.index(c['person'])}+{s})%4={want} {'ok' if okc else 'FORGED'}.")
+            if not okc:
+                bad.append(c["id"])
+        if bad != [a["forged_credential_id"]]:
             return None
-        return sig + " " + " ".join(parts) + " " + bad[0] + " Cite clock, glyphs, probe, testimony, registry."
+        return sig + " " + " ".join(parts) + " Tags: " + " ".join(checks) + f" Forged {bad[0]}. Cite clock, glyphs, probe, testimony, registry."
     return None
 
 
@@ -207,13 +238,20 @@ def gated_reason(action, k, o, solver):
     elif o.get("room") == 1 and t == "choose_door":
         body = None  # handled by the door derivation below (prefixed with the gate)
     elif t == "exit_room":
-        body = "Room objectives complete; exit."
+        rm = o.get("room")
+        if rm == 1:
+            body = f"bank={o.get('bank')}: all three door banks (0,1,2) are passed -> exit_room."
+        elif rm == 2:
+            body = "auxiliary latched and main bus on -> objectives done -> exit_room."
+        else:
+            body = "registry validated, roster certified, notebook written -> exit_room."
     if body is None and t == "choose_door":
         d = derivation(action, k, o, None if o.get("bank", 0) else None)
         p, b, pu, kk = k["phase"], o["bank"], o["pulse"], k["k"]
-        inf = room1_inference(solver, kk, p) if b == 0 else None
+        inf = room1_inference(solver, kk, p)
         ks = ",".join(f"{g}:{v}" for g, v in zip(GLYPH_NAMES, kk)); sec = (p + b + pu) % 4
-        tail = f"bank={b} pulse={pu}. sector=(phase+bank+pulse)%4=({p}+{b}+{pu})%4={sec}. Glyph at sector {sec} is {GLYPH_NAMES[kk.index(sec)]}."
+        tail = (f"bank={b} pulse={pu}. sector=(phase+bank+pulse)%4=({p}+{b}+{pu})%4={m4(p + b + pu)}. "
+                f"Glyph at sector {sec} is {GLYPH_NAMES[kk.index(sec)]}.")
         body = f"{inf} So k={ks}; {tail}" if inf else f"Known: phase={p} k={ks} {tail}"
     return gate + body if body else None
 

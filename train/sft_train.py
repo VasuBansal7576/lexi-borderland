@@ -21,8 +21,12 @@ def load_rows(paths, per_room_cap, seed):
     rng.shuffle(rows)
     buckets = defaultdict(list)
     for r in rows:
-        tool = json.loads(r["messages"][-1]["content"])["tool"]
-        buckets[(r["room"], tool)].append(r)
+        try:
+            t = json.loads(r["messages"][-1]["content"])
+            tool = (t.get("tool") or t.get("action") or t.get("call") or t.get("op") or "calls") if isinstance(t, dict) else "text"
+        except ValueError:
+            tool = "text"
+        buckets[(r.get("source", r["room"]), tool)].append(r)
     picked = []
     for key, items in buckets.items():
         picked += items[:per_room_cap]
@@ -98,22 +102,25 @@ def main():
     p.add_argument("--max-length", type=int, default=6144)
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--init-adapter", default=None)
+    p.add_argument("--save-steps", type=int, default=0, help="0 = no intermediate checkpoints")
     a = p.parse_args()
     from agenttune.agentic.distill_trainer import create_distill_trainer
     rows = load_rows(a.data, a.per_bucket, a.seed)
     stats = {"rows": len(rows), "by_room": dict(sorted(Counter(r["room"] for r in rows).items())),
-             "by_tool": dict(Counter(json.loads(r["messages"][-1]["content"])["tool"] for r in rows).most_common())}
+             "by_source": dict(Counter(r.get("source", "borderland") for r in rows).most_common())}
     print(json.dumps(stats))
     total = a.max_steps if a.max_steps > 0 else max(1, int(len(rows) * a.epochs / (a.batch * a.accum)))
     warmup = max(1, int(0.05 * total)) if total >= 20 else 0  # never let warmup swallow a short run
     stats.update(total_steps=total, warmup_steps=warmup)
     factory = CompletionOnlyFactory(rows, max_length=a.max_length, init_adapter=a.init_adapter)
-    demos = [{"prompt": r["messages"][1]["content"], "response": r["messages"][-1]["content"]} for r in rows]
+    demos = [{"prompt": r["messages"][-2]["content"], "response": r["messages"][-1]["content"]} for r in rows]
     trainer = create_distill_trainer(a.model, demonstrations=demos, system_prompt=SYSTEM, trainer_factory=factory,
                                      output_dir=a.output, num_train_epochs=a.epochs, learning_rate=a.lr,
                                      per_device_train_batch_size=a.batch, gradient_accumulation_steps=a.accum,
                                      max_steps=a.max_steps, warmup_steps=warmup, lr_scheduler_type="cosine",
-                                     logging_steps=5, save_strategy="no", seed=a.seed)
+                                     logging_steps=5, seed=a.seed,
+                                     **({"save_strategy": "steps", "save_steps": a.save_steps, "save_total_limit": 2}
+                                        if a.save_steps else {"save_strategy": "no"}))
     result = trainer.train()
     factory.trainer.save_model(a.output)
     factory.tokenizer.save_pretrained(a.output)
